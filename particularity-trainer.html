@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Particularity trainer</title>
+<style>
+:root{
+  --bg:#FBFAF7; --surface:#FFFFFF; --ink:#2C2C2A; --ink-soft:#5F5E5A; --line:#E6E4DC;
+  --rack:#F4F2EC;
+  --eff:#534AB7; --eff-bg:#EEEDFE; --eff-ink:#3C3489;
+  --ok:#3B6D11; --ok-bg:#EAF3DE; --ok-ink:#27500A;
+  --no:#993C1D; --no-bg:#FAECE7; --no-ink:#712B13;
+  --focus:#185FA5; --radius:12px;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#1d1c1a; --surface:#272622; --ink:#ECEAE1; --ink-soft:#B4B2A9; --line:#3a3835;
+    --rack:#211f19;
+    --eff:#AFA9EC; --eff-bg:#322c63; --eff-ink:#E5E2FA;
+    --ok:#9fd06a; --ok-bg:#274d12; --ok-ink:#e7f3d6;
+    --no:#e89a7e; --no-bg:#5e2412; --no-ink:#f9e2d8;
+    --focus:#7fb2ec;
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);line-height:1.55;padding:24px 16px;
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:680px;margin:0 auto}
+.title{font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-soft);margin:0 0 16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px}
+h2{font-size:21px;font-weight:500;line-height:1.3;margin:0 0 12px;letter-spacing:-.01em}
+h2:focus{outline:none}
+.eyebrow{font-size:12px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--eff);margin:0 0 10px}
+.meta{display:flex;justify-content:space-between;align-items:baseline;
+  font-size:13px;color:var(--ink-soft);margin-bottom:10px}
+.bar{height:4px;background:var(--line);border-radius:4px;overflow:hidden;margin-bottom:18px}
+.bar-fill{height:100%;background:var(--eff);width:0}
+.scenario{font-size:17px;margin:0 0 18px}
+.rack{display:grid;grid-template-columns:1fr;gap:8px}
+@media(min-width:540px){.rack{grid-template-columns:1fr 1fr}}
+.opt{display:flex;align-items:center;gap:12px;width:100%;min-height:58px;
+  text-align:left;padding:11px 13px;border:1px solid var(--line);border-radius:10px;
+  background:var(--surface);color:var(--ink);font:inherit;cursor:pointer}
+.opt-num{flex:none;width:24px;height:24px;border-radius:50%;background:var(--rack);
+  color:var(--ink-soft);font-size:13px;font-weight:500;display:flex;align-items:center;
+  justify-content:center}
+.opt-body{display:flex;flex-direction:column}
+.opt-name{font-weight:500;color:var(--eff-ink)}
+.opt-hint{font-size:13px;color:var(--ink-soft);line-height:1.3}
+.opt:hover{border-color:var(--eff);background:var(--eff-bg)}
+.opt:hover .opt-num{background:#fff}
+.opt:disabled{cursor:default;opacity:.62}
+.opt.is-correct{border-color:var(--ok);background:var(--ok-bg);opacity:1}
+.opt.is-correct .opt-name{color:var(--ok-ink)}
+.opt.is-correct::after{content:"\2713";margin-left:auto;color:var(--ok);font-weight:700}
+.opt.is-wrong{border-color:var(--no);background:var(--no-bg);opacity:1}
+.opt.is-wrong .opt-name{color:var(--no-ink)}
+.opt.is-wrong::after{content:"\2717";margin-left:auto;color:var(--no);font-weight:700}
+.ref{margin-top:14px;font-size:14px;color:var(--ink-soft)}
+.ref summary{cursor:pointer;color:var(--eff)}
+.ref ul{margin:10px 0 0;padding-left:20px}
+.ref li{margin:3px 0}
+.ref b{color:var(--ink);font-weight:500}
+.fb{margin-top:16px;padding:14px 16px;border-radius:10px;border:1px solid}
+.fb[hidden]{display:none}
+.fb-ok{background:var(--ok-bg);border-color:var(--ok);color:var(--ok-ink)}
+.fb-no{background:var(--no-bg);border-color:var(--no);color:var(--no-ink)}
+.fb p{margin:0}
+.fb-mark{font-weight:700;margin-right:6px}
+.fb-why{margin-top:7px!important;color:var(--ink)}
+.fb-actions{margin-top:14px}
+.btn{background:var(--ink);color:var(--bg);border:none;border-radius:9px;
+  padding:11px 20px;font:inherit;font-weight:500;cursor:pointer}
+.btn:hover{opacity:.9}
+.btn-lg{padding:13px 28px;font-size:17px}
+.intro-lede{font-size:16px;margin:0 0 12px}
+.intro-sub{font-size:14px;color:var(--ink-soft);margin:0 0 22px}
+kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;
+  background:var(--rack);border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+.review{font-size:16px;margin:0 0 14px}
+.chip{display:inline-block;background:var(--eff-bg);color:var(--eff-ink);
+  border-radius:999px;padding:3px 11px;font-size:14px;font-weight:500;margin:2px 2px}
+.result-note{font-size:14px;color:var(--ink-soft);margin:0 0 22px}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:6px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media (prefers-reduced-motion:no-preference){
+  .bar-fill{transition:width .3s ease}
+  .opt{transition:background .15s,border-color .15s}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1 class="title">Particularity · trainer</h1>
+  <main id="app"></main>
+  <div id="live" class="sr-only" aria-live="polite"></div>
+  <noscript><p>This trainer needs JavaScript to run.</p></noscript>
+</div>
+<script>
+(function(){
+  const EFFECTS = [
+    {key:"preserving",  hint:"nothing lost; the baseline"},
+    {key:"projecting",  hint:"named parts dropped on purpose"},
+    {key:"collapsing",  hint:"flattened to a checkbox"},
+    {key:"detaching",   hint:"a quality cut from its bearer"},
+    {key:"attenuating", hint:"fidelity decayed, amount unknown"},
+    {key:"conflating",  hint:"two merged into one, unlabelled"},
+    {key:"fusing",      hint:"two blended into one, labelled"}
+  ];
+  const byKey = {}; EFFECTS.forEach(e => byKey[e.key] = e);
+
+  const CASES = [
+    {scenario:"A naturalist records a duck's hoarse morning call as a lossless audio file, tagged with the bird's ring number, the pond, the date, and the weather.",
+     answer:"preserving", why:"All four survive — the quality, whose it is, the context, and an honest record. Nothing was dropped, blurred, or merged."},
+    {scenario:"A bird survey logs that same call as one column: heard a quack? \u2192 yes.",
+     answer:"collapsing", why:"The whole call became a single yes/no. The quality lives on only as a test; the particular call is gone. That checkbox is the signature."},
+    {scenario:"Two customers are both named Alex Doe. Support merges their histories into one record and replies as though it's one person — with nothing noting the merge.",
+     answer:"conflating", why:"Two distinct people asserted to be one, with nothing marking it, so downstream is silently wrong about at least one. Label the merge and it would be fusing."},
+    {scenario:"A weather page shows today's regional figure as the mean of twelve station readings, labelled \u201Caverage of 12 stations\u201D.",
+     answer:"fusing", why:"Many readings blended into one, openly labelled. The label keeps the plurality visible — that is what separates it from conflating."},
+    {scenario:"A conference badge prints just your name, pronouns, and organisation. The form was built to keep those three and drop everything else.",
+     answer:"projecting", why:"A chosen handful of named fields kept on purpose, the rest knowingly dropped. You can name exactly what's gone — unlike attenuating."},
+    {scenario:"An old letter is saved as a heavily compressed image. The handwriting is still readable but softened, and you couldn't say precisely which strokes were lost.",
+     answer:"attenuating", why:"The thing is still here but degraded, and you can't say what was lost. Unknown, structureless loss is the signature — not a clean dropped field."},
+    {scenario:"A single vivid line is lifted from an interview and shared on its own — no speaker, no question it answered, no surrounding context.",
+     answer:"detaching", why:"The words are intact but cut loose from whoever said them and why. The quality survived; its bond to its bearer didn't."},
+    {scenario:"Two genuinely different effects in an experiment both get filed under one variable name, and the analysis treats them as the same factor.",
+     answer:"conflating", why:"Two different things asserted identical, unlabelled — conclusions about \u2018the factor\u2019 are wrong, and nothing warns you."},
+    {scenario:"An intake form asks \u201Cdisability: yes / no\u201D. Someone with several distinct conditions ticks yes.",
+     answer:"collapsing", why:"Several distinct conditions flattened to one bit. The specifics vanish; only the predicate remains — the checkbox signature again."},
+    {scenario:"An API returns only a user's id, display name, and avatar — exactly the fields the client asked for; the rest of the profile stays on the server, deliberately unsent.",
+     answer:"projecting", why:"Exactly the fields asked for, sent by design; the rest withheld on purpose. Named, intentional, fully known loss — that's projecting."},
+    {scenario:"Back at the pond: a recordist deliberately layers the two ducks' calls into one composite track for a sound installation, and titles it \u201Ctwo ducks, merged\u201D.",
+     answer:"fusing", why:"Two calls blended into one, but the title declares the blend. Nobody mistakes it for one duck — the label is what makes it fusing, not conflating."}
+  ];
+
+  let order = [], idx = 0, score = 0, answered = false, missed = new Set();
+  const app = document.getElementById('app');
+  const live = document.getElementById('live');
+
+  function shuffle(a){ for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; }
+
+  function renderStart(){
+    app.innerHTML =
+      '<div class="card">'+
+        '<p class="eyebrow">particularity · trainer</p>'+
+        '<h2 tabindex="-1" id="head">Which quack did you just launder into a boolean?</h2>'+
+        '<p class="intro-lede">Eleven small cases. In each, a specific, situated quality has something done to it. Your job: name the move — which of the seven p-effects just happened.</p>'+
+        '<p class="intro-sub">You pick from the full board each time. Get one wrong and you\u2019ll see the test that pins it. Keys <kbd>1</kbd>\u2013<kbd>7</kbd> work too.</p>'+
+        '<button class="btn btn-lg" type="button" onclick="PT.start()">Start</button>'+
+      '</div>';
+    document.getElementById('head').focus();
+  }
+
+  function start(){
+    order = shuffle(CASES.map((_,i)=>i));
+    idx = 0; score = 0; missed = new Set();
+    renderQuestion();
+  }
+
+  function renderQuestion(){
+    answered = false;
+    const c = CASES[order[idx]];
+    const n = order.length;
+    const opts = EFFECTS.map((e,i)=>
+      '<button class="opt" type="button" data-key="'+e.key+'" onclick="PT.pick(\''+e.key+'\')">'+
+        '<span class="opt-num" aria-hidden="true">'+(i+1)+'</span>'+
+        '<span class="opt-body"><span class="opt-name">p-'+e.key+'</span>'+
+        '<span class="opt-hint">'+e.hint+'</span></span>'+
+      '</button>').join('');
+    const refList = EFFECTS.map((e,i)=>'<li><b>'+(i+1)+'. p-'+e.key+'</b> — '+e.hint+'</li>').join('');
+    app.innerHTML =
+      '<div class="card">'+
+        '<div class="meta"><span>Case '+(idx+1)+' of '+n+'</span>'+
+        '<span class="qscore">'+score+' correct</span></div>'+
+        '<div class="bar"><div class="bar-fill" style="width:'+Math.round(idx/n*100)+'%"></div></div>'+
+        '<h2 tabindex="-1" id="head">Which move is this?</h2>'+
+        '<p class="scenario">'+c.scenario+'</p>'+
+        '<div class="rack" role="group" aria-label="Pick the effect. Number keys 1 to 7 also work.">'+opts+'</div>'+
+        '<details class="ref"><summary>Remind me what each one means</summary><ul>'+refList+'</ul></details>'+
+        '<div id="fb" class="fb" hidden></div>'+
+      '</div>';
+    document.getElementById('head').focus();
+  }
+
+  function pick(key){
+    if(answered) return;
+    answered = true;
+    const c = CASES[order[idx]];
+    const correct = (key === c.answer);
+    if(correct) score++; else missed.add(c.answer);
+    document.querySelectorAll('.opt').forEach(b=>{
+      b.disabled = true;
+      if(b.dataset.key === c.answer) b.classList.add('is-correct');
+      if(b.dataset.key === key && !correct) b.classList.add('is-wrong');
+    });
+    const qs = document.querySelector('.qscore'); if(qs) qs.textContent = score+' correct';
+    const fb = document.getElementById('fb');
+    fb.hidden = false;
+    fb.className = 'fb ' + (correct ? 'fb-ok' : 'fb-no');
+    const last = (idx === order.length - 1);
+    const lead = correct
+      ? '<span class="fb-mark" aria-hidden="true">\u2713</span><b>Correct — p-'+c.answer+'.</b>'
+      : '<span class="fb-mark" aria-hidden="true">\u2717</span><b>Not quite — that\u2019s p-'+key+', '+byKey[key].hint+'.</b> This one is p-'+c.answer+'.';
+    const action = last
+      ? '<button class="btn" type="button" onclick="PT.results()">See results</button>'
+      : '<button class="btn" type="button" onclick="PT.next()">Next case</button>';
+    fb.innerHTML = '<p>'+lead+'</p><p class="fb-why">'+c.why+'</p><div class="fb-actions">'+action+'</div>';
+    live.textContent = (correct ? 'Correct. ' : 'Not quite. ') + 'This is p-'+c.answer+'. ' + c.why;
+    const nb = fb.querySelector('.btn'); if(nb) nb.focus();
+  }
+
+  function next(){ idx++; renderQuestion(); }
+
+  function results(){
+    const n = order.length;
+    const review = Array.from(missed);
+    const reviewHtml = review.length
+      ? '<p class="review">Worth another look: '+review.map(k=>'<span class="chip">p-'+k+'</span>').join(' ')+'</p>'
+      : '<p class="review">Every move placed correctly. The board is yours.</p>';
+    app.innerHTML =
+      '<div class="card">'+
+        '<h2 tabindex="-1" id="head">You named '+score+' of '+n+'.</h2>'+
+        reviewHtml+
+        '<p class="result-note">Each case turns on one test — the thing that tells a move from its nearest neighbour. That\u2019s the part to carry, not the answers.</p>'+
+        '<button class="btn" type="button" onclick="PT.start()">Shuffle and go again</button>'+
+      '</div>';
+    document.getElementById('head').focus();
+    live.textContent = 'Finished. '+score+' of '+n+' named.' + (review.length ? ' Review: '+review.map(k=>'p-'+k).join(', ') : '');
+  }
+
+  document.addEventListener('keydown', function(e){
+    if(e.metaKey || e.ctrlKey || e.altKey) return;
+    if(answered || !document.querySelector('.rack')) return;
+    const num = parseInt(e.key, 10);
+    if(num >= 1 && num <= EFFECTS.length){ e.preventDefault(); pick(EFFECTS[num-1].key); }
+  });
+
+  window.PT = { start:start, pick:pick, next:next, results:results };
+  renderStart();
+})();
+</script>
+</body>
+</html>
