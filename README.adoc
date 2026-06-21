@@ -1,67 +1,168 @@
 // SPDX-License-Identifier: MPL-2.0
+// SPDX-License-Identifier: CC-BY-SA-4.0
 // Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
 // SPDX-FileCopyrightText: 2024-2026 Jonathan D.A. Jewell (hyperpolymath)
-= {{PROJECT_NAME}}
+
+= Particularity
 :toc:
 :toc-placement: preamble
 
-image:https://img.shields.io/badge/OpenSSF-Best_Practices-green?logo=opensourcesecurity[OpenSSF Best Practices,link="https://www.bestpractices.dev/en/projects/new?repo_url=https://{{FORGE}}/{{OWNER}}/{{REPO}}"]
 image:https://img.shields.io/badge/License-MPL_2.0-blue.svg[License: MPL-2.0,link="https://opensource.org/licenses/MPL-2.0"]
-image:https://api.thegreenwebfoundation.org/greencheckimage/{{FORGE}}[Green Web,link="https://www.thegreenwebfoundation.org/green-web-check/?url={{FORGE}}"]
+image:https://img.shields.io/badge/status-specification-orange[Status: specification]
 
-{{PROJECT_DESCRIPTION}}
+A diagnostic vocabulary for *property-instance individuation and loss*. It names —
+precisely, with a fixed and deliberately small set of terms — the ways a specific,
+situated quality gets flattened as it moves through a system, and whether what
+survives is *enough for the use at hand*.
 
-[IMPORTANT]
+[quote]
+____
+Duck typing asks whether it quacks. Particularity asks which quack you just
+laundered into a boolean.
+____
+
+[NOTE]
 ====
-*This file is a template.* You are reading `README.adoc` from the *RSR template repo*
-(or a freshly-cloned copy of it). Run `just init` to replace every `{{PLACEHOLDER}}`
-token with your project's details, then delete this admonition. Until you do, the
-`{{...}}` markers below are intentional placeholders, not content.
+`{{FORGE}}`, `{{OWNER}}`, and `{{REPO}}` are deployment placeholders — set them to
+your forge, owner, and repository when you publish. The project's working name is
+*Particularity*; rename freely.
 ====
 
 == What this is
 
-A new repository scaffolded from the *Rhodium Standard Repository (RSR)* template:
-a batteries-included starting point that ships with CI/CD, machine-readable project
-metadata, an AI-agent gatekeeper protocol, a formally-typed ABI/FFI seam
-(Idris2 + Zig), container and reproducible-build scaffolding, and governance
-infrastructure — all wired and passing the RSR validators on day one.
+A *workbench*, not a language. The artefact is a vocabulary you think _with_: a
+board of named tools you pick up to say what just happened to a property-instance.
 
-Replace this section with a description of *your* project once initialised.
+A *property-instance* is a quality as borne by _this_ entity, in _this_ context,
+under _these_ conditions — the hoarseness of _this_ duck, this morning, on this
+pond. Not the universal "hoarseness"; the particular, situated instance of it.
 
-== Quick start
+The vocabulary sorts into *three kinds of term*, because they are three different
+kinds of thing:
 
-[source,bash]
-----
-# 1. Create a repo from this template (or clone it), then from the repo root:
-just init                # interactive bootstrap: fills every {{PLACEHOLDER}}
+* *Effects* — things that _happen_ to a property-instance (seven terms).
+* *Residue* — what is _left_ after an effect (one term).
+* *Verdict* — a _judgement_ on whether the residue was enough, always relative to a
+  declared *use-model* (two terms).
 
-# 2. See the available tasks:
-just                     # lists all phases (build, test, validate, audit, ...)
+The shape of the whole thing in one line:
 
-# 3. Check the repo still satisfies the RSR shape:
-just validate            # structure + metadata checks
-----
+____
+A property-instance undergoes some *p-effect*; relative to its declared
+*use-model*, the surviving *residual* is judged *p-sufficient* or *p-insufficient*.
+____
 
-`just init` prompts for the project name, owner, author, licence contact, and the
-other values listed in `.machine_readable/ai/PLACEHOLDERS.adoc`, substitutes them
-across the tree, validates the result, and (if available) runs the `k9-svc` checks.
+== What this is not
 
-== What you get
+Three boundaries keep the project honest:
 
-* *Machine-readable metadata* (`.machine_readable/6a2/`) — `STATE`, `META`,
-  `ECOSYSTEM`, `PLAYBOOK`, `AGENTIC`, `NEUROSYM`, `CLADE`, and `anchors/ANCHOR`,
-  in a2ml, so tools and agents can read the project's state and boundaries.
-* *AI gatekeeper protocol* — `0-AI-MANIFEST.a2ml` is the universal entry point that
-  tells an AI agent how to work in this repo before it touches anything.
-* *Typed ABI/FFI seam* — `src/interface/Abi/` (Idris2 type + layout proofs) over
-  `src/interface/ffi/` (Zig implementation), with generated C headers.
-* *CI/CD* — GitHub Actions for quality, security (CodeQL, Scorecard, secret
-  scanning), multi-forge mirroring, and RSR anti-pattern enforcement.
-* *Supply-chain & reproducibility* — container layering (stapeln), Nix/Guix shells,
-  SBOM, and signing hooks.
-* *Governance* — `GOVERNANCE.adoc`, `MAINTAINERS.adoc`, `.github/` community health
-  files, and a release `AUDIT.adoc` gate.
+. *Not "trope safety."* This is not a rival to type safety sold on the same ground.
+  That comparison is a losing one, and not the point.
+. *Not "type theory cannot express this."* Type theory can encode many such
+  structures, and so can trope theory. The claim is narrower: neither, _by itself_,
+  supplies the diagnostic vocabulary for property-instance individuation and loss.
+. *Not a bag of subtle metadata.* The centre stays fixed: individuated
+  property-instances. A term that does not bear on individuation or loss does not
+  belong here.
+
+And a practical boundary for when any of this matters at all:
+
+____
+Particularity matters when loss, detachment, conflation, or portability of
+property-instances affects interpretation, correctness, accountability, or later
+use.
+____
+
+== The vocabulary
+
+=== Effects — what happens to a property-instance
+
+[cols="1,1,3"]
+|===
+| Term | Arity | What it is
+
+| `p-preserving`  | one | The baseline: nothing lost. Quality, bearer, context, and an honest record all survive. Every other effect is _preserving minus one part_.
+| `p-projecting`  | one | Named parts dropped *on purpose*. You know exactly which coordinates are gone. A reduced view, not a lie — _provided nobody mistakes the projection for the whole_.
+| `p-collapsing`  | one | Flattened to a predicate or scalar. The quality survives as a _test_; the individual that bore it is gone. The quack becomes `true`.
+| `p-detaching`   | one | The quality severed from its bearer — the quality–bearer bond broken. A trait floating free of whose it was.
+| `p-attenuating` | one | Fidelity degraded with no clean structure. Unlike projecting, you have lost an _unknown_ amount.
+| `p-conflating`  | two | Two numerically distinct instances asserted to be *the same one*, with no label saying so. Downstream reasons about one where there were two, and is silently wrong.
+| `p-fusing`      | two | Two instances deliberately blended into one *labelled* aggregate. Not an error — the plurality survives in the label, so downstream knows not to pull them apart.
+|===
+
+The arity column marks a real seam: five effects act on a _single_ instance;
+`p-conflating` and `p-fusing` _merge two_. The two-arity pair are twins — the
+dishonest and honest versions of the same two-into-one move.
+
+=== Residue — what is left
+
+[cols="1,3"]
+|===
+| Term | What it is
+
+| `p-residual` | What actually survived an effect. The handle you inspect to decide whether the loss mattered.
+|===
+
+=== Verdict — relative to a declared use-model
+
+A verdict is *meaningless on its own*. The same collapse is sufficient for counting
+ducks and insufficient for diagnosing one — nothing about the collapse changed,
+only the use. So a verdict always names the model it is relative to.
+
+[cols="1,3"]
+|===
+| Term | What it is
+
+| `use-model`      | The declared statement of what a property-instance is _for_. The thing every verdict is relative to.
+| `p-sufficient`   | The surviving residual is *enough* for the declared use. What was lost did not matter _for this purpose_.
+| `p-insufficient` | The surviving residual is *not enough* for the declared use. Something needed was lost, and reasoning from the residue will go wrong.
+|===
+
+== Background
+
+The vocabulary's centre — qualities as borne by _this_ thing, in context — is the
+founding move of *trope theory* (the metaphysics of abstract particulars; D. C.
+Williams, Keith Campbell). The mapping is close enough to borrow from:
+
+* a *property-instance* is a _trope_;
+* *whose it is* (the bearer) is _compresence_ — on the standard view an object just
+  _is_ a bundle of mutually compresent tropes;
+* `p-conflating` is exactly the collapse of _exact resemblance_ into _numerical
+  identity_ — two tropes can be exactly alike and still be two. Keeping those apart
+  is the distinction the whole theory is built on.
+
+What trope theory does _not_ supply is the dynamics of *loss* — collapsing,
+attenuating, detaching, and the sufficiency verdict. That layer is this project's
+own.
+
+=== Compatibility
+
+A candidate effect is a *compatible* addition to the ontology — not merely a
+_consistent_ one — only if:
+
+. it *contradicts nothing* the base asserts;
+. its connection to the base is a *writable bridge* (a named relation with stated
+  conditions), not a quiet redefinition of the base's terms;
+. it requires *no change to the base* (a conservative extension); and
+. it does *non-redundant work* on a domain the base does not cover.
+
+`p-conflating` and `p-fusing` pass: they are claims about _records_ (what is
+asserted, and whether honestly), not about tropes. The bridge is "a singular record
+is faithful only if its referent is in fact one trope" — which touches the ontology
+nowhere and does new work the ontology is silent on. Each remaining effect earns
+its place by the same test.
+
+== Status
+
+Early. This repository is a *specification* — the vocabulary, its discriminating
+tests, and its worked examples. There is no checker yet, and no claim of one.
+
+The intended first computable artefact is a *checker, not a language*: annotate
+flows with the p-effect they induce, propagate effects through composition, and
+flag `p-insufficient` flows against each consumer's declared use-requirement. Idris2
+is the likely home — its quantitative types already track the loss-_plumbing_
+(whether a value is dropped), leaving this layer to add _dropped into what, and was
+the remainder enough_. A Scheme sketch may come first, to feel out the shape.
 
 == Repository map
 
@@ -69,21 +170,18 @@ across the tree, validates the result, and (if available) runs the `k9-svc` chec
 |===
 | Path | What lives there
 
-| `0-AI-MANIFEST.a2ml`      | Universal entry point for AI agents (read first).
-| `.machine_readable/`      | Project metadata, policies, contractiles, AI configs.
-| `src/interface/`          | Typed ABI (Idris2) + FFI (Zig) + generated headers.
-| `docs/`                   | Onboarding, status, governance, practice, decisions.
-| `build/`, `Justfile`      | Task orchestration (`just` phases delegate to `build/just/*.just`).
-| `.github/`                | Workflows + community health files.
-| `tests/`, `benches/`      | Test suites and benchmarks.
+| `README.adoc`          | This file.
+| `vocabulary/`          | One entry per term: definition, the test against its neighbour, one worked example.
+| `examples/`            | The same situation laundered several ways (the duck, a record, a person).
+| `docs/background.adoc` | The trope-theory grounding and the compatibility test, in full.
+| `checker/`             | _(planned)_ The drawer-sorter — annotate, propagate, flag.
 |===
 
 == Where to go next
 
-* `EXPLAINME.adoc` — the engineering deep-dive: how the pieces actually work.
-* `AFFIRMATION.adoc` — the dated, signed honesty snapshot of the repo's true state.
-* `AUDIT.adoc` — the release audit gate.
-* `.machine_readable/ai/PLACEHOLDERS.adoc` — the full placeholder reference.
+* `vocabulary/` — the ten terms, sharpened. Start here.
+* `docs/background.adoc` — why the vocabulary is compatible with the metaphysics it
+  borrows from.
 
 == Licence
 
