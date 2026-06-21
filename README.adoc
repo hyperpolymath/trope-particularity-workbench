@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: CC-BY-SA-4.0
 // Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
 // SPDX-FileCopyrightText: 2024-2026 Jonathan D.A. Jewell (hyperpolymath)
-
 = Particularity
 :toc:
 :toc-placement: preamble
@@ -44,6 +43,9 @@ kinds of thing:
 * *Residue* — what is _left_ after an effect (one term).
 * *Verdict* — a _judgement_ on whether the residue was enough, always relative to a
   declared *use-model* (two terms).
+
+.The ten terms, by family
+image::docs/img/word-families.svg[A property-instance passes through one of seven effects, leaving a residual, judged against a use-model as sufficient or insufficient,width=680]
 
 The shape of the whole thing in one line:
 
@@ -184,6 +186,9 @@ the remainder enough_. A Scheme sketch may come first, to feel out the shape.
   borrows from.
 
 == Licence
+
+Released under the link:LICENSE[Mozilla Public License 2.0] unless a per-file
+`SPDX-License-Identifier` says otherwise.
 
 Released under the link:LICENSE[Mozilla Public License 2.0] unless a per-file
 `SPDX-License-Identifier` says otherwise.
