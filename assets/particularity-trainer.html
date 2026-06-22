@@ -1,4 +1,7 @@
 <!doctype html>
+<!-- SPDX-FileCopyrightText: © 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk> -->
+<!-- SPDX-License-Identifier: MPL-2.0 -->
+<!-- SPDX-License-Identifier: CC-BY-SA-4.0 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -111,6 +114,8 @@ kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:1
     {key:"collapsing",  hint:"flattened to a checkbox"},
     {key:"detaching",   hint:"a quality cut from its bearer"},
     {key:"attenuating", hint:"fidelity decayed, amount unknown"},
+    {key:"falsifying",  hint:"a true value swapped for a false one"},
+    {key:"misbinding",  hint:"a quality pinned to the wrong bearer"},
     {key:"conflating",  hint:"two merged into one, unlabelled"},
     {key:"fusing",      hint:"two blended into one, labelled"}
   ];
@@ -138,7 +143,11 @@ kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:1
     {scenario:"An API returns only a user's id, display name, and avatar — exactly the fields the client asked for; the rest of the profile stays on the server, deliberately unsent.",
      answer:"projecting", why:"Exactly the fields asked for, sent by design; the rest withheld on purpose. Named, intentional, fully known loss — that's projecting."},
     {scenario:"Back at the pond: a recordist deliberately layers the two ducks' calls into one composite track for a sound installation, and titles it \u201Ctwo ducks, merged\u201D.",
-     answer:"fusing", why:"Two calls blended into one, but the title declares the blend. Nobody mistakes it for one duck — the label is what makes it fusing, not conflating."}
+     answer:"fusing", why:"Two calls blended into one, but the title declares the blend. Nobody mistakes it for one duck — the label is what makes it fusing, not conflating."},
+    {scenario:"A water-quality dashboard shows a station reading marked \u201Cverified\u201D, but the figure was fabricated upstream and never actually measured.",
+     answer:"falsifying", why:"The value presented is not the one that was there \u2014 a false value dressed as faithful. That is substitution, not loss: the deceptive dual on the value axis."},
+    {scenario:"A striking quote is published with a named speaker attached, confidently \u2014 but it was said by someone else entirely.",
+     answer:"misbinding", why:"The quality is pinned to the wrong bearer: the bond is asserted intact, to the wrong one. Unlike detaching (an honest missing bearer), this is a deceptive present-but-false bearer."}
   ];
 
   let order = [], idx = 0, score = 0, answered = false, missed = new Set();
@@ -152,8 +161,8 @@ kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:1
       '<div class="card">'+
         '<p class="eyebrow">particularity · trainer</p>'+
         '<h2 tabindex="-1" id="head">Which quack did you just launder into a boolean?</h2>'+
-        '<p class="intro-lede">Eleven small cases. In each, a specific, situated quality has something done to it. Your job: name the move — which of the seven p-effects just happened.</p>'+
-        '<p class="intro-sub">You pick from the full board each time. Get one wrong and you\u2019ll see the test that pins it. Keys <kbd>1</kbd>\u2013<kbd>7</kbd> work too.</p>'+
+        '<p class="intro-lede">Thirteen small cases. In each, a specific, situated quality has something done to it. Your job: name the move — which of the nine p-effects just happened.</p>'+
+        '<p class="intro-sub">You pick from the full board each time. Get one wrong and you\u2019ll see the test that pins it. Keys <kbd>1</kbd>\u2013<kbd>9</kbd> work too.</p>'+
         '<button class="btn btn-lg" type="button" onclick="PT.start()">Start</button>'+
       '</div>';
     document.getElementById('head').focus();
@@ -183,7 +192,7 @@ kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:1
         '<div class="bar"><div class="bar-fill" style="width:'+Math.round(idx/n*100)+'%"></div></div>'+
         '<h2 tabindex="-1" id="head">Which move is this?</h2>'+
         '<p class="scenario">'+c.scenario+'</p>'+
-        '<div class="rack" role="group" aria-label="Pick the effect. Number keys 1 to 7 also work.">'+opts+'</div>'+
+        '<div class="rack" role="group" aria-label="Pick the effect. Number keys 1 to 9 also work.">'+opts+'</div>'+
         '<details class="ref"><summary>Remind me what each one means</summary><ul>'+refList+'</ul></details>'+
         '<div id="fb" class="fb" hidden></div>'+
       '</div>';
