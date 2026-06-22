@@ -5,11 +5,11 @@
 #
 [metadata]
 version = "0.1.0"
-last-updated = "{{CURRENT_DATE}}"
+last-updated = "2026-06-22"
 
 [project]
-name = "[YOUR-REPO-NAME]"
-purpose = "{{PROJECT_DESCRIPTION}}"
+name = "Trope Particularity"
+purpose = "A diagnostic vocabulary for property-instance individuation and loss: the named effects, the residual, and the verdict."
 
 [ai-allocation]
 agents = [

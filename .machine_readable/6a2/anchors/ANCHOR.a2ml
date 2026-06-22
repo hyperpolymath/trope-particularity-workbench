@@ -1,15 +1,15 @@
 # SPDX-License-Identifier: MPL-2.0
-# Copyright (c) {{CURRENT_YEAR}} {{AUTHOR}} ({{OWNER}}) <{{AUTHOR_EMAIL}}>
+# Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
 #
 # ANCHOR.a2ml - authoritative anchor for this repository
 
 [metadata]
 version = "1.0.0"
-last-updated = "{{CURRENT_DATE}}"
+last-updated = "2026-06-22"
 
 [anchor]
 schema = "hyperpolymath.anchor/1"
-repo = "{{OWNER}}/{{REPO}}"
+repo = "hyperpolymath/trope-particularity-workbench"
 authority = "upstream-canonical"
 
 purpose = [
@@ -19,9 +19,9 @@ purpose = [
 ]
 
 [identity]
-project = "{{PROJECT_NAME}}"
+project = "Trope Particularity"
 kind = "{{PROJECT_KIND}}"                # language | library | service | tool
-one-sentence = "{{PROJECT_PURPOSE}}"
+one-sentence = "A diagnostic vocabulary for property-instance individuation and loss: the named effects, the residual, and the verdict."
 domain = "{{PROJECT_DOMAIN}}"
 
 [semantic-authority]
