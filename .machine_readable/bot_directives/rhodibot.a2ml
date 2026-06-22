@@ -1,0 +1,18 @@
+# SPDX-FileCopyrightText: © 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+# SPDX-License-Identifier: MPL-2.0
+# Media-Type: application/vnd.bot-directive+a2ml
+#
+# Per-repo directive for rhodibot — the DETERMINISTIC, symbolic RSR verifier
+# (gitbot-fleet/bots/rhodibot). rhodibot acts from hard-coded rules + these guards;
+# it is NOT a neural agent, so the no-automated-licence-edits rule (which scopes to
+# neural agents) does not forbid its bounded SPDX normalisation. Repo kind: lean-docs.
+
+schema_version = "1.0"
+directive_type = "bot-directive"
+bot = "rhodibot"
+scope = "rsr-compliance"
+enforcement = "partial"
+repo-kind = "lean-docs"
+allow = ["metadata", "docs", "repo-structure checks", "policy validation", "SPDX normalisation to the repo's declared licences (code/config -> MPL-2.0; prose docs -> CC-BY-SA-4.0)", "vocabulary/effect-entry structure"]
+deny = ["destructive edits without approval", "relicensing third-party / vendored / forked files", "any SPDX change whose correct licence cannot be deterministically determined (leave untouched)", "converting AGPL or other deliberate (non-drift) licences", "enforcing software-only gates (build/test/compile) on this documents repo"]
+notes = "ACK: trope-particularity-workbench rhodibot directive loaded (PARTIAL / LEAN enforcement — this is a documents/vocabulary repo, not software). Apply doc + metadata + RSR-structure checks and deterministic SPDX normalisation (prose -> CC-BY-SA-4.0; config -> MPL-2.0) only; do NOT enforce build/test/software gates; leave third-party or undeterminable licences untouched."
