@@ -1,0 +1,23 @@
+// SPDX-FileCopyrightText: © 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+// SPDX-License-Identifier: MPL-2.0
+// SPDX-License-Identifier: CC-BY-SA-4.0
+= The duck, laundered several ways
+:toc: macro
+
+One property-instance — _this_ duck's hoarse morning call, on _this_ pond, today —
+put through different effects. Each row names the move and the verdict against a
+floor demanding the call's spectral content. The IR for these is in the checker's
+conformance suite (`trope-checker/tests/conformance/fixtures/`).
+
+[cols="1,2,1,2",options="header"]
+|===
+| Move | What happens to the call | Verdict (spectral floor) | Checker fixture
+| `p-preserving` | Lossless audio + ring number, pond, date, weather. | `p-sufficient` | `duck-preserve.ir.json`
+| `p-collapsing` | Logged as one column: heard a quack? → yes. | `p-insufficient` (witness: the collapse) | `duck-collapse.ir.json`
+| `p-attenuating` | Saved as a heavily compressed clip; an unknown amount of detail blurred. | `p-insufficient` (⊤ below every finite fidelity) | `letter-attenuate.ir.json` (same shape)
+| `p-detaching` | The call clipped and shared with no bird, no pond, no date. | `p-insufficient` if the use needs the bearer | `interview-detach.ir.json` (same shape)
+|===
+
+The point: *nothing about the call changed across the verdicts* — only the use-model.
+The same collapse that is insufficient for diagnosing the bird is sufficient for
+merely counting that _a_ duck was heard.

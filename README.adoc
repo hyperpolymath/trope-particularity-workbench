@@ -20,13 +20,6 @@ Duck typing asks whether it quacks. Particularity asks which quack you just
 laundered into a boolean.
 ____
 
-[NOTE]
-====
-`{{FORGE}}`, `{{OWNER}}`, and `{{REPO}}` are deployment placeholders — set them to
-your forge, owner, and repository when you publish. The project's working name is
-*Particularity*; rename freely.
-====
-
 == What this is
 
 A *workbench*, not a language. The artefact is a vocabulary you think _with_: a
@@ -39,13 +32,17 @@ pond. Not the universal "hoarseness"; the particular, situated instance of it.
 The vocabulary sorts into *three kinds of term*, because they are three different
 kinds of thing:
 
-* *Effects* — things that _happen_ to a property-instance (seven terms).
+* *Effects* — things that _happen_ to a property-instance (nine terms).
 * *Residue* — what is _left_ after an effect (one term).
 * *Verdict* — a _judgement_ on whether the residue was enough, always relative to a
-  declared *use-model* (two terms).
+  declared *use-model* (three terms: the use-model and the two verdicts).
 
-.The ten terms, by family
-image::docs/img/word-families.svg[A property-instance passes through one of seven effects, leaving a residual, judged against a use-model as sufficient or insufficient,width=680]
+.The twelve terms, by family
+image::docs/img/word-families.svg[A property-instance passes through one of nine effects, leaving a residual, judged against a use-model as sufficient or insufficient,width=680]
+
+See also `assets/trope-particularity-map.svg` (the pipeline, with the effects split
+two ways: by *loss amount* and by *veridicality*) and `assets/particularity-trainer.html`
+(an interactive drill on naming the nine effects).
 
 The shape of the whole thing in one line:
 
@@ -70,8 +67,8 @@ Three boundaries keep the project honest:
 And a practical boundary for when any of this matters at all:
 
 ____
-Particularity matters when loss, detachment, conflation, or portability of
-property-instances affects interpretation, correctness, accountability, or later
+Particularity matters when loss, detachment, conflation, deception, or portability
+of property-instances affects interpretation, correctness, accountability, or later
 use.
 ____
 
@@ -79,92 +76,89 @@ ____
 
 === Effects — what happens to a property-instance
 
-[cols="1,1,3"]
-|===
-| Term | Arity | What it is
+The nine effects split two independent ways. *Loss amount*: kept whole
+(`p-preserving`) versus lost-or-changed. *Veridicality*: faithful versus *deceptive*
+— the three deceptive duals (`p-falsifying`, `p-misbinding`, `p-conflating`) present
+something false rather than merely lossy.
 
-| `p-preserving`  | one | The baseline: nothing lost. Quality, bearer, context, and an honest record all survive. Every other effect is _preserving minus one part_.
-| `p-projecting`  | one | Named parts dropped *on purpose*. You know exactly which coordinates are gone. A reduced view, not a lie — _provided nobody mistakes the projection for the whole_.
-| `p-collapsing`  | one | Flattened to a predicate or scalar. The quality survives as a _test_; the individual that bore it is gone. The quack becomes `true`.
-| `p-detaching`   | one | The quality severed from its bearer — the quality–bearer bond broken. A trait floating free of whose it was.
-| `p-attenuating` | one | Fidelity degraded with no clean structure. Unlike projecting, you have lost an _unknown_ amount.
-| `p-conflating`  | two | Two numerically distinct instances asserted to be *the same one*, with no label saying so. Downstream reasons about one where there were two, and is silently wrong.
-| `p-fusing`      | two | Two instances deliberately blended into one *labelled* aggregate. Not an error — the plurality survives in the label, so downstream knows not to pull them apart.
+[cols="1,1,1,3"]
+|===
+| Term | Arity | Veridicality | What it is
+
+| `p-preserving`  | one | faithful   | The baseline: nothing lost. Quality, bearer, context, and an honest record all survive. Every other effect is _preserving minus one part_ (or a lie about one part).
+| `p-projecting`  | one | faithful   | Named parts dropped *on purpose*. You know exactly which coordinates are gone. A reduced view, not a lie — _provided nobody mistakes the projection for the whole_.
+| `p-collapsing`  | one | faithful   | Flattened to a predicate or scalar. The quality survives as a _test_; the individual that bore it is gone. The quack becomes `true`.
+| `p-detaching`   | one | faithful   | The quality severed from its bearer — the quality–bearer bond broken. A trait floating free of whose it was.
+| `p-attenuating` | one | faithful   | Fidelity degraded with no clean structure. Unlike projecting, you have lost an _unknown_ amount.
+| `p-falsifying`  | one | *deceptive* | A *false value*: the residual claims faithfulness, but the quality presented is not the one that was there. Not loss — substitution.
+| `p-misbinding`  | one | *deceptive* | A *false bearer*: the bond is asserted intact, but the quality is pinned to the wrong entity. The tie holds — to the wrong one.
+| `p-conflating`  | two | *deceptive* | A *false singleness*: two numerically distinct instances asserted to be *the same one*, with no label saying so. Downstream reasons about one where there were two, and is silently wrong.
+| `p-fusing`      | two | faithful   | Two instances deliberately blended into one *labelled* aggregate. Not an error — the plurality survives in the label, so downstream knows not to pull them apart.
 |===
 
-The arity column marks a real seam: five effects act on a _single_ instance;
-`p-conflating` and `p-fusing` _merge two_. The two-arity pair are twins — the
-dishonest and honest versions of the same two-into-one move.
+The arity column marks a real seam: *seven single-instance* effects, and *two
+two-instance* (`p-conflating`, `p-fusing` — the dishonest and honest versions of the
+same two-into-one move). The veridicality column marks the other seam: the three
+deceptive duals are *false value / false bearer / false singleness*. The two splits
+are independent — loss-amount is about _how much_ survived; veridicality is about
+_whether what survived is true_.
+
+[NOTE]
+====
+The three deceptive duals exist in the vocabulary because the formal semantics needs
+them, but none is *writable* in a faithful producer: a value-substitution, a
+mis-attribution, or an untagged merge is a _fault_, caught at the checker's
+validation boundary, not a move you compose with (see the checker's `prevent`
+profile, R-2026-06-22).
+====
 
 === Residue — what is left
 
 [cols="1,3"]
 |===
 | Term | What it is
-
 | `p-residual` | What actually survived an effect. The handle you inspect to decide whether the loss mattered.
 |===
 
 === Verdict — relative to a declared use-model
 
 A verdict is *meaningless on its own*. The same collapse is sufficient for counting
-ducks and insufficient for diagnosing one — nothing about the collapse changed,
-only the use. So a verdict always names the model it is relative to.
+ducks and insufficient for diagnosing one — nothing about the collapse changed, only
+the use. So a verdict always names the model it is relative to.
 
 [cols="1,3"]
 |===
 | Term | What it is
-
 | `use-model`      | The declared statement of what a property-instance is _for_. The thing every verdict is relative to.
 | `p-sufficient`   | The surviving residual is *enough* for the declared use. What was lost did not matter _for this purpose_.
-| `p-insufficient` | The surviving residual is *not enough* for the declared use. Something needed was lost, and reasoning from the residue will go wrong.
+| `p-insufficient` | The surviving residual is *not enough* for the declared use. Something needed was lost (or falsified), and reasoning from the residue will go wrong.
 |===
 
 == Background
 
 The vocabulary's centre — qualities as borne by _this_ thing, in context — is the
 founding move of *trope theory* (the metaphysics of abstract particulars; D. C.
-Williams, Keith Campbell). The mapping is close enough to borrow from:
+Williams, Keith Campbell). The full grounding and the compatibility test are in
+`docs/background.adoc`. In short: a *property-instance* is a _trope_; *whose it is*
+is _compresence_; and `p-conflating` is exactly the collapse of _exact resemblance_
+into _numerical identity_ — two tropes can be exactly alike and still be two.
 
-* a *property-instance* is a _trope_;
-* *whose it is* (the bearer) is _compresence_ — on the standard view an object just
-  _is_ a bundle of mutually compresent tropes;
-* `p-conflating` is exactly the collapse of _exact resemblance_ into _numerical
-  identity_ — two tropes can be exactly alike and still be two. Keeping those apart
-  is the distinction the whole theory is built on.
-
-What trope theory does _not_ supply is the dynamics of *loss* — collapsing,
-attenuating, detaching, and the sufficiency verdict. That layer is this project's
-own.
-
-=== Compatibility
-
-A candidate effect is a *compatible* addition to the ontology — not merely a
-_consistent_ one — only if:
-
-. it *contradicts nothing* the base asserts;
-. its connection to the base is a *writable bridge* (a named relation with stated
-  conditions), not a quiet redefinition of the base's terms;
-. it requires *no change to the base* (a conservative extension); and
-. it does *non-redundant work* on a domain the base does not cover.
-
-`p-conflating` and `p-fusing` pass: they are claims about _records_ (what is
-asserted, and whether honestly), not about tropes. The bridge is "a singular record
-is faithful only if its referent is in fact one trope" — which touches the ontology
-nowhere and does new work the ontology is silent on. Each remaining effect earns
-its place by the same test.
+What trope theory does _not_ supply is the dynamics of *loss and deception* —
+collapsing, attenuating, detaching, falsifying, mis-binding, and the sufficiency
+verdict. That layer is this project's own.
 
 == Status
 
-Early. This repository is a *specification* — the vocabulary, its discriminating
-tests, and its worked examples. There is no checker yet, and no claim of one.
+Early, but no longer alone. This repository is the *vocabulary* — the named effects,
+the residual, the verdict, their discriminating tests, and worked examples.
 
-The intended first computable artefact is a *checker, not a language*: annotate
-flows with the p-effect they induce, propagate effects through composition, and
-flag `p-insufficient` flows against each consumer's declared use-requirement. Idris2
-is the likely home — its quantitative types already track the loss-_plumbing_
-(whether a value is dropped), leaving this layer to add _dropped into what, and was
-the remainder enough_. A Scheme sketch may come first, to feel out the shape.
+The *checker is a separate repository*: `github.com/hyperpolymath/trope-checker`. It
+is a _checker, not a language_ — it consumes a language-neutral *Trope IR* and
+returns a verdict (`p-sufficient` / `p-insufficient`) against each consumer's
+declared use-model, with a witness edge. Its reference core is in Idris2 (quantitative
+types track the loss-plumbing). The first front-end that lowers to the IR is the
+*Haec* language (`github.com/hyperpolymath/haec`). This workbench defines the words
+both of them realise; it depends on neither.
 
 == Repository map
 
@@ -173,20 +167,21 @@ the remainder enough_. A Scheme sketch may come first, to feel out the shape.
 | Path | What lives there
 
 | `README.adoc`          | This file.
-| `vocabulary/`          | One entry per term: definition, the test against its neighbour, one worked example.
-| `examples/`            | The same situation laundered several ways (the duck, a record, a person).
-| `docs/background.adoc` | The trope-theory grounding and the compatibility test, in full.
-| `checker/`             | _(planned)_ The drawer-sorter — annotate, propagate, flag.
+| `vocabulary/`          | One entry per effect: definition, the test against its nearest neighbour, one worked example.
+| `examples/`            | The same situation laundered several ways (the duck, a record, a person), in lockstep with the checker's conformance fixtures.
+| `assets/`              | `particularity-trainer.html` (interactive drill) and `trope-particularity-map.svg` (the pipeline).
+| `docs/background.adoc` | The trope-theory grounding (Williams, Campbell) and the compatibility test, in full.
+| _the checker_          | A *separate repository*: `github.com/hyperpolymath/trope-checker` — annotate, propagate, flag.
 |===
 
 == Where to go next
 
-* `vocabulary/` — the ten terms, sharpened. Start here.
+* `vocabulary/` — the nine effects, sharpened. Start here.
+* `assets/particularity-trainer.html` — drill until you can name the move from the test.
 * `docs/background.adoc` — why the vocabulary is compatible with the metaphysics it
   borrows from.
 
 == Licence
 
-Released under the link:LICENSE[Mozilla Public License 2.0] unless a per-file
-`SPDX-License-Identifier` says otherwise.
-
+Code and config: Mozilla Public License 2.0. Prose docs and vocabulary:
+CC-BY-SA-4.0. Per-file `SPDX-License-Identifier` headers are authoritative.

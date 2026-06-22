@@ -1,0 +1,29 @@
+// SPDX-FileCopyrightText: © 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+// SPDX-License-Identifier: MPL-2.0
+// SPDX-License-Identifier: CC-BY-SA-4.0
+= AFFIRMATION — Trope Particularity workbench
+:revdate: 2026-06-22
+
+A dated, ground-truthed honesty snapshot.
+
+== As of 2026-06-22
+
+*What this is:* the vocabulary — nine effects, the residual, the verdict — with a
+discriminating test per effect and worked examples. It defines the words; it is not
+the checker and not the language.
+
+*Count, made consistent (EFFECT_COUNT=nine):* the seven original effects plus the two
+deceptive duals `p-falsifying` (false value) and `p-misbinding` (false bearer); with
+`p-conflating` (false singleness) these form the deceptive trio. `just check`
+(`tests/check-vocabulary.py`) verifies the nine agree across `vocabulary/` (9 entries),
+`assets/particularity-trainer.html` (9 options, 13 cases), `assets/trope-particularity-map.svg`
+(three groups: no-loss / with-loss-faithful / deceptive), and the README arity
+sentence ("seven single-instance, two two-instance").
+
+*Lockstep:* the `examples/` (duck, record, person) track the checker's conformance
+fixtures (`trope-checker/tests/conformance/`).
+
+*Honest scope:* whether the three loss-coordinates are themselves exhaustive is an
+open philosophy-of-individuation question (calculus O1-coord), logged not settled.
+
+— Authored by the build agent under owner direction; signed in git history.

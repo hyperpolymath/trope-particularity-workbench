@@ -1,0 +1,22 @@
+// SPDX-FileCopyrightText: © 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+// SPDX-License-Identifier: MPL-2.0
+// SPDX-License-Identifier: CC-BY-SA-4.0
+= A person, laundered several ways
+:toc: macro
+
+A quotation — a property-instance: _this_ thing said by _this_ person, in _this_
+context. The person case is where the *veridicality* axis shows itself: the
+difference between honest absence and deceptive falsehood.
+
+[cols="1,2,2",options="header"]
+|===
+| Move | What happens | Axis
+| `p-detaching` | A vivid line lifted from an interview and shared alone — no speaker, no question, no context. | *Loss* (honest): the bearer is genuinely absent; the bond is `Severed`. Nobody is told a false speaker.
+| `p-misbinding` | The same line published with a named speaker attached, confidently — but said by someone else. | *Veridicality* (deceptive): the bond is asserted intact, to the *wrong* bearer. A false bearer, not a missing one.
+| `p-falsifying` | The line itself altered and presented as a verbatim quote. | *Veridicality* (deceptive): a *false value* dressed as faithful. Substitution, not loss.
+|===
+
+`p-detaching` vs `p-misbinding` is the clean test for the bond axis: *absent* (honest)
+versus *wrong* (deceptive). Under the checker's prevent profile the two deceptive
+moves are not even writable — an emitted `Misbound` or `Falsified` grade is a fault
+caught at the validation boundary, with the offending coordinate named.

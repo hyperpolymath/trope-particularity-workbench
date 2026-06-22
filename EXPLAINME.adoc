@@ -1,94 +1,40 @@
+// SPDX-FileCopyrightText: © 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
 // SPDX-License-Identifier: MPL-2.0
-// Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
-= RSR Template Repo - Explainme
-image:https://img.shields.io/badge/License-MPL_2.0-blue.svg[License: MPL-2.0,link="https://opensource.org/licenses/MPL-2.0"]
+// SPDX-License-Identifier: CC-BY-SA-4.0
+= EXPLAINME — Trope Particularity (deep-dive)
+:toc: macro
 
-:toc:
-:icons: font
+The README is the pitch; this is how the vocabulary is structured and kept honest.
 
-This file explains how the key template claims map to real files.
+== One centre, two axes
 
-== Central Session Protocol Authority
+The centre is the individuated *property-instance* (a trope, provenance-enriched).
+The nine effects sort on two *independent* axes:
 
-Claim:
-Session protocols are centrally maintained and not duplicated in this template.
+* *loss amount* — kept whole (`p-preserving`) vs lost-or-changed;
+* *veridicality* — faithful vs *deceptive* (`p-falsifying` / `p-misbinding` /
+  `p-conflating` = false value / false bearer / false singleness).
 
-How this is implemented:
+A term belongs only if it bears on individuation or loss and passes the four-part
+compatibility test (`docs/background.adoc`): contradicts nothing, writable bridge,
+conservative, non-redundant.
 
-* The local dispatcher (`session/dispatch.sh`) maps canonical commands to central
-  protocol paths in `standards/session-management-standards`.
-* Local files (`session/custom-checks.k9`, `session/local-hooks.sh`,
-  `coordination.k9`) are integration-only.
+== Why "informal by design"
 
-Caveat:
+The workbench is the *vocabulary*, not the formalism. The calculus, the IR schema,
+and the proofs live with the checker (`trope-checker`), by design (HC-7): keep the
+words you think _with_ separate from the machine that checks them. Each effect's
+entry gives a *discriminating test* against its nearest neighbour — the part to
+carry, not the answer.
 
-* If `SESSION_STANDARDS_DIR` is unset and no adjacent standards checkout exists,
-  the dispatcher records the command but cannot resolve central checklist paths.
+== Kept honest mechanically
 
-== Canonical Command Surface
+`tests/check-vocabulary.py` (`just check`) fails if the nine effects ever disagree
+across `vocabulary/`, the trainer, the map, and the README. The `examples/` (duck,
+record, person) are kept in lockstep with the checker's conformance fixtures, so a
+worked example and the machine verdict cannot drift apart.
 
-Claim:
-Template bindings align to one canonical command model.
+== Reading order
 
-How this is implemented:
-
-* `Justfile` provides thin aliases (`intake-repo`, `checkpoint-change`,
-  `verify-maintenance`, `verify-substantial`, `verify-release`, `close-planned`,
-  `close-urgent`, `recover-repo`, `handover-*`).
-* Every alias calls `session/dispatch.sh` with canonical verb-object pairs.
-
-Caveat:
-
-* Recipes are wrappers only. They do not replace protocol content from
-  the central standards repo.
-
-== Runtime State Is Local
-
-Claim:
-Session state is per-repository runtime output, not standards text.
-
-How this is implemented:
-
-* `session/dispatch.sh` writes command and continuity-core capture stubs to
-  `.session/LAST-CANONICAL-COMMAND.md` in the target repository path.
-
-Caveat:
-
-* Runtime files are intentionally lightweight and require human/agent completion.
-
-== Template Token Policy
-
-Claim:
-Placeholders are explicit template content until initialization.
-
-How this is implemented:
-
-* `README.adoc` and bootstrap recipes keep `{{TOKEN}}` placeholders visible.
-* `just init` performs token replacement.
-
-Caveat:
-
-* Uninitialized placeholders must not be treated as project-specific truth.
-
-== Julia Registry Packages — Standalone Repo Requirement
-
-Claim:
-If this template is used to create a Julia package, it must remain a standalone repository registered with the Julia package registry.
-
-How this is implemented:
-
-* Julia's package registry (General.jl or other) expects each package to be a standalone GitHub repository with `Project.toml` at the repository root.
-* Installation via `Pkg.add()`, dependency resolution, and automated CI/CD all depend on this canonical structure.
-
-Caveat:
-
-* Do NOT move this repository into a monorepo or subdirectory, as this breaks registry registration and package discoverability.
-* See `JULIA-REGISTRY-REQUIREMENT.md` (workspace root) for the complete list of 34 registered Julia packages and enforcement rationale.
-* Non-registry Julia packages can be organized differently if they are not published to any registry.
-
-
-== License
-
-This project is licensed under the Mozilla Public License, v. 2.0. See the `LICENSE` file for details.
-
-SPDX-License-Identifier: MPL-2.0
+`vocabulary/README.adoc` → the nine entries → `assets/particularity-trainer.html`
+(drill) → `docs/background.adoc` (why it is compatible with trope theory).
