@@ -1,0 +1,21 @@
+// SPDX-FileCopyrightText: © 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+// SPDX-License-Identifier: MPL-2.0
+// SPDX-License-Identifier: CC-BY-SA-4.0
+= `p-misbinding`
+:toc: macro
+
+*Family:* effect  *·  Arity:* one  *·  Veridicality:* deceptive
+
+*Grade (calculus):* bond the deceptive dual `Misbound` (bearer present but false) — the bottom of the bond order; absorbing.
+
+== Definition
+
+A *false bearer*. The bond is asserted intact, but the quality is pinned to the wrong entity. The tie holds — to the wrong one. Deceptive.
+
+== Discriminating test (vs `p-detaching`)
+
+Is the bearer *absent* or *wrong*? Detaching removes the bearer honestly (`Severed`); misbinding keeps a bearer but the wrong one (`Misbound`). Honest absence versus deceptive presence.
+
+== Worked example
+
+A quote is attributed to the wrong speaker — confidently, with a name attached. Like falsifying, this is not a writable move: an emitted `Misbound` grade is a fault caught at the checker's validation boundary.

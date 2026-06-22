@@ -1,0 +1,21 @@
+// SPDX-FileCopyrightText: © 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+// SPDX-License-Identifier: MPL-2.0
+// SPDX-License-Identifier: CC-BY-SA-4.0
+= `p-fusing`
+:toc: macro
+
+*Family:* effect  *·  Arity:* two  *·  Veridicality:* faithful
+
+*Grade (calculus):* merge `Fused(τ)` with a required provenance tag τ; fates `Present`; bond the meet of the inputs'.
+
+== Definition
+
+Two instances deliberately blended into one *labelled* aggregate. Not an error — the plurality survives in the label, so downstream knows not to pull them apart.
+
+== Discriminating test (vs `p-conflating`)
+
+Same test as conflating, from the honest side: a fusion *carries its tag*. The tag is required — an untagged merge does not elaborate; it is a conflation fault.
+
+== Worked example
+
+A weather page shows today's regional figure as the mean of twelve station readings, labelled “average of 12 stations”. The label keeps the plurality visible. Against a use accepting a labelled merge: *p-sufficient*.

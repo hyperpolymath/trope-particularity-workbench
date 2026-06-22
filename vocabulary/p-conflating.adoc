@@ -1,0 +1,21 @@
+// SPDX-FileCopyrightText: © 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+// SPDX-License-Identifier: MPL-2.0
+// SPDX-License-Identifier: CC-BY-SA-4.0
+= `p-conflating`
+:toc: macro
+
+*Family:* effect  *·  Arity:* two  *·  Veridicality:* deceptive
+
+*Grade (calculus):* merge the deceptive dual `Conflated` (unlabelled two-into-one) — the bottom of the merge order; infectious (once conflated, never recovered).
+
+== Definition
+
+A *false singleness*. Two numerically distinct instances asserted to be the same one, with no label saying so. Downstream reasons about one where there were two, and is silently wrong.
+
+== Discriminating test (vs `p-fusing`)
+
+Is the merge *labelled*? Fusing keeps the plurality recoverable in a provenance tag; conflating discards the tag, so plurality is irrecoverable. Same two-into-one move, dishonest versus honest.
+
+== Worked example
+
+Two customers are both named Alex Doe. Support merges their histories into one record and replies as though it is one person — with nothing noting the merge. Label it and it would be fusing.

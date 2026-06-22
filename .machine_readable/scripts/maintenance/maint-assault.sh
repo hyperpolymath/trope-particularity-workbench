@@ -8,7 +8,7 @@
 
 set -euo pipefail
 
-BINARY_NAME="{{project}}"
+BINARY_NAME="trope_particularity_workbench"
 REPORT_PATH="docs/reports/security/assault-latest.json"
 PA_BIN="${PANIC_ATTACK_BIN:-panic-attack}"
 

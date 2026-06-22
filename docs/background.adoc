@@ -1,0 +1,83 @@
+// SPDX-FileCopyrightText: © 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+// SPDX-License-Identifier: MPL-2.0
+// SPDX-License-Identifier: CC-BY-SA-4.0
+= Background — trope theory and the compatibility test
+:toc: macro
+:sectnums:
+
+The vocabulary's centre — qualities as borne by _this_ thing, in context — is the
+founding move of *trope theory*, the metaphysics of abstract particulars. This
+document gives the grounding and the test a candidate term must pass to belong.
+
+toc::[]
+
+== Tropes as abstract particulars (Williams, Campbell)
+
+A *trope* is a property considered as a *non-repeatable, situated instance* — _this_
+redness, _this_ hoarseness, here, borne by _this_ thing — not the universal "redness"
+shared across many bearers. The position was named and defended by D. C. Williams
+("On the Elements of Being", 1953) and developed by Keith Campbell (_Abstract
+Particulars_, 1990). Two tropes can be *exactly alike* and still be *two*: exact
+resemblance is not numerical identity. Keeping those apart is the distinction the
+whole theory is built on — and the distinction `p-conflating` violates.
+
+The mapping this workbench borrows:
+
+* a *property-instance* is a _trope_;
+* *whose it is* (the bearer) is _compresence_ — on the bundle view, an object just
+  _is_ a bundle of mutually compresent tropes;
+* `p-conflating` is the collapse of _exact resemblance_ into _numerical identity_:
+  asserting two exactly-alike tropes are one. `p-fusing` is its honest twin — the
+  same two-into-one move, but labelled, so the plurality stays recoverable.
+
+== A deliberate departure: provenance-enrichment
+
+Classical tropes are _quality borne by a bearer_. This workbench (and the calculus
+it feeds) works on a *provenance-enriched* trope — a property-instance carrying four
+fields: the situated *quality*, the *bearer*, the *context* that individuates it, and
+an honest *record* of how it came to be. The enrichment is a departure from Williams,
+recorded explicitly so downstream readers do not attribute it to him. It is what lets
+the vocabulary speak of `record`-level honesty — the veridicality axis on which the
+three deceptive duals live.
+
+== What trope theory does not supply
+
+Trope theory grounds the _statics_ — what a property-instance is. It does not supply
+the *dynamics of loss and deception*: collapsing a quality to a checkbox, attenuating
+its fidelity, detaching it from its bearer, falsifying its value, mis-binding it to a
+false bearer, and the *sufficiency verdict* that judges the residue against a declared
+use. That layer is this project's own.
+
+== The compatibility test
+
+A candidate effect is a *compatible* addition to the ontology — not merely a
+_consistent_ one — only if all four hold:
+
+. it *contradicts nothing* the base asserts;
+. its connection to the base is a *writable bridge* (a named relation with stated
+  conditions), not a quiet redefinition of the base's terms;
+. it requires *no change to the base* (a conservative extension); and
+. it does *non-redundant work* on a domain the base does not cover.
+
+*Worked: the deceptive trio passes.* `p-conflating`, `p-falsifying`, and
+`p-misbinding` are claims about *records* (what is asserted, and whether honestly),
+not about tropes. The bridges are:
+
+* `p-conflating` — "a singular record is faithful only if its referent is in fact one
+  trope";
+* `p-falsifying` — "a record's value is faithful only if it is the value the trope in
+  fact had";
+* `p-misbinding` — "a record's bearer is faithful only if it is the trope's actual
+  bearer".
+
+Each bridge touches the ontology *nowhere* (it constrains records, not tropes), needs
+*no change* to the base, and does *new work* the ontology is silent on
+(record-veridicality). The faithful effects (`p-projecting`, `p-collapsing`,
+`p-detaching`, `p-attenuating`, `p-fusing`) earn their places by the same test, on the
+loss-amount axis rather than the veridicality one.
+
+== Note on the open metaphysical question
+
+Whether the three loss-coordinates (fate, bond, merge) are themselves *exhaustive* —
+that there is no fourth way to individuate-and-lose — is a philosophy-of-individuation
+question (calculus O1-coord), left open and logged, not settled here.

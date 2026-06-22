@@ -1,0 +1,21 @@
+// SPDX-FileCopyrightText: © 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+// SPDX-License-Identifier: MPL-2.0
+// SPDX-License-Identifier: CC-BY-SA-4.0
+= A record, laundered several ways
+:toc: macro
+
+A customer record — a property-instance about _this_ person's account — put through
+the merge and projection moves. This is where the two-instance twins (`p-fusing` vs
+`p-conflating`) and the projection/loss moves show their seams.
+
+[cols="1,2,2",options="header"]
+|===
+| Move | What happens | Why it is that move
+| `p-projecting` | An API returns only id, display name, avatar — exactly the fields the client asked for; the rest stays on the server, deliberately unsent. | Named, intentional, fully-known loss. You can say precisely what is gone. (`badge-project.ir.json`)
+| `p-fusing` | A regional figure shown as the mean of twelve station readings, labelled “average of 12 stations”. | Many blended into one, openly labelled — plurality recoverable from the label. (`weather-fuse.ir.json`)
+| `p-conflating` | Two customers both named Alex Doe; support merges their histories into one record and replies as one person, with nothing noting the merge. | Two asserted to be one, unlabelled — downstream is silently wrong. Deceptive: a false singleness.
+|===
+
+The discriminating test runs straight down the table: projecting tells you *what* is
+gone; fusing keeps the plurality in a *label*; conflating discards the label and so
+lies about how many there were.

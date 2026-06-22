@@ -1,0 +1,21 @@
+// SPDX-FileCopyrightText: © 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+// SPDX-License-Identifier: MPL-2.0
+// SPDX-License-Identifier: CC-BY-SA-4.0
+= `p-attenuating`
+:toc: macro
+
+*Family:* effect  *·  Arity:* one  *·  Veridicality:* faithful
+
+*Grade (calculus):* fate `Attenuated(δ)` on present fields (δ ∈ ℕ∪{∞,⊤}); bond and merge unchanged.
+
+== Definition
+
+Fidelity degraded with no clean structure. Unlike projecting, you have lost an *unknown* amount; `Attenuated(⊤)` is the honest answer when the bound is unknown.
+
+== Discriminating test (vs `p-projecting`)
+
+Can you enumerate what is gone? If yes, it is projecting (named drop). If the loss is a structureless blur you cannot quantify, it is attenuating.
+
+== Worked example
+
+An old letter is saved as a heavily compressed image. The handwriting is still readable but softened, and you couldn't say precisely which strokes were lost.

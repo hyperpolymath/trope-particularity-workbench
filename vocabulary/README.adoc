@@ -1,0 +1,28 @@
+// SPDX-FileCopyrightText: © 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+// SPDX-License-Identifier: MPL-2.0
+// SPDX-License-Identifier: CC-BY-SA-4.0
+= Vocabulary — the nine effects
+:toc: macro
+
+One entry per effect: definition, the *discriminating test* against its nearest
+neighbour (the part to carry — not the answers), and one worked example. The
+examples are kept in lockstep with the checker's conformance fixtures
+(`github.com/hyperpolymath/trope-checker`, `tests/conformance/`).
+
+Two independent splits (see the README): *loss amount* (kept-whole vs lost-or-
+changed) and *veridicality* (faithful vs the three deceptive duals
+`p-falsifying` / `p-misbinding` / `p-conflating`).
+
+[cols="1,1,1",options="header"]
+|===
+| Effect | Arity | Veridicality
+| link:p-preserving.adoc[`p-preserving`] | one | faithful
+| link:p-projecting.adoc[`p-projecting`] | one | faithful
+| link:p-collapsing.adoc[`p-collapsing`] | one | faithful
+| link:p-detaching.adoc[`p-detaching`] | one | faithful
+| link:p-attenuating.adoc[`p-attenuating`] | one | faithful
+| link:p-falsifying.adoc[`p-falsifying`] | one | deceptive
+| link:p-misbinding.adoc[`p-misbinding`] | one | deceptive
+| link:p-conflating.adoc[`p-conflating`] | two | deceptive
+| link:p-fusing.adoc[`p-fusing`] | two | faithful
+|===

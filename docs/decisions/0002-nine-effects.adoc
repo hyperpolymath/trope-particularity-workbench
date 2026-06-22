@@ -1,0 +1,30 @@
+// SPDX-FileCopyrightText: © 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+// SPDX-License-Identifier: MPL-2.0
+// SPDX-License-Identifier: CC-BY-SA-4.0
+= ADR 0002 — nine effects + checker as a separate repository
+:revdate: 2026-06-22
+
+== Status
+Accepted.
+
+== Context
+The workbench previously named seven effects and described a planned checker *in
+this repository*. The build brief sets EFFECT_COUNT=nine and the checker now exists
+as its own repo.
+
+== Decisions
+[cols="1,3",options="header"]
+|===
+| ID | Decision
+| EFFECT_COUNT = nine | Add the two deceptive duals `p-falsifying` (false value) and `p-misbinding` (false bearer) to the existing seven; with `p-conflating` (false singleness) they are the deceptive trio. Two independent splits: loss amount and veridicality.
+| Checker is a separate repo | The §4.4 README edits applied: the stale `checker/ (planned)` row now points to `github.com/hyperpolymath/trope-checker`; the Status paragraph reads the checker as a separate repository. The first front-end is `github.com/hyperpolymath/haec`.
+| Arity wording | "seven single-instance, two two-instance" (`p-conflating`, `p-fusing`).
+| Consistency is gated | `tests/check-vocabulary.sh` (`just check`) verifies the nine agree across `vocabulary/`, `assets/particularity-trainer.html`, `assets/trope-particularity-map.svg`, and the README. The map gains a deceptive sub-group; the trainer gains the two effects + cases.
+| Licensing | Prose/vocabulary = CC-BY-SA-4.0; code/config = MPL-2.0 (two SPDX lines); single MPL-2.0 GitHub badge.
+| RSR placement | `vocabulary/`, `assets/` added to `root-allow.txt`; trainer + map moved to `assets/`.
+|===
+
+== Consequences
+The vocabulary, trainer, and map cannot silently drift in count — the gate fails if
+they disagree. The deceptive trio is documented as semantics-only (not writable;
+caught at the checker's validation boundary, prevent profile R-2026-06-22).

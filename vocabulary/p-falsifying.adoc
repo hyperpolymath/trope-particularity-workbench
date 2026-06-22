@@ -1,0 +1,21 @@
+// SPDX-FileCopyrightText: © 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+// SPDX-License-Identifier: MPL-2.0
+// SPDX-License-Identifier: CC-BY-SA-4.0
+= `p-falsifying`
+:toc: macro
+
+*Family:* effect  *·  Arity:* one  *·  Veridicality:* deceptive
+
+*Grade (calculus):* fate(quality) the deceptive dual `Falsified` — the bottom of the fate order; absorbing under composition.
+
+== Definition
+
+A *false value*. The residual claims faithfulness, but the quality presented is not the one that was there. Not loss — substitution. Deceptive, on the veridicality axis.
+
+== Discriminating test (vs `p-attenuating`)
+
+Is the surviving value *true but degraded*, or *false*? Attenuating keeps a true value at lower fidelity; falsifying presents a value that was never there. Veridicality, not loss amount.
+
+== Worked example
+
+A sensor pipeline reports a 'verified' reading that was in fact fabricated upstream. Under the checker's prevent profile this is not writable — an emitted `Falsified` grade is a lowering fault, rejected at validation.

@@ -1,0 +1,21 @@
+// SPDX-FileCopyrightText: © 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+// SPDX-License-Identifier: MPL-2.0
+// SPDX-License-Identifier: CC-BY-SA-4.0
+= `p-preserving`
+:toc: macro
+
+*Family:* effect  *·  Arity:* one  *·  Veridicality:* faithful
+
+*Grade (calculus):* fate all `Present`, bond `Intact`, merge `Single` (the unit grade ε).
+
+== Definition
+
+The baseline: nothing lost. The quality, whose it is, the context, and an honest record all survive. Every other effect is preserving minus one part — or a lie about one part.
+
+== Discriminating test (vs `p-attenuating`)
+
+Did anything degrade at all? If you cannot point to *any* loss, it is preserving. If fidelity dropped by an amount you cannot name, it is attenuating.
+
+== Worked example
+
+A naturalist records this duck's hoarse morning call as a lossless audio file, tagged with the bird's ring number, the pond, the date, and the weather. Against a floor demanding the call's spectral content: *p-sufficient*.
