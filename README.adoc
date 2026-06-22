@@ -190,5 +190,3 @@ the remainder enough_. A Scheme sketch may come first, to feel out the shape.
 Released under the link:LICENSE[Mozilla Public License 2.0] unless a per-file
 `SPDX-License-Identifier` says otherwise.
 
-Released under the link:LICENSE[Mozilla Public License 2.0] unless a per-file
-`SPDX-License-Identifier` says otherwise.
