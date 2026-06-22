@@ -1,0 +1,21 @@
+// SPDX-FileCopyrightText: © 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+// SPDX-License-Identifier: MPL-2.0
+// SPDX-License-Identifier: CC-BY-SA-4.0
+= `p-projecting`
+:toc: macro
+
+*Family:* effect  *·  Arity:* one  *·  Veridicality:* faithful
+
+*Grade (calculus):* fate `Dropped` on the dropped fields, `Present` on the kept; bond `Withheld` if the bearer was dropped; merge `Single`.
+
+== Definition
+
+Named parts dropped on purpose. You know exactly which coordinates are gone — a reduced view, not a lie, provided nobody mistakes the projection for the whole.
+
+== Discriminating test (vs `p-attenuating`)
+
+Can you *name* exactly what is gone? Projecting drops a known, named field-set; attenuating loses an unknown amount with no clean structure.
+
+== Worked example
+
+A conference badge prints just your name, pronouns, and organisation; the form was built to keep those three and drop everything else. Named, intentional, fully-known loss.

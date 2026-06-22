@@ -1,0 +1,21 @@
+// SPDX-FileCopyrightText: © 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+// SPDX-License-Identifier: MPL-2.0
+// SPDX-License-Identifier: CC-BY-SA-4.0
+= `p-collapsing`
+:toc: macro
+
+*Family:* effect  *·  Arity:* one  *·  Veridicality:* faithful
+
+*Grade (calculus):* fate(quality) `Predicated(P)`, all other fields `Dropped`, bond `Withheld`, merge `Single`; the type becomes the predicate's codomain (e.g. `Bool`).
+
+== Definition
+
+Flattened to a predicate or scalar. The quality survives only as a *test*; the individual that bore it is gone. The quack becomes `true`.
+
+== Discriminating test (vs `p-projecting`)
+
+Is the quality kept whole, or only as a checkbox? Projecting keeps chosen fields intact; collapsing replaces the quality with the value of a predicate over it. `Predicated` is below *and incomparable to* `Dropped` — present-as-a-bit, not absent.
+
+== Worked example
+
+A bird survey logs the morning call as one column: heard a quack? → yes. Against a floor demanding spectral content: *p-insufficient*, witness = the collapse.

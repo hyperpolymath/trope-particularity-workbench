@@ -1,0 +1,21 @@
+// SPDX-FileCopyrightText: © 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+// SPDX-License-Identifier: MPL-2.0
+// SPDX-License-Identifier: CC-BY-SA-4.0
+= `p-detaching`
+:toc: macro
+
+*Family:* effect  *·  Arity:* one  *·  Veridicality:* faithful
+
+*Grade (calculus):* fate(quality) `Present`, other fields `Dropped`, bond `Severed`; the type becomes `FloatingQuality`.
+
+== Definition
+
+The quality severed from its bearer — the constitutive quality–bearer bond broken. A trait floating free of whose it was.
+
+== Discriminating test (vs `p-projecting (dropping the bearer)`)
+
+Is the bearer-loss a clean named drop or a constitutive severance? Projecting away the bearer leaves `Withheld` (recoverable in principle); detaching leaves `Severed` (irrecoverable) and changes the type to `FloatingQuality`, so any downstream use needing a bearer fails to typecheck.
+
+== Worked example
+
+A single vivid line is lifted from an interview and shared on its own — no speaker, no question, no surrounding context. The words are intact; the tie to whoever said them is cut.
