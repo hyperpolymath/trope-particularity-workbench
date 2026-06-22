@@ -2,7 +2,7 @@
 # Copyright (c) 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
 #
 # Workbench: the nine effects stay consistent across vocabulary, trainer, map, README (bash; no Python).
-name: trope-check
+name: "🔴 Gate: Trope conformance"
 on:
   push:
     paths: ['vocabulary/**', 'assets/**', 'README.adoc', 'tests/**', '.github/workflows/trope-check.yml']
