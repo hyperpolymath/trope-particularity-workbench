@@ -29,7 +29,7 @@ carry, not the answer.
 
 == Kept honest mechanically
 
-`tests/check-vocabulary.py` (`just check`) fails if the nine effects ever disagree
+`tests/check-vocabulary.sh` (`just check`) fails if the nine effects ever disagree
 across `vocabulary/`, the trainer, the map, and the README. The `examples/` (duck,
 record, person) are kept in lockstep with the checker's conformance fixtures, so a
 worked example and the machine verdict cannot drift apart.

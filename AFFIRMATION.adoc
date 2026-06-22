@@ -15,7 +15,7 @@ the checker and not the language.
 *Count, made consistent (EFFECT_COUNT=nine):* the seven original effects plus the two
 deceptive duals `p-falsifying` (false value) and `p-misbinding` (false bearer); with
 `p-conflating` (false singleness) these form the deceptive trio. `just check`
-(`tests/check-vocabulary.py`) verifies the nine agree across `vocabulary/` (9 entries),
+(`tests/check-vocabulary.sh`) verifies the nine agree across `vocabulary/` (9 entries),
 `assets/particularity-trainer.html` (9 options, 13 cases), `assets/trope-particularity-map.svg`
 (three groups: no-loss / with-loss-faithful / deceptive), and the README arity
 sentence ("seven single-instance, two two-instance").

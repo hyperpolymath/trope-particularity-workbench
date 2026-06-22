@@ -7,7 +7,7 @@
 [cols="1,2,1",options="header"]
 |===
 | Check | Command | State 2026-06-22
-| Nine effects consistent | `just check` (`tests/check-vocabulary.py`) | PASS
+| Nine effects consistent | `just check` (`tests/check-vocabulary.sh`) | PASS
 | Vocabulary complete | 9 entries under `vocabulary/` | PASS
 | Trainer reflects nine | `assets/particularity-trainer.html` (9 options, 13 cases) | PASS
 | Map reflects nine | `assets/trope-particularity-map.svg` (no-loss / with-loss / deceptive) | PASS
