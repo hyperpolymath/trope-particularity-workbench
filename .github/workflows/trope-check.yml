@@ -14,6 +14,6 @@ jobs:
   nine-effects-consistent:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Nine effects consistent (vocabulary / trainer / map / README)
         run: bash tests/check-vocabulary.sh
