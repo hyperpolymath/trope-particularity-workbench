@@ -1,3 +1,10 @@
 // SPDX-License-Identifier: CC-BY-SA-4.0
 // Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
 = Computing Theory
+
+Theory write-ups on the computational side of trope-particularity.
+
+* `trope-theory-and-neural-representation.adoc` — a position paper: learned neural
+  features as tropes (abstract particulars), and the estate's nine loss/deception
+  effects as names for known network pathologies (superposition, polysemanticity, the
+  binding problem). Framed as research directions and hypotheses, not results.

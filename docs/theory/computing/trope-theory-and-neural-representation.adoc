@@ -1,0 +1,172 @@
+// SPDX-FileCopyrightText: © 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+// SPDX-License-Identifier: CC-BY-SA-4.0
+= Trope Theory and Neural Representation — a position paper
+:revnumber: 0.1 (draft for review)
+:revdate: 2026-07-03
+:toc: macro
+:sectnums:
+:sectnumlevels: 3
+
+[abstract]
+A neural network learns *features*. The unexamined question is what kind of thing a
+learned feature _is_. The default answer — a feature is membership in a shared,
+repeatable category, a universal — is a metaphysical commitment, not a fact about the
+network. This paper proposes the alternative: treat a learned feature as a *trope*, an
+abstract particular — a property-instance, situated and non-repeatable — and read the
+network's known pathologies (superposition, polysemanticity, the binding problem) as
+what the estate's vocabulary already calls *loss and deception* of property-instances.
+Everything here is offered as *research directions and hypotheses*, not results; it is
+explicitly not a claim that trope theory is a training method.
+
+toc::[]
+
+== The unspoken metaphysics of a "feature"
+
+Interpretability research speaks freely of the features a model has learned — a
+"masculine pronoun" feature, a "Golden Gate Bridge" feature — and treats them as
+*universals*: one repeatable property, shared across every input that exemplifies it.
+Trope theory (Williams 1953; Campbell 1990; Maurin, _SEP_) offers a different ontology:
+properties are *abstract particulars*. There is no shared "rednesses"; there is _this_
+redness, here, and _that_ redness, there, resembling but numerically distinct.
+
+The wager of this paper is that the trope ontology is the better fit for what a network
+actually contains. A network does not store the universal "edge"; it stores a great
+many *edge-instances*, each a particular activation in a particular context, and our
+interpretability tools then _abstract_ a universal out of them — an act of abstraction
+that, in trope theory, is exactly the move that must be handled with care. The estate's
+existing distinction between *exact resemblance* and *numerical identity* — the
+distinction `p-conflating` violates — is precisely the distinction an interpretability
+method blurs when it declares two activations "the same feature."
+
+== The four classic problems, as machine-learning questions
+
+The four canonical problems of trope theory turn out to be four standing questions of
+representation learning. (This table is the shared spine of the estate's programme of
+work; see `docs/status/RESEARCH-PROGRAMME.adoc`.)
+
+[cols="1,2,2",options="header"]
+|===
+| Classic trope problem | The metaphysical question | The neural-net translation (proposed)
+
+| *Individuation*
+| What makes _this_ property-instance the one it is?
+| What counts as *one* distinct learned feature? When is an activation a feature-instance versus noise? (Per-instance vs per-class features.)
+
+| *Numerical identity vs exact resemblance*
+| Two tropes exactly alike are still two.
+| When are two activations "*the same feature*" versus merely resembling? Deduplicating or merging features without erasing their distinctness.
+
+| *Swapping*
+| Permuting two indistinguishable tropes changes nothing.
+| Permutation-(in)variance of exactly-alike feature-instances; when is a representation right to be order-blind, and when does order carry identity?
+
+| *Piling / stacking*
+| Many exactly-alike tropes co-located on one bearer.
+| *Superposition* and *polysemanticity*: many features packed into one unit; honest aggregation versus a silent collapse that reasons about one where there were several.
+
+| *Resemblance-regress*
+| Grounding similarity without positing a universal "resemblance".
+| Metric learning: how a network grounds "similar" without a dedicated universal feature for similarity — and whether provenance can stand in for it.
+
+| *(Bearer / compresence)*
+| Whose property is it? An object as a bundle of compresent tropes.
+| The *binding problem*: attributing features to the right object, keeping multiple objects' features from interfering.
+|===
+
+== The estate's loss/deception effects are names for known failure modes
+
+The workbench's nine effects (`vocabulary/`) were derived to describe what happens to a
+property-instance as it passes through _any_ system. Read against a neural network, they
+name failure modes the interpretability literature already studies — but names them
+_diagnostically_, separating honest loss from deception, and both from mere noise.
+
+[cols="1,2,2",options="header"]
+|===
+| Effect (workbench) | What it names in general | The neural-net reading (hypothesis)
+
+| `p-collapsing`
+| A quality flattened to a predicate/scalar — "the quack becomes `true`".
+| A rich feature-instance reduced to a single logit or a binary probe result: the individuating content is gone, the test remains.
+
+| `p-attenuating`
+| Fidelity degraded by an unknown, structureless amount.
+| Lossy compression in a bottleneck layer with no clean account of _what_ was lost — the honest "I lost some, amount unknown".
+
+| `p-detaching`
+| A quality severed from its bearer.
+| A feature that fires free of the object it belongs to — a binding failure of the "which object?" kind.
+
+| `p-fusing` (honest)
+| Two instances blended into one *labelled* aggregate; plurality recoverable.
+| Superposition done *recoverably*: multiple features share a unit but a sparse dictionary (an SAE) can pull them apart again — the label survives.
+
+| `p-conflating` (deceptive)
+| Two distinct instances asserted to be one, *unlabelled*.
+| *Polysemantic interference*: two features collapsed with no signal that there were two, so downstream reasons about one and is silently wrong.
+
+| `p-falsifying` / `p-misbinding` (deceptive)
+| A false value / a false bearer, asserted as faithful.
+| A probe or explanation that attributes a feature the model did not have, or binds it to the wrong token/object, while presenting as faithful.
+|===
+
+The pay-off of the vocabulary is the *veridicality axis*: the honest twin `p-fusing`
+(recoverable superposition) is categorically distinct from the deceptive `p-conflating`
+(silent, lossy collapse). Interpretability today largely lacks a principled name for
+that distinction — the difference between a network that _compresses recoverably_ and
+one that _confuses irrecoverably_. The estate has one, and a checker that treats the
+deceptive move as a validation-boundary fault.
+
+== Four research directions (falsifiable, provisional)
+
+. *Instance-level features.* Build (or probe) a representation that carries
+  property-instances with the workbench's four coordinates — quality, bearer, context,
+  and an honest `record` — rather than class memberships. Hypothesis: provenance-carrying
+  features are more robust to the binding failures catalogued by Greff et al.
+
+. *Recoverable vs irrecoverable merging.* Instrument superposition with the
+  `p-fusing` / `p-conflating` distinction. Hypothesis: features an SAE can cleanly
+  separate behave as honest `Fused τ`; features that resist separation and produce
+  interference behave as `Conflated`, and the checker's grade predicts where downstream
+  errors concentrate.
+
+. *Use-relative sufficiency for probes.* Adopt the verdict discipline: a feature that is
+  `p-sufficient` for one task (counting) can be `p-insufficient` for another
+  (diagnosis). Hypothesis: a declared use-model + the loss grade predicts probe transfer
+  failure better than accuracy alone.
+
+. *Swapping and piling as invariance tests.* Use the (currently open) formal images of
+  swapping and piling (programme WP-1) to design controlled probes of permutation
+  behaviour and superposition capacity, and check whether the calculus's
+  non-commutative composition tracks empirical order-sensitivity.
+
+== What this is *not*
+
+* *Not a claim that trope theory is a neural-net algorithm.* It is an ontology and a
+  diagnostic vocabulary. It reframes and names; it does not train.
+* *Not a claim of results.* Every hypothesis above is unfalsified _and untested_. Per
+  the estate publication gate (`docs/status/READINESS.adoc`), this is an abstract,
+  provisional position paper.
+* *Not a replacement for the interpretability literature.* It is a proposed vocabulary
+  _over_ it — the same relationship the workbench bears to type theory.
+* *Not neuro-symbolic hand-waving.* The symbolic side is the estate's *formal* calculus
+  (`trope-checker`), not an LLM's paraphrase of one. The estate's own doctrine is to
+  distrust the neural for exactness and keep invariants in the formal layer.
+
+== References
+
+*Trope theory.* Williams, "On the Elements of Being" (1953); Campbell, _Abstract
+Particulars_ (1990); Maurin, "Tropes", _Stanford Encyclopedia of Philosophy_,
+https://plato.stanford.edu/entries/tropes/ .
+
+*Representation & interpretability.* Elhage et al., "Toy Models of Superposition"
+(Anthropic, 2022); Bricken et al., "Towards Monosemanticity: Decomposing Language
+Models with Dictionary Learning" (Anthropic, 2023) and "Scaling Monosemanticity" (2024)
+— on superposition, polysemantic vs monosemantic features, and sparse-autoencoder
+dictionary learning. Greff, van Steenkiste & Schmidhuber, "On the Binding Problem in
+Artificial Neural Networks" (2020) — segregation / representation / composition
+subproblems; Locatello et al. on object-centric / slot attention; the disentangled-
+representation literature (Bengio and successors).
+
+*In-estate.* `trope-particularity-workbench/docs/background.adoc`;
+`trope-particularity-workbench/vocabulary/`; `trope-checker/spec/calculus.adoc`;
+programme: `../../status/RESEARCH-PROGRAMME.adoc`.
