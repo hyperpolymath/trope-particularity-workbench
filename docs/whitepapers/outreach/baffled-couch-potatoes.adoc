@@ -1,0 +1,110 @@
+// SPDX-FileCopyrightText: © 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+// SPDX-License-Identifier: CC-BY-SA-4.0
+= Baffled Couch Potatoes: On the Neglect of Trope Theory
+:revnumber: 0.1 (draft for review)
+:revdate: 2026-07-03
+:toc: macro
+
+[abstract]
+An outreach essay. I asked a large language model about trope theory and it wanted to
+talk about Coronation Street. When it finally found the philosophers' sense, it decided
+there was "basically nothing going on there." Both reactions are symptoms of the same
+neglect — and the neglect is a solvable problem, not a verdict on the subject.
+
+toc::[]
+
+== A conversation with a couch potato
+
+I went to a well-known AI assistant to think aloud about *trope theory*. It was, at
+first, charmingly baffled. It assumed I meant tropes in the television sense — the
+plot furniture of _Coronation Street_ and _Doctor Who_ — and kept trying to steer me
+back to the sofa. When I insisted, and it went and read the Stanford Encyclopedia entry,
+its considered view was that trope theory is a quiet backwater where, to paraphrase,
+basically nothing is going on.
+
+This is a machine trained on a very large fraction of everything humans have written.
+Its instinct was that "trope" means telly, and its second instinct — once corrected —
+was that the philosophical version is inert. Neither instinct is stupid. Both are
+_evidence_: about what has been written, and about what has not.
+
+== Two neglects, one word
+
+The word "trope" has been culturally captured. In common usage it means a recurring
+motif in fiction; there are wikis with hundreds of thousands of pages lovingly
+cataloguing the television kind. The philosophers' *trope* — a property considered as a
+particular, non-repeatable instance, _this_ redness here rather than the universal
+"redness" — was named by D. C. Williams in 1953, who called tropes "the very alphabet
+of being", and developed by Keith Campbell in 1990. It is a serious, live position in
+metaphysics, with a Stanford Encyclopedia entry and a steady trickle of journal work.
+
+But it is a _trickle_. And here is the deeper neglect, the one that matters for this
+project: classic trope theory built a magnificent *statics* and almost no *dynamics*. It
+told us, with great care, what a property-instance _is_. It said almost nothing about
+what _happens_ to one as it moves through a system — when it is flattened to a checkbox,
+cut loose from the thing it was a quality of, quietly degraded, or — worse — replaced by
+a false value while still claiming to be faithful. The metaphysics of abstract
+particulars has a rich account of being and a threadbare account of _loss_.
+
+== Why this leaves a machine helpless
+
+A language model has no vocabulary it did not read. If almost nobody wrote down the
+dynamics of property-instance loss, the model has no words for it — and so, confronted
+with a question that is _entirely about_ that dynamics, it does the only thing it can:
+it reaches for the nearest well-populated neighbour and starts talking about soap opera.
+
+This is not a failure of intelligence. It is a failure of _supply_. The model is a
+mirror; it reflects a gap in the written record. When we mock it for confusing
+metaphysics with _Doctor Who_, we are really pointing at ourselves — at a discipline
+that left one of its most useful ideas half-built.
+
+And the idea is useful in exactly the places modern computing is currently struggling.
+Every system that summarises, embeds, compresses, or paraphrases is doing something to a
+property-instance: keeping some of _this-quality-here_ and discarding the rest, and
+usually with no honest record of which. A neural network's "features" are, arguably,
+tropes — particular instances, not universals — and its worst-understood pathologies
+(features silently collapsing into one another; a probe attributing a property the model
+never had) are, arguably, the very *loss and deception* moves trope theory forgot to
+theorise. (That argument is made properly, and carefully hedged, in the companion piece
+`../../theory/computing/trope-theory-and-neural-representation.adoc`.)
+
+== The repair is already under way
+
+The point of this essay is not to lament. It is to say that the missing layer is
+_buildable_, and that building it is what this estate is for.
+
+* A *vocabulary* — nine named effects for what can happen to a property-instance, split
+  by how much is lost and by whether what survives is _true_
+  (`trope-particularity-workbench`).
+* A *calculus and a checker* — a formal, machine-verified core that composes those
+  effects and returns a verdict, relative to a declared use, with a witness when the
+  answer is "not enough" (`trope-checker`; alpha, its conformance suite green, its
+  grade-algebra boundary proved in Lean, its metatheory under way in Agda).
+
+None of this is finished, and this essay claims nothing about it that the repositories'
+own honesty snapshots do not. The statics we inherited from Williams and Campbell; the
+dynamics is the work. Three of trope theory's four classic problems — swapping, piling,
+and the resemblance-regress — still have no formal image even here. That is not
+embarrassing; it is the map of what to do next
+(`../../status/RESEARCH-PROGRAMME.adoc`).
+
+== The moral
+
+Neglect is self-reinforcing. Because the dynamics went unwritten, the machines cannot
+speak it; because the machines cannot speak it, it looks like there is nothing to say;
+because it looks like there is nothing to say, it stays unwritten. The way out of that
+loop is not to scold the couch potato. It is to write the missing words down —
+precisely enough that a machine could one day check them — and then to fund the writing.
+
+The tragedy of trope theory's neglect is that it left us articulate about _being_ and
+speechless about _loss_, at exactly the moment we built machines whose entire job is to
+lose things gracefully. Fixing that is a small field's chance to matter a great deal.
+
+== References
+
+* D. C. Williams, "On the Elements of Being" (1953).
+* Keith Campbell, _Abstract Particulars_ (Blackwell, 1990).
+* A.-S. Maurin, "Tropes", _Stanford Encyclopedia of Philosophy_ —
+  https://plato.stanford.edu/entries/tropes/
+* Companion pieces: `../../theory/computing/trope-theory-and-neural-representation.adoc`
+  (the neural-net argument, properly hedged); `../../status/RESEARCH-PROGRAMME.adoc`
+  (the programme of work); `../academic/funding-landscape.adoc` (how to pay for it).

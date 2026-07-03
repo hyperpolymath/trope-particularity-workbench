@@ -1,0 +1,289 @@
+// SPDX-FileCopyrightText: © 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+// SPDX-License-Identifier: CC-BY-SA-4.0
+= A Programme of Work for Trope Theory
+:revnumber: 0.1 (draft for review)
+:revdate: 2026-07-03
+:toc: macro
+:sectnums:
+:sectnumlevels: 3
+
+[abstract]
+This is a prioritised, trope-stack-wide programme of work: what is worth doing next
+in the field of trope theory — the metaphysics of abstract particulars — and, in
+particular, the parts of it this estate is already positioned to move. It is a
+*plan*, not a claim of results. Every capability statement about the estate's tools
+is written to the estate's own publication gate (`docs/status/READINESS.adoc`):
+provisional, and dated to the ground truth in each repo's `AFFIRMATION.adoc`.
+
+toc::[]
+
+== Why this document exists
+
+Classic trope theory (D. C. Williams 1953; Keith Campbell 1990) supplied a *statics*:
+an account of what a property-instance _is_ — a non-repeatable, situated instance of a
+quality, _this_ redness here, not the universal shared across bearers. What it never
+developed is a *dynamics*: an account of what _happens_ to a property-instance as it
+moves through a system — collapsed to a predicate, detached from its bearer,
+attenuated, falsified, mis-bound, or conflated — and whether what survives is *enough
+for the use at hand*.
+
+This estate has started to build that missing dynamics:
+
+* `trope-particularity-workbench` — the diagnostic *vocabulary* (nine effects, one
+  residual, a use-model, two verdicts), grounded in Williams/Campbell
+  (`docs/background.adoc`). Status: *specification*.
+* `trope-checker` — the *graded calculus*, the Trope IR (the trust boundary), and a
+  four-prover verification stack. Status: *alpha, conformance-green*.
+* `haec` (front-end language, *design*), `vocarium` (store, *design*), `hermeneia`
+  (query, *design*).
+
+Because the estate is the first serious attempt at the dynamics, the highest-value
+next steps are unusually legible: they are the places the estate's own files already
+name a direction and leave it open. This programme collects them, prioritises them,
+and tags each to a plausible funder (details in
+`docs/whitepapers/academic/funding-landscape.adoc`).
+
+== The core opportunity: three classic problems have no formal image yet
+
+Trope theory has four canonical problem areas. In this estate, *only individuation is
+mapped*. Swapping, piling, and the resemblance-regress appear nowhere in either the
+vocabulary or the calculus. That is not a criticism — it is the shape of the open
+field. The shared spine of this programme is the table below; each work package and
+each companion document refers back to it.
+
+[cols="1,2,2",options="header"]
+|===
+| Classic trope problem | Estate / calculus image *today* | Where the programme takes it
+
+| *Individuation* — what makes _this_ trope this one
+| The `context` field; "recoverable individuating content"; the graded lattice (`trope-checker/spec/calculus.adoc §1–2`)
+| Sharpen and defend; connect to a graded, use-relative individuation criterion (WP-5).
+
+| *Numerical identity vs exact resemblance* — two tropes exactly alike are still two
+| `p-conflating` (`Conflated`) vs `p-fusing` (`Fused τ`) — the dishonest and honest two-into-one moves
+| Already the estate's strongest result; extend to piling (WP-1).
+
+| *Swapping* — permuting exactly-alike tropes changes nothing
+| *Absent.* Candidate handle: the *non-commutativity* of grade composition `▷`.
+| Formalise permutation-(in)variance of indistinguishable instances (WP-1).
+
+| *Piling / stacking* — many exactly-alike tropes co-located on one bearer
+| *Absent.* Candidate handle: `Conflated` vs `Fused τ` for co-located instances.
+| Give piling a formal image; distinguish honest aggregation from silent collapse (WP-1).
+
+| *Resemblance-regress* (Russell's regress) — grounding similarity without a universal
+| *Absent.* Candidate handle: the `record` / veridicality axis.
+| Ask whether provenance-enrichment relocates or dissolves the regress (WP-1).
+|===
+
+== How to read the work packages
+
+Priority is triage, not chronology:
+
+* *P0* — foundational or time-critical; blocks or de-risks later work.
+* *P1* — high-value; the headline results and the new cross-disciplinary reach.
+* *P2* — valuable but safely deferrable; depends on P0/P1 landing first.
+
+Each package names the *open problem it closes* (identifiers are the estate's own, from
+`trope-checker/docs/status/ROADMAP.adoc`, `PROOF-STATUS.adoc`,
+`verification/proofs/INTEGRATION-REPORT.adoc`, `spec/calculus.adoc §10`, and
+`docs/background.adoc`) and a *candidate funder* (see the funding memo).
+
+== Work packages
+
+=== WP-1 (P0) — Map the three missing classic problems
+
+*Problem.* Swapping, piling, and the resemblance-regress have no formal image in the
+calculus or the vocabulary (see the spine table).
+
+*Why it matters.* These are the problems by which trope theory is judged in the
+literature. Giving them a *graded, computational* image — rather than the usual
+all-or-nothing metaphysical treatment — is both a genuine philosophical contribution
+and the clearest demonstration that the estate's dynamics is more than a re-labelling.
+
+*Deliverable.* A philosophy paper (target: a metaphysics venue) + a `docs/theory/`
+note per problem, each with a discriminating test and, where possible, a checker
+fixture. Concretely: does the non-commutativity of `▷` bear on swapping? Do
+`Conflated` / `Fused τ` distinguish honest from silent piling? Does the `record` axis
+relocate the regress into a question about provenance rather than universals?
+
+*Closes.* The gap named in the spine table; feeds *O1-coord*.
+
+*Funder fit.* AHRC responsive mode; British Academy / Leverhulme Small Research Grants;
+Leverhulme Research Project Grant.
+
+=== WP-2 (P0) — Define O5, the veridicality oracle
+
+*Problem.* The checker "does not check veridicality" and points to *calculus O5* as the
+obligation — but *O5 is never defined*: `spec/calculus.adoc §10` stops at O4. The whole
+deceptive-trio story (falsify / mis-bind / conflate) currently rests on a ground-truth
+oracle that has no formal statement.
+
+*Why it matters.* An undefined obligation cannot be discharged or honestly cited. This
+is a soundness-adjacent hole, and by the estate's own doctrine holes come before
+features.
+
+*Deliverable.* Either a written §10 entry specifying O5 (what an oracle would have to
+provide, and the checker's exact relationship to it), or a proof that veridicality is
+*not* checkable relative to the IR — with the README/AFFIRMATION references updated to
+match.
+
+*Closes.* *O5* (define-or-refute).
+
+*Funder fit.* EPSRC / UKRI (formal methods); ARIA _Mathematics for Safe AI_.
+
+=== WP-3 (P1) — An operational model for `fix` / routing (CO-1)
+
+*Problem.* *CO-1*, the estate's central open problem: the calculus is a static
+type-and-grade discipline with *no reduction dynamics* for its recursion / routing
+constructs. There is no `↝` rule for `fix` and no observed-retention `ρ`. It is gated
+by *O4* (the limit carrier for iterated attenuation beyond ω — the `Conat`-vs-tag fork).
+
+*Why it matters.* Resolving CO-1 unblocks full subject reduction (Theorem B, Target 3,
+currently partial in Agda) and grade soundness for recursion. It is the headline formal
+result of the whole programme.
+
+*Deliverable.* An operational semantics + the Agda Target-3 proof completed; O4 resolved
+or explicitly parameterised.
+
+*Closes.* *CO-1*, *O4*; unblocks Theorem B Target 3 and conservative-lowering soundness.
+
+*Funder fit.* EPSRC / UKRI; ERC (if eligible); ARIA _Safeguarded AI_.
+
+=== WP-4 (P1) — Trope-theoretic neural representation
+
+*Problem.* Nothing in the field connects trope theory to representation learning,
+despite a natural fit: a trope is an *instance-level* feature, not membership in a
+universal class. See the companion position paper,
+`docs/theory/computing/trope-theory-and-neural-representation.adoc`.
+
+*Why it matters.* This is the estate's route out of a niche of analytic metaphysics and
+into interpretability, neuro-symbolic AI, and provenance-aware representation — where
+funding, collaborators, and real test-beds live. It is also the branch this work sits
+on (`claude/trope-theory-neural-nets`).
+
+*Deliverable.* The position paper hardened into a research proposal + at least one
+falsifiable probe: e.g. does labelling a network's feature-merges as `p-fusing` vs
+`p-conflating` predict a known failure mode (polysemantic interference, the binding
+problem)? Framed as *hypotheses*, not results.
+
+*Closes.* New ground; feeds the interpretability literature (superposition,
+polysemanticity, the binding problem).
+
+*Funder fit.* EPSRC / UKRI (trustworthy & interpretable AI); ARIA; John Templeton
+Foundation _Intelligence Venture_; interpretability funders (Open Philanthropy).
+
+=== WP-5 (P1) — Exhaustiveness (O1 / O1-coord), before the IR freezes
+
+*Problem.* Two coupled completeness questions. *O1*: are the seven writable effects the
+true generators, derivable as inhabited cells of loss-structure × bond-integrity ×
+cardinality/honesty? *O1-coord*: are the three coordinates (fate, bond, merge)
+themselves exhaustive as "ways to individuate-and-lose"? The calculus flags O1 as
+something to settle *before the IR schema is frozen*.
+
+*Why it matters.* Time-critical: every downstream artefact (schema, checker,
+Vocarium's stored shapes) inherits whatever the effect typology turns out to be.
+Freezing the IR before O1 is settled bakes in a "well-chosen list, not a theorem."
+
+*Deliverable.* A derivation of the typology (or a counter-example that forces a fourth
+coordinate), and an ADR recording the decision with its evidence.
+
+*Closes.* *O1*, *O1-coord*.
+
+*Funder fit.* AHRC; Leverhulme; British Academy.
+
+=== WP-6 (P2) — The produce/demand adjunction (O3)
+
+*Problem.* The verdict is currently a subsumption (`floor(U) ⊑ acc(output)`), *not* an
+adjunction cancellation. Whether effects (a graded monad) and use-models (a graded
+comonad / coeffect) form an adjunction with produce/demand as unit/counit is a stated
+conjecture, blocked on O1.
+
+*Why it matters.* A clean category-theoretic account would unify the two halves of the
+stack (production in Haec, demand in Hermeneia) and is the kind of result that travels
+to a PL/semantics venue.
+
+*Deliverable.* Either the adjunction proved, or a precise statement of why it fails.
+
+*Closes.* *O3* (gated by *O1*, hence sequenced after WP-5).
+
+*Funder fit.* EPSRC / UKRI; Leverhulme.
+
+=== WP-7 (P2) — Tooling maturation across the stack
+
+*Problem.* Four of five repos are at design/specification stage. The dynamics is only
+as demonstrable as the tools that realise it.
+
+*Why it matters.* Publication-gate promotion (D→C→B in `READINESS.adoc`) and any
+credible funding demo require running artefacts, not specifications.
+
+*Deliverable (sub-items).*
+
+* `haec` — a first compiler / elaborator emitting Trope IR (discharges *O2*, lowering
+  correctness, per front-end).
+* `vocarium` — the minimal schemas + a `vocarium validate` fixture runner.
+* `hermeneia` — a minimal grammar, the voke-operation table, and an end-to-end fixture
+  (Vocarium record → query → verdict).
+* `trope-checker` — grade soundness for *conservative* lowering over fate (the lax-L4
+  argument); reconcile *OPEN-B / B′ / C*.
+
+*Closes.* *O2*; conservative-lowering soundness; OPEN-B/B′/C.
+
+*Funder fit.* EPSRC / UKRI; (engineering, likely bundled into WP-3/WP-4 grants).
+
+=== WP-8 (cross-cutting) — Dissemination, standing, and funding
+
+*Problem.* The work is invisible: no papers, no DOI, a placeholder ORCID, an un-slugged
+citation record, and no funding apparatus.
+
+*Why it matters.* Neglect is self-reinforcing (see
+`docs/whitepapers/outreach/baffled-couch-potatoes.adoc`). Visibility is a work item, not
+an afterthought.
+
+*Deliverable.* The outreach essay; one paper per landed theme; a real ORCID and a
+Zenodo DOI; a corrected `CITATION.cff` / `CITATIONS.adoc`; and the applications named in
+the funding memo.
+
+*Closes.* The visibility gap; prerequisites for every grant application.
+
+*Funder fit.* n/a (this is how the others get funded).
+
+== Sequencing and dependencies
+
+[cols="1,3",options="header"]
+|===
+| Constraint | Consequence
+
+| *O1 before IR freeze* | WP-5 gates any decision to freeze the Trope IR schema; do it early.
+| *O4 gates CO-1* | WP-3 must resolve or parameterise the limit carrier first.
+| *O1 gates O3* | WP-6 is sequenced after WP-5.
+| *Tools demonstrate theory* | WP-7 underwrites the publication-gate claims WP-8 relies on.
+| *Essay + ORCID/DOI first* | WP-8's low-cost items unblock every funding application immediately.
+|===
+
+A pragmatic first quarter: WP-2 (define O5) and WP-8's cheap items (ORCID, DOI,
+corrected citation, the essay) are low-effort and unblock both honesty and funding;
+WP-1 and WP-4 are the two papers most likely to attract a grant; WP-5 is the
+time-critical foundational one.
+
+== Honesty and scope
+
+Per `READINESS.adoc`, no non-abstract implementation claim is made here: the workbench
+is pre-alpha and the checker alpha. Where this programme says a result is "proved," it
+means machine-checked and cited in the relevant repo's `AFFIRMATION.adoc`; where it
+says "candidate handle," it means *a direction, not a theorem*. This document is a plan
+for work not yet done, and should be read as such.
+
+== References
+
+* D. C. Williams, "On the Elements of Being" (1953).
+* Keith Campbell, _Abstract Particulars_ (Blackwell, 1990).
+* A.-S. Maurin, "Tropes", _Stanford Encyclopedia of Philosophy_ —
+  https://plato.stanford.edu/entries/tropes/
+* In-estate ground truth: `trope-checker/spec/calculus.adoc`,
+  `trope-checker/docs/status/{ROADMAP,PROOF-STATUS}.adoc`,
+  `trope-checker/verification/proofs/INTEGRATION-REPORT.adoc`,
+  `trope-particularity-workbench/docs/background.adoc`.
+* Companion documents: `../theory/computing/trope-theory-and-neural-representation.adoc`,
+  `../whitepapers/outreach/baffled-couch-potatoes.adoc`,
+  `../whitepapers/academic/funding-landscape.adoc`.

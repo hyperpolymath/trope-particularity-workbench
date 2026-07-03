@@ -180,6 +180,16 @@ both of them realise; it depends on neither.
 * `assets/particularity-trainer.html` — drill until you can name the move from the test.
 * `docs/background.adoc` — why the vocabulary is compatible with the metaphysics it
   borrows from.
+* `docs/status/RESEARCH-PROGRAMME.adoc` — the prioritised, trope-stack-wide programme of
+  work (what is worth doing next in the field, and who might fund it).
+* `docs/theory/computing/trope-theory-and-neural-representation.adoc` — a position paper
+  reading learned neural features as tropes (abstract particulars), and the estate's
+  loss/deception effects as names for superposition, polysemanticity, and the binding
+  problem. Provisional.
+* `docs/whitepapers/outreach/baffled-couch-potatoes.adoc` — an essay on the neglect of
+  trope theory and why it leaves language models baffled.
+* `docs/whitepapers/academic/funding-landscape.adoc` — candidate funders for the
+  programme, mapped to work packages.
 
 == Licence
 
