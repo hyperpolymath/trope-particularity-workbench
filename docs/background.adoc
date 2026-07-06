@@ -81,3 +81,65 @@ loss-amount axis rather than the veridicality one.
 Whether the three loss-coordinates (fate, bond, merge) are themselves *exhaustive* —
 that there is no fourth way to individuate-and-lose — is a philosophy-of-individuation
 question (calculus O1-coord), left open and logged, not settled here.
+
+== Further reading — situating the vocabulary
+
+Williams and Campbell are the founding texts, but trope theory did not stop there,
+and tropes have second lives in engineered ontology and in semantics. Three clusters,
+with a sentence each on how the workbench relates.
+
+=== Modern trope metaphysics
+
+* Anna-Sofia Maurin, _If Tropes_ (Kluwer, 2002) — the book-length case for a
+  one-category trope ontology; see also her Stanford Encyclopedia of Philosophy
+  entry "Tropes" for the survey of record.
+* Douglas Ehring, _Tropes: Properties, Objects, and Mental Causation_ (OUP, 2011) —
+  tropes as the terms of causal relations.
+* Peter Simons, "Particulars in Particular Clothing" (_Philosophy and
+  Phenomenological Research_ 54, 1994) — *nuclear trope theory*: a bearer as an
+  essential kernel of tropes plus a looser halo.
+* John Bacon, _Universals and Property Instances: The Alphabet of Being_
+  (Blackwell, 1995) — a set-theoretic formalization of trope ontology.
+* Thomas Mormann, "Trope Sheaves: A Topological Ontology of Tropes" (_Logic and
+  Logical Philosophy_ 3, 1995) — a sheaf-theoretic treatment; its *restriction
+  maps* are the closest mathematical precursor to this project's question of what
+  survives under transformation.
+* Kevin Mulligan, Peter Simons, Barry Smith, "Truth-Makers" (_Philosophy and
+  Phenomenological Research_ 44, 1984) — tropes as truth-makers; the paper that
+  put moments/tropes back on the analytic agenda.
+
+_Relation:_ this literature supplies the statics — existence, resemblance,
+bundling, truth-making. None of it names the *loss* of a particular's individuating
+content as it is transformed; Mormann's restriction maps come nearest, which is why
+the workbench flags them.
+
+=== Tropes in engineered and applied ontology
+
+* Giancarlo Guizzardi, _Ontological Foundations for Structural Conceptual Models_
+  (PhD thesis, 2005), and "In Defense of a Trope-Based Ontology for Conceptual
+  Modeling" (ER, 2006) — tropes (moments) as first-class citizens of conceptual
+  models.
+* UFO, the Unified Foundational Ontology (Guizzardi et al., _Applied Ontology_
+  17(1), 2022) — the mature statement; qualities and modes are trope-like
+  individuals.
+* DOLCE's qualities and qualia (Masolo et al., WonderWeb deliverable D18, 2003;
+  Borgo et al., _Applied Ontology_, 2022) — individual qualities inhering in
+  their hosts, valued in quality spaces.
+* BFO's *specifically dependent continuants* (Arp, Smith, Spear, _Building
+  Ontologies with Basic Formal Ontology_, MIT Press, 2015) — the same category
+  under another name, in the ontology behind much of biomedical data integration.
+
+_Relation:_ these frameworks *reify tropes statically* — they say what a quality
+individual is and what it inheres in, at rest. The workbench's subject is the
+step they leave untaken: what an operation does _to_ such an individual, and
+whether the residue licenses a declared use.
+
+=== Tropes in natural-language semantics
+
+* Friederike Moltmann, _Abstract Objects and the Semantics of Natural Language_
+  (OUP, 2013) — sustained evidence that natural language itself quantifies over
+  tropes ("John's wisdom", "the redness of the apple").
+
+_Relation:_ Moltmann shows the vocabulary's subject matter is what speakers
+already talk about; the workbench names what systems do to those referents when
+they flatten them.

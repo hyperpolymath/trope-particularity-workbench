@@ -72,6 +72,10 @@ of property-instances affects interpretation, correctness, accountability, or la
 use.
 ____
 
+The positive counterpart to these boundaries — where the vocabulary sits beside type
+theory, graded/coeffect types, provenance, and information-flow control — is
+`docs/positioning.adoc`.
+
 == The vocabulary
 
 === Effects — what happens to a property-instance
