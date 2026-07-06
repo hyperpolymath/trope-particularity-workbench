@@ -1,0 +1,136 @@
+// SPDX-FileCopyrightText: © 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+// SPDX-License-Identifier: CC-BY-SA-4.0
+= Where this sits among the formal disciplines
+:toc: macro
+:sectnums:
+
+The README's "What this is not" deliberately declines rivalry claims, and that
+stands. This document *complements* it — it does not replace or soften it. Where
+that section says what the vocabulary is not competing with, this one says,
+positively, where it sits beside four established formal topics, and what each of
+them does that this does not (and vice versa).
+
+toc::[]
+
+== The four-quadrant map
+
+Four mature disciplines each own one question about a thing moving through a
+system. None of them owns this project's question.
+
+=== Type theory — what a thing IS
+
+Type theory classifies. A type says what kind of thing a term is, and the
+discipline's guarantees flow from that classification. It can encode a great deal
+(the README already concedes this); what it does not supply, by itself, is a
+diagnostic vocabulary for the *individuating content of one particular instance*
+and its fate under transformation.
+
+=== Graded and coeffect type systems — how context USES a thing
+
+Graded monads (Katsumata, POPL 2014), coeffect calculi (Petricek, Orchard,
+Mycroft, ICFP 2014), Granule (Orchard, Liepelt, Eades, ICFP 2019), Quantitative
+Type Theory (Atkey, LICS 2018; McBride, "I Got Plenty o' Nuttin'", 2016), and
+Fuzz's sensitivity types (Reed & Pierce, ICFP 2010) annotate *how a context uses
+a value*: how many times, at what sensitivity, under what resource discipline.
+
+The family resemblance to this vocabulary is real — the sibling calculus in
+`trope-checker` uses quantitative types for its loss-plumbing. The difference is
+the *direction of the grade*. Their grades are *exogenous*: usage annotations
+imposed by the context on an interchangeable value. The trope vocabulary's grades
+are *endogenous*: they record how much of a particular's own individuating
+content survived what was done to it. A Granule grade never says what the value
+lost; a `p-residual` says nothing else.
+
+=== Provenance — where a thing CAME FROM
+
+Provenance semirings (Green, Karvounarakis, Tannen, PODS 2007), why- and
+where-provenance (Buneman, Khanna, Tan, ICDT 2001), and the survey literature
+(Cheney, Chiticariu, Tan, _Foundations and Trends in Databases_, 2009) record
+derivation: which sources, combined how, produced this output.
+
+Provenance is *truthful by construction* — the annotation is computed alongside
+the query and cannot disagree with it. It therefore has no analogue of the
+deceptive trio: nothing in a semiring polynomial can assert a false value
+(`p-falsifying`), a false bearer (`p-misbinding`), or a false singleness
+(`p-conflating`). Deception is outside its object language; here it is a third of
+the effect vocabulary.
+
+=== Information-flow control — who may SEE a thing
+
+IFC (Denning, CACM 1976; Myers & Liskov's Decentralized Label Model; Sabelfeld &
+Sands, "Declassification: Dimensions and Principles", JCS 2009) restricts
+observation. Labels are *contamination on an observer lattice*: they propagate to
+say who may now see a derived value. A label never describes what remains of the
+value's individuating content — a fully redacted datum and a pristine one can
+carry the same label. Declassification policies are the nearest thing to a
+use-model, and the table below says where that nearness ends.
+
+== The positioning sentence
+
+None of the four says *how much of a particular's individuating content survives
+a transformation, and whether the residue is licensed for a given use*. That
+judgment — loss named per effect, residue inspected, verdict relative to a
+declared use-model — is what this vocabulary, and the sibling calculus in
+`github.com/hyperpolymath/trope-checker`, names and checks.
+
+== Nearest neighbours, term by term
+
+Twelve terms, each with its nearest concept in the four fields and one line on
+where the neighbour falls short. These are informal correspondences for
+orientation, not claimed equivalences.
+
+[cols="1,2,3"]
+|===
+| Term | Nearest neighbour | Where the neighbour falls short
+
+| `p-preserving`  | Identity lineage in provenance; grade `1` exact usage in QTT/Granule
+| Records that nothing was consumed or derived — not that the instance's individuating content is intact.
+
+| `p-projecting`  | Projection in relational lineage (where-provenance through `SELECT`)
+| Lineage names which columns survived, but carries no judgment that the dropped ones were part of what individuated the instance.
+
+| `p-collapsing`  | Predicate abstraction; a boolean-typed coercion
+| Soundness is judged against the predicate, not against the particular — the abstraction is correct even though _which_ quack is gone.
+
+| `p-detaching`   | Where-provenance losing its source cell
+| Tracks the value's source location as bookkeeping; it does not treat the quality–bearer bond as constitutive, so its loss raises no flag.
+
+| `p-attenuating` | Fuzz/DP function sensitivity (Reed & Pierce)
+| Bounds numeric distance between outputs; says nothing about which unstructured part of the individuating content degraded.
+
+| `p-falsifying`  | Integrity/taint labels in IFC
+| Taint marks untrusted *origin*; it cannot express that a record asserts faithfulness while presenting a value that was never there.
+
+| `p-misbinding`  | A bad join / foreign-key violation; why-provenance witnesses
+| Provenance is truthful by construction — a wrong binding is a fault outside its model, not an expressible effect with a named dual.
+
+| `p-conflating`  | Duplicate elimination under set semantics (multiplicity dropped from the semiring)
+| The semiring *keeps* multiplicity precisely because losing it is destructive — but it has no veridicality axis to call the unlabelled merge deceptive.
+
+| `p-fusing`      | Aggregation with lineage (group-by provenance)
+| Records which inputs contributed to the aggregate, but issues no licence about what downstream may still do with the fused residue.
+
+| `p-residual`    | The residual grade/capability left on a coeffect-typed variable
+| That grade is an exogenous bound on further *use*; it does not describe what of the instance itself survived.
+
+| `use-model`     | A declassification policy (Sabelfeld & Sands dimensions); a privacy budget
+| Says who may see, or how much may leak — not what a declared *use* needs of a particular in order to reason correctly from it.
+
+| verdict (`p-sufficient` / `p-insufficient`) | A policy or type check
+| Judges conformance to an exogenous specification; the verdict here judges the *sufficiency of a residue* relative to the declared use, with a witness edge.
+|===
+
+== Open obligations, stated plainly
+
+Consistent with `AFFIRMATION.adoc`, the honest edges:
+
+* Whether the three loss-coordinates (fate, bond, merge) are exhaustive is open
+  (calculus O1-coord) — there may be a fourth way to individuate-and-lose.
+* The table above is orientation, not theorem: no adequacy or embedding results
+  relate the vocabulary's effects to graded modalities, semiring annotations, or
+  IFC lattices. If such results are ever claimed, they belong in the calculus
+  repository with proofs, not here.
+* The endogenous/exogenous contrast is a design claim about what the grades
+  *record*, not a claim that graded systems could not be re-purposed to encode
+  it. The README's second boundary ("not 'type theory cannot express this'")
+  applies to this document too.
