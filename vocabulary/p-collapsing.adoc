@@ -14,7 +14,7 @@ Flattened to a predicate or scalar. The quality survives only as a *test*; the i
 
 == Discriminating test (vs `p-projecting`)
 
-Is the quality kept whole, or only as a checkbox? Projecting keeps chosen fields intact; collapsing replaces the quality with the value of a predicate over it. `Predicated` is below *and incomparable to* `Dropped` — present-as-a-bit, not absent.
+Is the quality kept whole, or only as a checkbox? Projecting keeps chosen fields intact; collapsing replaces the quality with the value of a predicate over it. `Predicated` sits below every attenuation and above `Dropped` (calculus R-2026-07-07 (A2)) — present-as-a-bit, not absent; a floor demanding the predicate still rejects `Dropped`.
 
 == Worked example
 
