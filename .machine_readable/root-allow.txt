@@ -69,3 +69,5 @@ tools/                     # TODO: consolidate with scripts/ or document the spl
 vocabulary/                # one .adoc per effect (definition + discriminating test + example)
 assets/                    # particularity-trainer.html + trope-particularity-map.svg
 LICENSES/                  # REUSE texts: MPL-2.0 (code) + CC-BY-SA-4.0 (prose/vocabulary)
+
+.hypatia-ignore        # scoped, documented Hypatia scanner exemptions (siblings: hermeneia, vocarium)
