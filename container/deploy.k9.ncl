@@ -1,3 +1,4 @@
+K9!
 # SPDX-License-Identifier: MPL-2.0
 # deploy.k9.ncl — Trope Particularity deployment component (Hunt level)
 #
@@ -14,6 +15,7 @@
 
 # The component's pedigree (self-description across five layers)
 let component_pedigree = {
+  name = "trope-particularity-workbench-deploy",
   # ─────────────────────────────────────────────────────────────
   # L1: The Snout — Identity
   # ─────────────────────────────────────────────────────────────
