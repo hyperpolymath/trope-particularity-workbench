@@ -15,7 +15,6 @@ K9!
 
 # The component's pedigree (self-description across five layers)
 let component_pedigree = {
-  name = "trope-particularity-workbench-deploy",
   # ─────────────────────────────────────────────────────────────
   # L1: The Snout — Identity
   # ─────────────────────────────────────────────────────────────
@@ -145,7 +144,11 @@ echo "K9: Rollback complete."
 
 # Export the component
 {
-  pedigree = component_pedigree,
+  pedigree = {
+    name = "trope-particularity-workbench-deploy",
+    schema_version = "1.0.0",
+    security = { leash = 'Hunt },
+  } & component_pedigree,
   deployment = deployment,
   scripts = scripts,
 
