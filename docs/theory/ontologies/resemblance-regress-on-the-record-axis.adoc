@@ -1,0 +1,140 @@
+// SPDX-FileCopyrightText: © 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+// SPDX-License-Identifier: CC-BY-SA-4.0
+= The Resemblance-Regress on the Record Axis — relocation, not refutation
+:revnumber: 0.1 (research note — provisional, and the most tentative of the WP-1 trio)
+:revdate: 2026-07-17
+:toc: macro
+:sectnums:
+
+[abstract]
+Russell's *resemblance-regress* against resemblance nominalism is the third and hardest of
+WP-1's unmapped problems, and this is the most tentative of the three notes. Its central
+discipline is *under*-claiming. The estate does **not** refute the regress: the ontological
+regress is answered — if at all — by the classical *internal-relations* response, which the
+estate *adopts*, not improves. What provenance-enrichment adds is narrower and honest: the
+`record` axis lets the estate separate two things bare trope theory runs together — the
+resemblance *relation* (ontology, self-grounding) and the resemblance *claim* (warranted,
+and terminating at the O5 world-access boundary) — and the regress objection trades on
+conflating them. Nothing here rests on a proved theorem; the whole note is philosophical
+relocation, flagged as such, and it depends on the O5 proposal (WP-2) being adopted.
+
+toc::[]
+
+== The objection
+
+Trope theory is a resemblance nominalism about kinds: `a` and `b` are both red because `a`'s
+redness-trope `r_a` *resembles* `b`'s redness-trope `r_b`. Russell's regress (1911/1912)
+presses on *resemblance itself*. If resemblance is a *universal*, the nominalism is abandoned
+at the first step. If resemblance is itself a *trope* — a resemblance-trope holding between
+`r_a` and `r_b` — then what makes *that* trope a *resemblance* rather than some other relation?
+Presumably its resembling the other resemblance-tropes — a resemblance of resemblances — and
+so on without end. The attempt to nominalize resemblance regenerates a shared kind
+(*resemblance*) one level up, viciously.
+
+== What the estate does not claim
+
+The estate does not refute Russell, and a note that pretended otherwise would breach the
+estate's no-overclaim doctrine. The standard trope-theoretic reply is that resemblance is an
+*internal relation* — no addition of being, grounded wholly in the natures of its terms
+(Campbell 1990; and the internal-relations tradition more broadly). Two exactly-resembling
+tropes resemble *in virtue of what they are*; there is no further resemblance-entity standing
+in need of its own ground, so the regress never starts. This is the real answer to the
+ontological regress, and the estate simply *adopts* it. Provenance-enrichment neither
+strengthens nor weakens it.
+
+So if there is an estate contribution here, it is not to the ontological question. It is to a
+distinction the ontological question is usually asked *without*.
+
+== The move: separate the relation from the claim
+
+Classical tropes are bare — quality borne by a bearer. Estate tropes are provenance-enriched:
+they add a `context` and, crucially here, a `record` (an honest provenance of how the record
+came to be; see `docs/background.adoc`). That extra axis lets the estate mark a distinction
+bare trope theory has no vocabulary for:
+
+* the resemblance *relation* between `r_a` and `r_b` — an *internal* relation: ontology,
+  self-grounding, non-iterating (§2);
+* the resemblance *claim* — a `record`-level assertion that `r_a` and `r_b` are same-kind. A
+  claim has a provenance; it can be honest, `Attenuated`, or *false*; and a false one —
+  asserting a sameness that does not hold — is a *record-veridicality fault*, kin to the
+  deceptive `Conflated` merge (asserting two are one).
+
+The regress objection asks: *"what makes this resemblance a resemblance?"* That question
+equivocates across the two readings, and the readings come apart:
+
+* Read as a question about the *relation*, it is answered by internal-relatedness and does
+  *not* iterate — there is no further entity to ground.
+* Read as a question about the *claim* ("what warrants asserting they resemble?"), it is
+  answered by the record's provenance — an attestation — and *that* attestation's warrant by
+  a further attestation, down an *evidential* chain. But an evidential chain, unlike the
+  ontological one, has a principled terminus: the *O5 world-access boundary*
+  (`formalisms/defining-o5-veridicality-oracle.adoc`), where a claim is finally checked
+  against the world rather than against another claim. An evidential regress that bottoms out
+  in world-access is not vicious; it is the ordinary structure of warrant.
+
+The estate's contribution, then, is a *disambiguation-plus-relocation*, not a refutation: the
+regress-generating step ("each resemblance needs a further resemblance") arises only if one
+*conflates* the self-grounding relation with the warrant-needing claim. Held apart — which is
+exactly what the four-field trope with its record axis exists to do — the ontological side
+does not iterate (internal relations) and the epistemic side terminates (O5).
+
+== A payoff: false resemblance becomes a locatable fault
+
+Because resemblance-*claims* live on the record axis, the estate can do something bare-trope
+nominalism cannot: mark a *false* resemblance-claim — asserting two tropes are same-kind when
+they are not — as a specific, grade-detectable fault (a `Conflated`-style record-veridicality
+failure), caught at the validation boundary. Classical resemblance nominalism, having only the
+relation and no record axis, cannot distinguish *resembles* from *asserted-to-resemble-but-
+does-not*. This is the same shape as the swapping and piling results before it: an axis the
+estate *added* (here, `record`) does work the borrowed ontology could not.
+
+== A discriminating test
+
+. *Against bare resemblance nominalism.* The estate predicts a checkable difference between a
+  true and a false resemblance-claim (the latter a record fault); bare nominalism cannot even
+  state it.
+. *Against resemblance-as-universal* (Russell's own resolution). The estate posits *no*
+  resemblance universal: internal relations carry the ontology, the record axis carries the
+  claims. It stays nominalist without paying Russell's price.
+. *The terminus test.* Ask "where does the regress stop?" The estate answers with a *named
+  boundary* — O5 world-access; "resemblance grounds resemblance" answers "nowhere," which is
+  precisely the vice. Being able to *point to* the terminus is the discriminating mark.
+
+== Limits — the most tentative note
+
+* It *depends on the O5 proposal* (WP-2, `formalisms/defining-o5-veridicality-oracle.adoc`)
+  being adopted; O5 is currently a proposal, not ratified into the calculus.
+* It defers the ontological regress *entirely* to the internal-relations response; if that
+  response fails, this relocation does not save resemblance nominalism — it only clarifies
+  where the failure would bite (the ontology, not the record).
+* *O1-coord (WP-5)* again: the reading assumes `record` is the axis on which claims-and-
+  warrants live; whether the coordinates are the right and exhaustive ones is the standing
+  open question.
+* Unlike the swapping note (which leans on a *proved* commutativity), *nothing here rests on a
+  theorem*. This is philosophical relocation end to end, and is offered as the most
+  provisional of the three.
+
+== Closing the trio
+
+With swapping (commutativity, with `bond`), piling (`merge`), and the regress (`record`),
+WP-1's three previously-unmapped classic problems now each have a *first formal image* — and
+each has fallen to a *different* estate coordinate. That distribution (individuation →
+`context`; swapping → commutativity/`bond`; piling → `merge`; regress → `record`) is not a
+coincidence to lean on but a *hypothesis to test*: it is exactly the coordinate-adequacy claim
+that O1-coord (WP-5) must adjudicate. The trio's real completion is therefore not these three
+notes but the WP-1 paper, the per-problem checker fixtures they still owe, and the WP-5
+adequacy defence they feed.
+
+== References
+
+* Bertrand Russell, "On the Relations of Universals and Particulars" (1911); _The Problems of
+  Philosophy_ (1912), ch. 9–10 — the regress and the argument that nominalism must admit a
+  universal of resemblance.
+* D. C. Williams, "On the Elements of Being" (1953); Keith Campbell, _Abstract Particulars_
+  (1990) — resemblance as internal / no-addition-of-being (the response the estate adopts);
+  A.-S. Maurin, "Tropes", _Stanford Encyclopedia of Philosophy_,
+  https://plato.stanford.edu/entries/tropes/ — the regress and its replies surveyed.
+* In-estate: `formalisms/defining-o5-veridicality-oracle.adoc` (the world-access terminus);
+  `docs/background.adoc` (the record axis and the compatibility test);
+  `ontologies/swapping-as-grade-commutativity.adoc`, `ontologies/piling-as-labelled-fusion.adoc`
+  (the companions); `docs/status/RESEARCH-PROGRAMME.adoc` (WP-1, WP-2, WP-5 / O1-coord).

@@ -25,4 +25,10 @@ established academic or technical formalisms.
   Conflated`). Piling is honestly aggregable (`Fused`) and record-constrained, never
   ontologically barred — so the "a bar smuggles in universals" horn fails. Provisional.
 
+* `ontologies/resemblance-regress-on-the-record-axis.adoc` — the third (and most
+  tentative) of the WP-1 trio: Russell's resemblance-regress via the `record` axis.
+  Not a refutation — the ontological regress is left to the internal-relations reply —
+  but a relocation: the record axis separates the resemblance *relation* (self-grounding)
+  from the resemblance *claim* (warranted, terminating at the O5 world-access boundary).
+
 See also the trope-stack programme of work: `../status/RESEARCH-PROGRAMME.adoc`.
