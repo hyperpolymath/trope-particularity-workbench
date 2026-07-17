@@ -1,8 +1,8 @@
 // SPDX-FileCopyrightText: © 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
 // SPDX-License-Identifier: CC-BY-SA-4.0
 = Trope Theory and Neural Representation — a position paper
-:revnumber: 0.1 (draft for review)
-:revdate: 2026-07-03
+:revnumber: 0.2 (draft for review; synced to ratified calculus R-2026-07-07)
+:revdate: 2026-07-16
 :toc: macro
 :sectnums:
 :sectnumlevels: 3
@@ -136,8 +136,11 @@ deceptive move as a validation-boundary fault.
 
 . *Swapping and piling as invariance tests.* Use the (currently open) formal images of
   swapping and piling (programme WP-1) to design controlled probes of permutation
-  behaviour and superposition capacity, and check whether the calculus's
-  non-commutative composition tracks empirical order-sensitivity.
+  behaviour and superposition capacity. The calculus's composition `▷` is *commutative*
+  on the ratified carrier (R-2026-07-07 A1) — the natural formal image of
+  swapping-*invariance* ("permuting indistinguishables changes nothing") — so the probe
+  is whether that commutativity matches empirical order-invariance, with any residual
+  order-*sensitivity* attributed to routing/DAG structure rather than to `▷`.
 
 == What this is *not*
 
