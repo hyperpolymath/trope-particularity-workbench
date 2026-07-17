@@ -1,3 +1,4 @@
+K9!
 # SPDX-License-Identifier: MPL-2.0
 # deploy.k9.ncl — Trope Particularity deployment component (Hunt level)
 #
@@ -143,7 +144,11 @@ echo "K9: Rollback complete."
 
 # Export the component
 {
-  pedigree = component_pedigree,
+  pedigree = {
+    name = "trope-particularity-workbench-deploy",
+    schema_version = "1.0.0",
+    security = { leash = 'Hunt },
+  } & component_pedigree,
   deployment = deployment,
   scripts = scripts,
 
