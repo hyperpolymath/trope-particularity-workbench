@@ -117,8 +117,11 @@ coordinate: *swapping* → commutativity/`bond`
 (`../theory/ontologies/piling-as-labelled-fusion.adoc`); and the *resemblance-regress* →
 `record` (`../theory/ontologies/resemblance-regress-on-the-record-axis.adoc`, the most
 tentative — relocation via the O5 world-access terminus, not refutation). That
-coordinate-distribution is itself a hypothesis for *O1-coord* (WP-5). What remains: the
-WP-1 philosophy paper, and the per-problem checker fixtures each note still owes.
+coordinate-distribution is itself a hypothesis for *O1-coord* (WP-5). The *WP-1 synthesis
+paper* is now drafted (`../whitepapers/academic/separating-the-axes.adoc` — the four
+objections as one, dissolved by axis-separation; the exhaustiveness conjecture with a
+falsification condition). What remains: the per-problem checker fixtures each note still
+owes, and the WP-5 / O1-coord adequacy adjudication the paper turns into a testable claim.
 
 *Closes.* The gap named in the spine table; feeds *O1-coord*.
 

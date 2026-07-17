@@ -1,0 +1,296 @@
+// SPDX-FileCopyrightText: © 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+// SPDX-License-Identifier: CC-BY-SA-4.0
+= Separating the Axes: A Unified Dissolution of the Classic Objections to Trope Theory
+:revnumber: 0.1 (working paper — draft for review; synthesises the WP-1 notes)
+:revdate: 2026-07-17
+:toc: macro
+:sectnums:
+:sectnumlevels: 3
+
+[abstract]
+The four classic objections to trope theory — the problem of *individuation*, the
+*swapping* (transposition) objection, the *piling* (stacking) objection, and Russell's
+*resemblance-regress* — have been treated, for seventy years, as four separate problems
+with four separate replies. This paper argues they are one problem in four disguises.
+Each trades on *conflating a standing ontological fact about tropes with an operational,
+evidential, or use-relative fact that a provenance-enriched, operation-graded framework
+tracks on a distinct axis*; and each dissolves the same way — by *separating an axis*,
+never by *adding an entity*. The framework that makes the separations available is the
+hyperpolymath trope stack, whose four-field trope (quality, bearer, context, record) and
+graded calculus of operations were built to account for *loss*, not to answer these
+objections — which is what makes their uniform surrender evidence rather than
+gerrymandering. The paper is honest about three things: the dissolutions have *uneven*
+formal backing (one rests on a machine-checked theorem, one on partly-proved structure,
+one on philosophical relocation only); they defend a *conservative extension* of
+classical trope theory, not bare Williams; and the exhaustiveness claim they suggest
+(that four axes are *all* the axes) is a conjecture, not a result. This is a working
+paper synthesising three provisional research notes, offered for scrutiny.
+
+toc::[]
+
+== The situation
+
+Trope theory — the doctrine that the world's properties are *abstract particulars*,
+non-repeatable instances (`this` redness here, not the universal shared across bearers)
+— was named by D. C. Williams (1953) and developed by Keith Campbell (1990). It has
+always been sold on ontological economy and common sense, and it has always been
+answered by a standard battery of objections:
+
+* *Individuation.* What makes `this` trope the very one it is? Bare haecceity looks
+  mysterious; qualitative individuation collapses exactly-alike tropes into one.
+* *Swapping* (transposition). Permute two exactly-resembling tropes between their
+  bearers: nothing is detectable, yet if the tropes are two, the worlds differ. Either
+  a difference makes no difference, or the tropes' particularity does no work.
+* *Piling* (stacking). What bars many exactly-alike tropes from co-piling on one bearer?
+  Permit it and the ontology is profligate; bar it and the bar looks universal-shaped.
+* *Resemblance-regress* (Russell 1911, 1912). Shared kind is explained by resemblance
+  between tropes; but resemblance is either a universal (nominalism abandoned) or a
+  further trope whose being-a-resemblance regenerates the problem one level up.
+
+The literature treats these as a *checklist*: a trope theorist is expected to have a
+reply to each, and the replies are independent (internal relations for the regress,
+primitive particularity for individuation, and so on). This paper's claim is that the
+checklist is an artefact. The four objections are four symptoms of a single lack, and a
+single structural feature dispatches all four at once.
+
+== The lack, and what supplies it
+
+The lack is this: *bare* trope theory has only tropes. A bare trope is a quality borne
+by a bearer, and that is the whole ontology. So when an objection turns on a distinction
+between *what a trope is* and *what happens to it*, or between *how many tropes there are*
+and *how many a use needs*, or between *a relation* and *a claim about that relation*,
+bare trope theory has no vocabulary to draw the distinction — and collapses the two. The
+objections are precisely the places where that collapse bites.
+
+The framework used here supplies the missing vocabulary along two dimensions, neither
+introduced to answer these objections.
+
+*Provenance-enrichment.* The trope is enriched from two fields to four: the situated
+`quality`, the `bearer`, the `context` that individuates it, and an honest `record` of
+how the record came to be (the veridicality axis). The enrichment is a deliberate
+departure from Williams, recorded as such, and — critically — it is a *conservative
+extension*: by a four-part compatibility test (it contradicts nothing the base asserts;
+connects by writable bridges; requires no change to the base; does non-redundant work on
+a domain the base is silent about) the enriched trope *contains* the classical one, which
+is recovered by projecting `context` and `record` away. §7 returns to whether this
+"changes the subject."
+
+*Operation-grading.* Operations *on* tropes carry a *grade* — a record of what the
+operation did, in three orthogonal coordinates: `fate` (per-field survival), `bond`
+(the quality–bearer tie), and `merge` (instance cardinality). Grades compose by a fixed
+algebra; on the ratified carrier (R-2026-07-07) that algebra is a *commutative* monoid,
+machine-checked in Lean 4. A declared *use-model* then yields a decidable *verdict*:
+whether what survived is *enough for the use at hand*. The decisive point is that a grade
+describes a *verb's residue*, not a *noun's essence*: grades are about operations, not
+about the standing identity of tropes.
+
+Four fields and three grade-coordinates give the framework *seven axes* on which a fact
+can live, where bare trope theory had one (the trope). The objections, we now show, each
+conflate two of them.
+
+== The four dissolutions
+
+Each dissolution has the same three-part shape: the *conflation* the objection trades on;
+the *axis-separation* that undoes it; and a *discriminating test* that distinguishes the
+dissolution from a mere refusal to take the objection seriously. Fuller treatments of the
+last three are in the companion notes (`docs/theory/ontologies/`).
+
+=== Individuation — quality vs context
+
+*Conflation.* The dilemma (mysterious haecceity vs collapsing qualitative individuation)
+assumes individuation must be carried *either* by a bare thisness *or* by the quality
+exemplified. Bare trope theory, having only quality-and-bearer, has nowhere else to put
+it.
+
+*Separation.* Individuation lives on the `context` axis — the situating conditions,
+`this`-here-now — which is *distinct* from the `quality` axis (what is exemplified). Two
+exactly-alike tropes share a quality and differ in context; they are two *because* their
+contexts differ, without a bare haecceity and without letting the shared quality collapse
+them. Individuation is *contextual*, neither primitive-mysterious nor qualitative.
+
+*Test.* The account predicts a graded notion — "recoverable individuating content" — on
+which an operation can degrade *how individuated* a trope remains without touching *what*
+individuates it; a primitivist has only the all-or-nothing "same or not."
+
+=== Swapping — numerical identity vs process-grade
+
+*Conflation.* The dilemma assumes that if two exactly-alike transposed tropes are really
+two, their distinctness must show up as a *detectable* difference in the world's workings.
+
+*Separation.* Numerical distinctness is a standing fact about the tropes (the identity
+axis); what a transposition *does* is a grade. Because grade composition is commutative
+(a *machine-checked* theorem on the ratified carrier), permuting interchangeable inputs
+is a grade-level identity: nothing detectable-through-process changes. Yet the tropes stay
+two — numerical distinctness was never a grade. The swap is *grade-invariant without being
+identity-collapsing*; the "difference that makes no difference" is a numerical difference
+(real) coinciding with a dynamical one (nil, provably).
+
+*Test.* Swapping-invariance is exactly co-extensive with exact resemblance: introduce any
+inexactness and the swap leaves a graded trace. Neither the verificationist (swaps always
+meaningless) nor the bundle theorist (no distinctness to preserve) predicts that boundary.
+This is the *strongest* of the four dissolutions: it rests on a proved law.
+
+=== Piling — ontological count vs use-relative count
+
+*Conflation.* The dilemma (profligate if permitted, universal-shaped if barred) assumes
+the number of co-located exactly-alike tropes is a brute fact the theory must settle.
+
+*Separation.* Cardinality lives on the `merge` coordinate (`Single ⊐ Fused(τ) ⊐
+Conflated`, ordered by recoverable plurality); sufficiency of a count for a purpose lives
+on the verdict. The theory does not *settle* the count; it *records* it and *judges* it.
+Honest piling is `Fused(τ)` — labelled, recoverable — so never *silently* profligate;
+silent piling is `Conflated` — grade-detectable, failing every honest floor. And the only
+constraint on piling is that a merge be *labelled*: a constraint on the *record*, not the
+tropes. By the compatibility test, that touches the ontology nowhere — so the "a bar
+smuggles in universals" horn fails, because *there is no ontological bar*.
+
+*Test.* The account permits labelled piling and faults only silent piling — a boundary
+the flat "no two alike on one bearer" cannot draw, and one universals cannot even *state*
+(a universal cannot be had twice, so it "avoids the piling question only by being unable
+to ask it"). Formal backing: the `merge` order is specified and the `Conflated`-as-bottom
+result is machine-checked; the reading of piling as a merge situation is philosophy.
+
+=== Resemblance-regress — the relation vs the claim
+
+*Conflation.* Russell's regress asks "what makes this resemblance a resemblance?" and
+treats the answer as needing a *further* resemblance. The question equivocates between
+the resemblance *relation* and a *claim* that the relation holds.
+
+*Separation.* The relation is *internal* — grounded wholly in the natures of its terms
+(the classical response, adopted here, not improved) — so it does not iterate: there is
+no further entity to ground. The *claim* lives on the `record` axis; its warrant is an
+attestation, and that attestation's warrant a further one, down an *evidential* chain
+that terminates at the *O5 world-access boundary* (where a claim is finally checked
+against the world, not another claim). An evidential regress that bottoms out in
+world-access is not vicious. The regress-generating step arises only if one conflates the
+self-grounding relation with the warrant-needing claim.
+
+*Test.* Ask where the regress stops: the account names a boundary (O5 world-access);
+"resemblance grounds resemblance" answers "nowhere," which is the vice. And a *false*
+resemblance-claim becomes a locatable `Conflated`-style record fault — a distinction
+bare-trope nominalism cannot state. This is the *weakest* of the four: nothing here rests
+on a theorem, it depends on the O5 proposal being adopted, and it defers the ontological
+regress entirely to internal relations.
+
+== The unifying diagnosis
+
+Set the four side by side and the pattern is unmistakable. Each objection conflates a
+*standing ontological fact about tropes* with something the enriched-and-graded framework
+tracks *elsewhere*:
+
+[cols="1,2,2,1",options="header"]
+|===
+| Objection | Ontological fact | Conflated with | Home axis
+| Individuation | which trope this is | what quality it bears | `context`
+| Swapping | that the tropes are two | what an operation does | grade (commutativity) / `bond`
+| Piling | how many tropes there are | how many a use needs | `merge` / verdict
+| Regress | that two tropes resemble | the claim that they do | `record`
+|===
+
+Bare trope theory ran each pair together because it had *only* the left column — the
+tropes — and no axis for operations, cardinality-records, uses, or evidential claims.
+The four objections are therefore not four independent problems but *four symptoms of one
+lack*: the absence, in bare trope theory, of axes distinct from the tropes themselves.
+Supply the axes — `context`, the grade coordinates, the `record` — and grade the
+*operations* rather than the tropes, and the objections dissolve *uniformly*: each by
+separating an axis, none by adding an entity. That last clause matters. Russell's own fix
+*added an entity* (the universal resemblance); haecceitism *adds* a primitive thisness.
+Axis-separation adds nothing to the ontology; it adds *structure around* it — structure
+that (by the compatibility test) the ontology was silent about and is not perturbed by.
+
+== The exhaustiveness conjecture
+
+That the four canonical objections distribute *one-to-one* across the framework's four
+trope-level axes (`quality`-vs-`context`, the trope-vs-grade divide, `merge`, `record`) is
+striking, and it suggests a conjecture the framework already names as its central open
+question (O1-coord): *are these axes the exhaustive ways to individuate-and-lose?* The
+distribution is *defeasible evidence* for exhaustiveness — if the axes carved arbitrarily,
+one would not expect the historically-independent objections to fall so cleanly, one to
+each. It is not a proof. What would bear on it:
+
+* *Confirming.* A *fifth* classic objection that also dissolves by separating one of the
+  same four axes strengthens the conjecture.
+* *Disconfirming.* An objection that resists all four coordinates — that cannot be read as
+  a conflation of any ontological fact with any of `context` / grade / `merge` / `record`
+  — is evidence for a *fifth* axis, and would falsify the exhaustiveness claim as stated.
+
+This reframes a notoriously hard metaphysical question (how many kinds of individuation-
+and-loss are there?) as one with a foothold: the *distribution of the known objections*.
+That foothold is the paper's methodological contribution, distinct from the four
+dissolutions themselves.
+
+== Objections and replies
+
+*"You have changed the subject."* The dissolutions use `context`, `record`, and
+operation-grades — machinery classical (bare) trope theory lacks. A hardcore Williamsian
+who refuses the enrichment does not get the dissolutions. *Reply, conceded in part:* the
+paper defends a *conservative extension* of classical trope theory, and says so. The
+extension is conservative in a precise sense (the compatibility test): it contradicts,
+changes, and removes nothing in the base; it only adds axes the base was silent about.
+The enriched trope *contains* the classical trope. One is therefore not defending a rival
+theory but *equipping* trope theory with the distinctions its objections always demanded
+— distinctions a theory is entitled to draw. Still, the honest scope is: *enriched* trope
+theory, not bare Williams.
+
+*"The dissolutions are unevenly rigorous."* True, and flagged throughout: swapping rests
+on a machine-checked commutativity theorem; piling on specified structure with a proved
+bottom but a philosophical reading; individuation and the regress on philosophical
+relocation alone (the regress additionally depending on the still-unratified O5 proposal).
+The paper claims *uniformity of the move*, not uniformity of proof. Presenting a graded
+confidence is itself in keeping with the framework's no-overclaim discipline.
+
+*"Axis-separation is gerrymandered to fit."* The strongest worry: if the axes were chosen
+to dissolve these objections, their fit proves nothing. *Reply:* the axes were *not* so
+chosen. The four-field trope and the three grade-coordinates were built to account for
+*loss and deception of property-instances* in computational pipelines — a use-case with no
+stake in the metaphysics-of-properties debate. That an independently-motivated
+loss-accounting apparatus turns out to separate exactly the axes the classic objections
+conflate is the evidential force of the paper. The falsifiability of the exhaustiveness
+conjecture (§6) is the check against post-hoc fit.
+
+*"Internal relations do the real work in the regress."* Granted — and stated. For the
+regress the estate contributes *relocation and disambiguation*, not a new ontological
+ground; the ontological regress stands or falls with the internal-relations reply
+independently of anything here.
+
+== Conclusion
+
+The classic objections to trope theory are one objection wearing four masks. Each conflates
+a standing fact about tropes with an operational, cardinal, or evidential fact; each
+dissolves by separating an axis; none is answered by adding an entity. The framework that
+makes the separations available was built for loss-accounting, not for this debate, and one
+of its four dissolutions is machine-checked — which is why the uniform result reads as a
+discovery about the objections rather than a tailoring of the theory. The same framework
+turns the exhaustiveness question (are four axes all the axes?) into a conjecture with a
+falsification condition. What remains is real: the per-problem checker fixtures the notes
+still owe, the ratification of O5, and — above all — the adjudication of exhaustiveness
+(O1-coord). But the shape is now visible: *defend the axes, and the tropes defend
+themselves.*
+
+== Status and provenance
+
+This is a *working paper* (v0.1), synthesising three provisional research notes; it is not
+a finished result and makes, per the estate publication gate, no non-abstract
+implementation claim. Only the swapping commutativity is a machine-checked theorem;
+everything else is specified structure or philosophical argument, graded as such in the
+text. The estate's division of labour assigns prose and papers to human-plus-review; this
+draft is offered as raw material for that review, not as a submission.
+
+== References
+
+* D. C. Williams, "On the Elements of Being", _Review of Metaphysics_ 7 (1953);
+  Keith Campbell, _Abstract Particulars_ (Blackwell, 1990) — trope theory and the
+  internal-relations reply to the regress.
+* Bertrand Russell, "On the Relations of Universals and Particulars" (1911); _The Problems
+  of Philosophy_ (1912), ch. 9–10 — the resemblance-regress.
+* A.-S. Maurin, "Tropes", _Stanford Encyclopedia of Philosophy_,
+  https://plato.stanford.edu/entries/tropes/ — the objections and their standard replies
+  surveyed; D. M. Armstrong on internal relations and ontological economy (the piling and
+  regress pressure).
+* In-estate: the three companion notes,
+  `docs/theory/ontologies/{swapping-as-grade-commutativity,piling-as-labelled-fusion,resemblance-regress-on-the-record-axis}.adoc`;
+  the O5 proposal, `docs/theory/formalisms/defining-o5-veridicality-oracle.adoc`;
+  the grounding and compatibility test, `docs/background.adoc`; the ratified commutativity,
+  `trope-checker/spec/notes/2026-07-07-l4-boundary-and-atoms.adoc` and
+  `.../grade-boundary/GradeRatified.lean` (ADR 0004); the programme,
+  `docs/status/RESEARCH-PROGRAMME.adoc` (WP-1, WP-5 / O1-coord).
