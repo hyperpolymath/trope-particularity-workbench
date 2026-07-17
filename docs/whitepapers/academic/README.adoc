@@ -1,3 +1,13 @@
 // SPDX-License-Identifier: CC-BY-SA-4.0
 // Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
 = Academic Logic
+
+Strategic publications and whitepapers targeting an academic audience. Theoretical
+claims reference established formalisms; capability claims are publication-gate
+compliant (provisional/abstract below grade B).
+
+* `separating-the-axes.adoc` — working paper: a *unified* dissolution of the four classic
+  objections to trope theory (individuation, swapping, piling, the resemblance-regress).
+  Thesis: they are one objection in four disguises, each dissolved by separating an axis,
+  none by adding an entity. Synthesises the three WP-1 `docs/theory/ontologies/` notes.
+* `funding-landscape.adoc` — candidate funders for the programme, mapped to work packages.
