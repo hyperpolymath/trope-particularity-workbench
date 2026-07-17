@@ -10,4 +10,9 @@ established academic or technical formalisms.
   diagnostic vocabulary over superposition, polysemanticity, and the binding problem.
   A provisional position paper.
 
+* `formalisms/defining-o5-veridicality-oracle.adoc` — a proposed calculus §10 entry
+  for O5 (the veridicality oracle): an IR-relative undecidability remark plus an
+  oracle interface (O5-1..3) for deployments. Proposal only — normative home is the
+  trope-checker calculus, owner-ratified.
+
 See also the trope-stack programme of work: `../status/RESEARCH-PROGRAMME.adoc`.
