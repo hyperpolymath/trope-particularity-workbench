@@ -15,4 +15,10 @@ established academic or technical formalisms.
   oracle interface (O5-1..3) for deployments. Proposal only — normative home is the
   trope-checker calculus, owner-ratified.
 
+* `ontologies/swapping-as-grade-commutativity.adoc` — a first formal image of the
+  swapping/transposition objection: the ratified commutativity of `▷` as
+  swapping-invariance, paired with the numerical-identity axis to dissolve the
+  dilemma. Provisional research note; the first of the WP-1 trio (piling, regress to
+  come).
+
 See also the trope-stack programme of work: `../status/RESEARCH-PROGRAMME.adoc`.
