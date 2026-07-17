@@ -1,0 +1,150 @@
+// SPDX-FileCopyrightText: © 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+// SPDX-License-Identifier: CC-BY-SA-4.0
+= Piling as Labelled Fusion — the merge coordinate and the cardinality objection
+:revnumber: 0.1 (research note — provisional; feeds WP-1)
+:revdate: 2026-07-17
+:toc: macro
+:sectnums:
+
+[abstract]
+The *piling* (or *stacking*) objection is the second of WP-1's three unmapped classic
+problems, and the *vertical* cousin of swapping. This note argues that the estate's
+*merge* coordinate — `Single ⊐ Fused(τ) ⊐ Conflated`, ordered by recoverable plurality
+(`trope-checker/spec/calculus.adoc §3.3`) — is the right formal image of trope
+*cardinality on a bearer*, and that its honest/deceptive split dissolves the piling
+dilemma. The load-bearing result: the *only* constraint the estate places on piling is a
+constraint on **records** ("label your merges"), not on **tropes** — so the objection's
+"a bar on piling smuggles in universals" horn fails, because *nothing in the ontology is
+barred*. Provisional: the merge order and the `Conflated`-as-bottom facts are specified
+and (for the deceptive bottom) proved; the reading of *piling* as a merge situation is
+philosophy, defended here. Leans on the open O1-coord (WP-5).
+
+toc::[]
+
+== The objection
+
+Tropes are particulars. What, then, stops many exactly-resembling tropes of the *same
+determinate* from co-piling on one bearer? If ball `a` has a redness trope `r`, what bars
+it from also having `r'`, `r''`, … all exactly alike, all co-located on `a`? A universal
+cannot be "had twice" — an object instantiates redness or it does not — so the universals
+theorist faces no such question. But tropes, being particular, seem to permit unwanted
+multiplication: *piling*.
+
+The dilemma:
+
+* *(permit)* Allow piling — then the ontology is profligate, and the surplus tropes make
+  no detectable difference (an indiscernibility worry, like swapping, but about *count on
+  one bearer* rather than *transposition between two*).
+* *(bar)* Forbid it — but the bar, "no two exactly-alike tropes co-located on one bearer,"
+  quantifies over resemblance-kinds and is *universal-shaped*; stating it seems to
+  reintroduce the very universals trope theory set out to avoid.
+
+Two axes are worth marking at once. Swapping is the *horizontal* worry (permute exactly-
+alike tropes *between* bearers); piling is the *vertical* one (multiply them *on* one
+bearer). And where swapping exercised the *commutativity* of composition (and the `bond`
+coordinate — see the companion note), piling exercises a *different* coordinate entirely:
+`merge` — how many instances are treated as how many.
+
+== The resource: the merge coordinate
+
+A grade's `merge` coordinate records what an operation did to *instance count*
+(`trope-checker/spec/calculus.adoc §3.3`), ordered by *recoverable plurality*:
+
+* `Single` — one instance, no aggregation. (Top.)
+* `Fused(τ)` — two (or more) blended into one, *labelled* by provenance `τ`; the plurality
+  is **recoverable from `τ`**. Honest: the count survives in the label.
+* `Conflated` — two merged into one, *unlabelled*; the plurality is **irrecoverable**. The
+  deceptive merge-bottom: infectious, below every honest value, failing every honest floor
+  — and, under the prevent profile, *not writable* by a well-formed term (it is reachable
+  in the lattice only as a validation fault).
+
+That ordering is exactly a cardinality-honesty scale: from "one, truly" through "many,
+honestly labelled as many" down to "many, silently passed off as one."
+
+== The move: record the count, judge by use — do not settle the ontology
+
+The objection assumes the number of co-located exactly-alike tropes is a *brute
+ontological fact* trope theory must settle — and settling it either way is the dilemma.
+The estate declines the assumption. It does not *settle* the count; it *records* it (the
+`merge` coordinate) and *judges* it (a declared use-model + the verdict).
+
+*The permit-horn is answered.* Piling is never *silently* profligate. Honest piling is
+`Fused(τ)`: the count is labelled and recoverable, so it makes exactly the difference the
+label records and no mysterious surplus. Silent piling is `Conflated`: grade-detectable,
+irrecoverable, failing every honest floor. So there is no "surplus tropes that make no
+difference" — either the difference is carried on the label (`Fused`), or the collapse is
+*flagged* (`Conflated`). Profligacy requires silence, and the estate does not let the
+merge be silent.
+
+*The bar-horn is answered — and this is the load-bearing point.* The estate places *no
+ontological bar on piling at all*. Its sole requirement is that a merge be *labelled* —
+a constraint on the **record**, not on the tropes. By the four-part compatibility test in
+`docs/background.adoc`, a record-constraint contradicts the ontology nowhere, needs no
+change to the base, and does non-redundant work on veridicality. So the "bar" is not a
+no-piling principle quantifying over resemblance-kinds; it is *"label your aggregations
+honestly."* Williams's abstract particulars are untouched; nothing universal-shaped is
+smuggled in, because the constraint lives on the record layer — which was always the
+estate's own addition, not part of the borrowed ontology.
+
+Piling, then, is *honestly aggregable* (`Fused τ`), *use-relatively countable* (the verdict
+judges when the count matters), and *record-constrained* (label it) — neither profligate
+nor barred.
+
+The parallel to swapping is exact: swapping separated *numerical* difference (real) from
+*dynamical* difference (nil, under commutativity); piling separates *numerical count*
+(recorded in `merge`) from *use-relevant count* (judged by the verdict). In both, the
+dilemma is a *conflation of two things the estate keeps on different axes*.
+
+== A discriminating test
+
+. *Against the flat bar* (a primitive "no two exactly-alike tropes on one bearer"). The
+  estate permits *labelled* piling and faults only *silent* piling — a boundary the flat
+  bar cannot draw, since it forbids even honest, recoverable aggregation. Prediction that
+  separates them: an honestly `Fused(τ)` co-location passes an honest floor that only needs
+  the aggregate; the flat bar rejects it outright.
+. *Against free permission* (piling is fine, full stop). Unlabelled piling is
+  grade-detectable — the `Conflated` merge-bottom, failing every honest floor and blocked
+  at the validation boundary. Piling is therefore *never silently* profligate; the
+  free-permit view has no such detector and no honesty gradient.
+. *Against universals.* A universal cannot be "had twice," so it cannot even *state* the
+  difference between one redness and two honestly-aggregated exactly-alike rednesses.
+  `Single` vs `Fused(τ)` states it; the use-model judges when it matters. That is work the
+  universals theorist cannot do — the mirror image of the standard boast that universals
+  face no piling question at all: they avoid the question only by being unable to *ask* it.
+
+== Limits and dependencies
+
+* *O1-coord (WP-5).* "`merge` is the cardinality coordinate" is fully general only if
+  `merge` is the right — and exhaustive — coordinate for count. That is the open
+  metaphysical question; the note feeds it and does not presume it.
+* *Specialization.* Piling is *exactly-alike, same-determinate, co-located*; `Fused(τ)` is
+  general two-into-one. Whether `τ` carries enough to distinguish "two reds fused" from "a
+  red and a round fused," and to mark *co-location on one bearer* specifically, is a
+  fixture question WP-1 must answer, not settled here.
+* *Honesty.* The `merge` order and `Conflated`-as-bottom are specified, and the deceptive-
+  bottom result is machine-checked (`grade-boundary/`); the reading of *piling* as a merge
+  situation is philosophy — defended, not proved. A checker fixture (a same-determinate,
+  one-bearer `Fused`-vs-`Conflated` pair) remains to be built.
+
+== Where the trio sits
+
+The four classic problems appear to distribute across the estate's coordinates rather
+than crowding onto one: *individuation* → `context`; *swapping* → commutativity (with the
+`bond`); *piling* → `merge`; and — provisionally, for the note to come — the *resemblance-
+regress* → `record`. That distribution is weak but real evidence that the coordinates
+carve at joints, and it is the structural hypothesis the regress note will test and that
+O1-coord's adequacy question must ultimately adjudicate.
+
+== References
+
+* D. C. Williams, "On the Elements of Being" (1953); Keith Campbell, _Abstract Particulars_
+  (1990); A.-S. Maurin, "Tropes", _Stanford Encyclopedia of Philosophy_,
+  https://plato.stanford.edu/entries/tropes/ — piling/stacking and the ontological-economy
+  pressure on tropes (the profligacy worry is in the spirit of Armstrong's economy-based
+  criticisms; cited to the survey rather than to a single formulation).
+* Merge coordinate + deceptive bottom: `trope-checker/spec/calculus.adoc §3.3`,
+  `trope-checker/verification/proofs/lean4/grade-boundary/` (TierTwoComplete, GradeRatified),
+  ADR 0004.
+* In-estate: `docs/background.adoc` (the compatibility test the record-constraint passes);
+  `ontologies/swapping-as-grade-commutativity.adoc` (the horizontal companion);
+  `docs/status/RESEARCH-PROGRAMME.adoc` (WP-1, WP-5 / O1-coord).

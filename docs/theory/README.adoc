@@ -18,7 +18,11 @@ established academic or technical formalisms.
 * `ontologies/swapping-as-grade-commutativity.adoc` — a first formal image of the
   swapping/transposition objection: the ratified commutativity of `▷` as
   swapping-invariance, paired with the numerical-identity axis to dissolve the
-  dilemma. Provisional research note; the first of the WP-1 trio (piling, regress to
-  come).
+  dilemma. Provisional research note; the first of the WP-1 trio.
+
+* `ontologies/piling-as-labelled-fusion.adoc` — the second of the WP-1 trio: the
+  piling/stacking objection through the `merge` coordinate (`Single ⊐ Fused(τ) ⊐
+  Conflated`). Piling is honestly aggregable (`Fused`) and record-constrained, never
+  ontologically barred — so the "a bar smuggles in universals" horn fails. Provisional.
 
 See also the trope-stack programme of work: `../status/RESEARCH-PROGRAMME.adoc`.
