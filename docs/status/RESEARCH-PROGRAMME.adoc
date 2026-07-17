@@ -1,8 +1,8 @@
 // SPDX-FileCopyrightText: © 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
 // SPDX-License-Identifier: CC-BY-SA-4.0
 = A Programme of Work for Trope Theory
-:revnumber: 0.1 (draft for review)
-:revdate: 2026-07-03
+:revnumber: 0.2 (draft for review; synced to ratified calculus R-2026-07-07 / ADR 0004)
+:revdate: 2026-07-16
 :toc: macro
 :sectnums:
 :sectnumlevels: 3
@@ -64,7 +64,10 @@ each companion document refers back to it.
 | Already the estate's strongest result; extend to piling (WP-1).
 
 | *Swapping* — permuting exactly-alike tropes changes nothing
-| *Absent.* Candidate handle: the *non-commutativity* of grade composition `▷`.
+| *Absent as a named problem.* Candidate handle: the *commutativity* of grade
+  composition `▷` (ratified R-2026-07-07 A1) as the formal image of
+  permutation-invariance; order-sensitivity, if wanted, must come from DAG/routing
+  structure, not `▷`.
 | Formalise permutation-(in)variance of indistinguishable instances (WP-1).
 
 | *Piling / stacking* — many exactly-alike tropes co-located on one bearer
@@ -103,7 +106,8 @@ and the clearest demonstration that the estate's dynamics is more than a re-labe
 
 *Deliverable.* A philosophy paper (target: a metaphysics venue) + a `docs/theory/`
 note per problem, each with a discriminating test and, where possible, a checker
-fixture. Concretely: does the non-commutativity of `▷` bear on swapping? Do
+fixture. Concretely: does the commutativity of `▷` (ratified R-2026-07-07 A1) model
+swapping-invariance? Do
 `Conflated` / `Fused τ` distinguish honest from silent piling? Does the `record` axis
 relocate the regress into a question about provenance rather than universals?
 
@@ -132,21 +136,26 @@ match.
 
 *Funder fit.* EPSRC / UKRI (formal methods); ARIA _Mathematics for Safe AI_.
 
-=== WP-3 (P1) — An operational model for `fix` / routing (CO-1)
+=== WP-3 (P1) — Complete the operational model for `fix` / routing (CO-1)
 
-*Problem.* *CO-1*, the estate's central open problem: the calculus is a static
-type-and-grade discipline with *no reduction dynamics* for its recursion / routing
-constructs. There is no `↝` rule for `fix` and no observed-retention `ρ`. It is gated
-by *O4* (the limit carrier for iterated attenuation beyond ω — the `Conat`-vs-tag fork).
+*Problem.* *CO-1*, the estate's central open problem, is now *unblocked and designed*
+(post-ratification R-2026-07-07): `spec/notes/2026-07-07-co1-operational-model.adoc`
+defines the core language λ-trope, an instrumented tagged-value small-step semantics
+with observed retention `ρ`, and the decidable `T-Fix-Decl` rule. *O4* is resolved
+(ADR 0004: the finitary `ℕ∪{∞,⊤}` carrier suffices; issue #12 closed). What remains is
+the *mechanization*: Agda Theorem B Target 3 (subject reduction through `fix`) against
+the ratified carrier, and grade soundness `g ⊑ ρ` for the conservative fragment via the
+restored strict L4.
 
-*Why it matters.* Resolving CO-1 unblocks full subject reduction (Theorem B, Target 3,
-currently partial in Agda) and grade soundness for recursion. It is the headline formal
-result of the whole programme.
+*Why it matters.* Completing the mechanization turns the designed model into the
+headline machine-checked result of the programme: full subject reduction and grade
+soundness for recursion.
 
-*Deliverable.* An operational semantics + the Agda Target-3 proof completed; O4 resolved
-or explicitly parameterised.
+*Deliverable.* The Agda Target-3 proof completed against λ-trope; conservative-fragment
+grade soundness mechanized.
 
-*Closes.* *CO-1*, *O4*; unblocks Theorem B Target 3 and conservative-lowering soundness.
+*Closes.* *CO-1* (mechanization half; design already landed upstream); unblocks Theorem
+B Target 3.
 
 *Funder fit.* EPSRC / UKRI; ERC (if eligible); ARIA _Safeguarded AI_.
 
@@ -173,22 +182,25 @@ polysemanticity, the binding problem).
 *Funder fit.* EPSRC / UKRI (trustworthy & interpretable AI); ARIA; John Templeton
 Foundation _Intelligence Venture_; interpretability funders (Open Philanthropy).
 
-=== WP-5 (P1) — Exhaustiveness (O1 / O1-coord), before the IR freezes
+=== WP-5 (P1) — Exhaustiveness: the metaphysical half (O1-coord)
 
-*Problem.* Two coupled completeness questions. *O1*: are the seven writable effects the
-true generators, derivable as inhabited cells of loss-structure × bond-integrity ×
-cardinality/honesty? *O1-coord*: are the three coordinates (fate, bond, merge)
-themselves exhaustive as "ways to individuate-and-lose"? The calculus flags O1 as
-something to settle *before the IR schema is frozen*.
+*Problem.* O1's *carrier-relative* half is now a theorem
+(`grade-boundary/EffectAtoms.lean`: `atom_factorization` — every grade factors as a
+`▷`-product of its single-coordinate projections; the effect typology is exhaustive
+*relative to the carrier*), and the Trope IR is frozen at 0.2 (R-2026-07-07,
+verdict-semantics-only bump). What remains open is *O1-coord*, the metaphysical half:
+are the three coordinates (fate, bond, merge) themselves exhaustive as "ways to
+individuate-and-lose"? That is a claim about the world, not the algebra — a
+philosophy-of-individuation question.
 
-*Why it matters.* Time-critical: every downstream artefact (schema, checker,
-Vocarium's stored shapes) inherits whatever the effect typology turns out to be.
-Freezing the IR before O1 is settled bakes in a "well-chosen list, not a theorem."
+*Why it matters.* If a fourth coordinate exists, the carrier-relative theorem is
+exhaustiveness over the *wrong* carrier. The metaphysical adequacy argument is also
+precisely where the programme meets the trope-theory literature (WP-1).
 
-*Deliverable.* A derivation of the typology (or a counter-example that forces a fourth
+*Deliverable.* A defended adequacy argument (or a counter-example forcing a fourth
 coordinate), and an ADR recording the decision with its evidence.
 
-*Closes.* *O1*, *O1-coord*.
+*Closes.* *O1-coord* (O1's algebraic half is closed upstream).
 
 *Funder fit.* AHRC; Leverhulme; British Academy.
 
@@ -224,10 +236,12 @@ credible funding demo require running artefacts, not specifications.
 * `vocarium` — the minimal schemas + a `vocarium validate` fixture runner.
 * `hermeneia` — a minimal grammar, the voke-operation table, and an end-to-end fixture
   (Vocarium record → query → verdict).
-* `trope-checker` — grade soundness for *conservative* lowering over fate (the lax-L4
-  argument); reconcile *OPEN-B / B′ / C*.
+* `trope-checker` — grade soundness for *conservative* lowering over fate, via the
+  *restored strict L4* (ratified carrier: `L4Monotonicity.lean`; the old "lax-L4"
+  framing is obsolete, and *OPEN-B / B′ / C are already reconciled/closed upstream* —
+  §3.1/§3.2 tables and `TierTwoComplete.lean`).
 
-*Closes.* *O2*; conservative-lowering soundness; OPEN-B/B′/C.
+*Closes.* *O2*; conservative-lowering soundness (mechanization).
 
 *Funder fit.* EPSRC / UKRI; (engineering, likely bundled into WP-3/WP-4 grants).
 
@@ -254,9 +268,9 @@ the funding memo.
 |===
 | Constraint | Consequence
 
-| *O1 before IR freeze* | WP-5 gates any decision to freeze the Trope IR schema; do it early.
-| *O4 gates CO-1* | WP-3 must resolve or parameterise the limit carrier first.
-| *O1 gates O3* | WP-6 is sequenced after WP-5.
+| *IR frozen at 0.2* | (Historical gate "O1 before IR freeze" overtaken: the IR froze at 0.2 under R-2026-07-07 with O1's algebraic half proved; WP-5 now defends the metaphysical half.)
+| *O4 resolved* | (Historical gate "O4 gates CO-1" lifted by ADR 0004; WP-3 is mechanization, not carrier design.)
+| *O1 gates O3* | WP-6 is sequenced after WP-5 (O3's grade category is pinned by the ratified carrier; adequacy still informs it).
 | *Tools demonstrate theory* | WP-7 underwrites the publication-gate claims WP-8 relies on.
 | *Essay + ORCID/DOI first* | WP-8's low-cost items unblock every funding application immediately.
 |===
@@ -280,10 +294,18 @@ for work not yet done, and should be read as such.
 * Keith Campbell, _Abstract Particulars_ (Blackwell, 1990).
 * A.-S. Maurin, "Tropes", _Stanford Encyclopedia of Philosophy_ —
   https://plato.stanford.edu/entries/tropes/
-* In-estate ground truth: `trope-checker/spec/calculus.adoc`,
-  `trope-checker/docs/status/{ROADMAP,PROOF-STATUS}.adoc`,
-  `trope-checker/verification/proofs/INTEGRATION-REPORT.adoc`,
-  `trope-particularity-workbench/docs/background.adoc`.
+* In-estate ground truth (post-ratification): `trope-checker/docs/decisions/0004-*`
+  (ADR 0004, R-2026-07-07 A1/A2/A3), `trope-checker/spec/calculus.adoc` (§3/§4 as
+  amended), `trope-checker/spec/trope-ir.adoc` (0.2),
+  `trope-checker/spec/notes/2026-07-07-*.adoc` (λ-trope operational model; L4 boundary
+  and atoms), and the ratified-carrier proofs
+  (`L4Monotonicity.lean`, `EffectAtoms.lean`, `TierTwoComplete.lean`,
+  `GradeRatified.lean`, `GradeFactorisationR.lean`).
+  *Caveat:* `trope-checker/docs/status/{ROADMAP,PROOF-STATUS}.adoc`,
+  `AFFIRMATION.adoc`, and `INTEGRATION-REPORT.adoc` were not updated in the
+  ratification wave and still describe the pre-07-07 world — prefer ADR 0004 and the
+  spec where they disagree.
+* Founding grounding: `trope-particularity-workbench/docs/background.adoc`.
 * Companion documents: `../theory/computing/trope-theory-and-neural-representation.adoc`,
   `../whitepapers/outreach/baffled-couch-potatoes.adoc`,
   `../whitepapers/academic/funding-landscape.adoc`.
