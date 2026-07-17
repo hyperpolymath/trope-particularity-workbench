@@ -111,9 +111,14 @@ swapping-invariance? Do
 `Conflated` / `Fused τ` distinguish honest from silent piling? Does the `record` axis
 relocate the regress into a question about provenance rather than universals?
 
-*Status.* The *swapping* image is drafted — `../theory/ontologies/swapping-as-grade-commutativity.adoc`
-(commutativity of `▷` as swapping-invariance; the numerical/grade axis separation).
-Piling and the resemblance-regress remain; the per-problem checker fixtures remain.
+*Status.* All three first-image notes are drafted, each falling to a *different*
+coordinate: *swapping* → commutativity/`bond`
+(`../theory/ontologies/swapping-as-grade-commutativity.adoc`); *piling* → `merge`
+(`../theory/ontologies/piling-as-labelled-fusion.adoc`); and the *resemblance-regress* →
+`record` (`../theory/ontologies/resemblance-regress-on-the-record-axis.adoc`, the most
+tentative — relocation via the O5 world-access terminus, not refutation). That
+coordinate-distribution is itself a hypothesis for *O1-coord* (WP-5). What remains: the
+WP-1 philosophy paper, and the per-problem checker fixtures each note still owes.
 
 *Closes.* The gap named in the spine table; feeds *O1-coord*.
 
