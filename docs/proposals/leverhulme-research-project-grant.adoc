@@ -1,0 +1,104 @@
+// SPDX-FileCopyrightText: © 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+// SPDX-License-Identifier: CC-BY-SA-4.0
+= Leverhulme RPG — The Dynamics of Particularity: Completing Trope Theory for the Age of Machine Abstraction
+:revnumber: 0.1 (skeleton for owner review — NOT submitted)
+:revdate: 2026-07-17
+:toc: macro
+:sectnums:
+
+[abstract]
+Skeleton for a Leverhulme Trust *Research Project Grant* (up to £500k / 5 years; topic
+of the applicant's choice; the Trust "particularly welcomes proposals that are not
+bound by conventional disciplinary understandings"). *2026 timing:* outline
+applications are paused 27 Feb–Sept 2026 during the portal migration and detailed
+applications must be submitted by **1 September 2026** — VERIFY at
+https://www.leverhulme.ac.uk/research-project-grants what artefact the 1 Sep deadline
+expects under the pause (this skeleton assumes a detailed application). Requires a UK
+HEI as host (The Open University). This is the flagship, whole-programme application;
+the ARIA seed and Templeton OFI are its focused satellites.
+
+toc::[]
+
+== The personal vision (Leverhulme's first criterion)
+
+Trope theory — the metaphysics on which properties are particular, non-repeatable
+instances — gave analytic philosophy a compelling *statics* of qualities and then
+stalled, leaving its four classic problems (individuation, swapping, piling, the
+resemblance-regress) contested for seventy years. Meanwhile we built machines whose
+entire operation is the *dynamics* trope theory never wrote: systems that collapse,
+detach, attenuate, merge, and misattribute billions of property-instances a second, with
+no vocabulary for what is lost. This project completes trope theory — supplies the
+missing dynamics with mathematical exactness — and uses the completed theory to answer
+a question neither philosophy nor machine learning can answer alone: *what kind of
+thing is a learned feature, and what does its particularity cost us when we abstract?*
+
+== Originality / Importance / Significance / Merit (mapped to the Trust's criteria)
+
+* *Originality.* The first dynamics for abstract particulars; the first machine-checked
+  formalisation of any part of trope theory (a commutative graded algebra of loss and
+  deception, proved in three independent proof assistants); the first bridge from the
+  metaphysics-of-properties literature to neural-network interpretability (a July-2026
+  sweep found no prior work connecting them).
+* *Importance.* On the philosophy side: new formal traction on problems by which the
+  theory has been judged since Williams (1953). On the machine side: a principled,
+  proof-backed distinction between recoverable compression and silent conflation —
+  the difference between an AI system that summarises honestly and one that is
+  structurally wrong about how many things it is talking about.
+* *Significance.* The framework travels: provenance, evidence law, scholarly editing,
+  clinical records — anywhere the question "is what survived enough for this use?"
+  matters. The verdict discipline (sufficiency relative to a declared use-model) is a
+  general instrument.
+* *Merit of design.* Philosophy disciplined by proofs; experiments disciplined by an
+  exact vocabulary; every capability claim gated by the project's own published
+  honesty regime (readiness grades, dated affirmation snapshots, no-overclaim rule).
+
+== Programme of work (5 years, three strands + synthesis)
+
+. *Strand A — The metaphysics (Years 1–3).* Graded, computational treatments of
+  swapping (via the algebra's ratified commutativity), piling (labelled fusion vs
+  silent conflation), and the resemblance-regress (via the provenance/record axis);
+  the coordinate-exhaustiveness adequacy defence; a monograph.
+. *Strand B — The formal core (Years 1–4).* Complete the operational-model
+  mechanization (subject reduction through recursion; grade soundness for the
+  conservative fragment); ratify and mechanize the veridicality-oracle interface;
+  maintain the machine-checked core as the theory's arbiter.
+. *Strand C — The empirical bridge (Years 2–5).* The trope-vs-universal probe
+  programme on open models (instance-level features; recoverable vs irrecoverable
+  merging under sparse-autoencoder separation; use-relative sufficiency of probes),
+  with open datasets and fixtures.
+. *Synthesis (Years 4–5).* The completed-theory statement: particularity as a graded,
+  use-relative, mechanically checkable notion — and what that reframing does to the
+  One-over-Many, to abstraction, and to trust in machine-mediated knowledge.
+
+== Team and environment (owner to complete)
+
+PI (Jewell, The Open University) + 1 postdoc in metaphysics (Strand A) + 1 research
+engineer in formal methods (Strand B/C) + PhD studentship (Strand C) — sketch to be
+costed to the £500k envelope. Host support letter, OU research office sign-off, and
+the Trust's portal registration are prerequisites.
+
+== Risks and honesty
+
+The tooling beyond the checker is at design stage and is *not* what is being funded —
+the grant funds theory, proofs, and probes, with the alpha checker as existing
+infrastructure. Sources of risk: mechanization effort (mitigated: the hard algebraic
+half is already proved), probe inconclusiveness (mitigated: either outcome — trope-like
+or universal-like feature behaviour — is a publishable philosophical result).
+
+== Submission checklist
+
+* [ ] VERIFY the 1 Sep 2026 mechanics under the outline-pause (portal migration) —
+  what document type is actually due
+* [ ] OU research office engagement + host approval (start early; institutional
+  deadlines precede the Trust's)
+* [ ] ORCID + Zenodo DOI (shared prerequisite)
+* [ ] Full costing to the Trust's template
+* [ ] Owner review of all capability claims against AFFIRMATION ground truth
+
+== Sources
+
+* Leverhulme RPG scheme + 2026 changes: https://www.leverhulme.ac.uk/research-project-grants
+  (values, criteria, disciplinary-flexibility language; 2026 portal-pause notice)
+* In-estate: `docs/status/RESEARCH-PROGRAMME.adoc` (whole programme; WP-1/3/4/5 lead);
+  `docs/whitepapers/academic/funding-landscape.adoc`;
+  `docs/whitepapers/outreach/baffled-couch-potatoes.adoc` (the public-facing case).

@@ -1,0 +1,106 @@
+// SPDX-FileCopyrightText: © 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+// SPDX-License-Identifier: CC-BY-SA-4.0
+= ARIA Opportunity Seed — Proof-Carrying Loss Accounting for AI Pipelines
+:revnumber: 0.1 (draft for owner review — NOT submitted)
+:revdate: 2026-07-17
+:toc: macro
+:sectnums:
+
+[abstract]
+Draft seed pitch for ARIA's rolling *Opportunity Seeds* under the *Mathematics for
+Safe AI* opportunity space (seeds up to ~£500k; rolling deadline cited **31 July
+2026** — VERIFY current terms at aria.org.uk/funding-opportunities before any
+submission; note the larger Safeguarded AI TA-calls run separate deadlines). Owner
+submits; this document is the case, not the application form.
+
+toc::[]
+
+== One-paragraph pitch
+
+Every AI pipeline transforms *property-instances* — a quality of _this_ patient, _this_
+transaction, _this_ document — through summarisation, embedding, aggregation, and
+paraphrase, with no formal account of what was lost, detached, or silently merged along
+the way. We have built the beginnings of that account: a machine-checked *graded
+algebra of loss and deception* (commutative monoid on a ratified carrier; proofs in
+Lean 4 + Mathlib, Agda `--safe`, and Idris2 with no axioms behind claimed lemmas), a
+language-neutral interchange format (Trope IR 0.2, frozen), and a conformance-green
+checker that returns a decidable *sufficiency verdict with a witness edge* — which step
+of the pipeline dropped below the declared floor. The seed would fund the step from
+verified algebra to *usable safety instrument*: complete the operational-model
+mechanization, bind the veridicality-oracle interface (O5), and demonstrate the checker
+over a real ML data pipeline's provenance.
+
+== Fit to Mathematics for Safe AI
+
+ARIA's opportunity space holds that "a combination of scientific world-models and
+mathematical proofs may be the answer to ensuring AI provides transformational benefit
+without harm." This project is a small, concrete instance of exactly that claim:
+
+* *Mathematical proofs, already machine-checked* — the grade algebra's cancellation
+  boundary, effect-atom factorisation, and strict L4 monotonicity are sorry-free /
+  axiom-clean Lean 4 results, with the metatheory in Agda and the executable core in
+  Idris2 reusing the very algebra that is proved (no second implementation to drift).
+* *A deployable trust boundary* — the checker consumes only the Trope IR (a JSON
+  schema), so it bolts onto any pipeline that can emit provenance, independent of
+  source language or framework.
+* *Deception is structural, not statistical* — the three deceptive moves (false value,
+  false bearer, false singleness) are absorbing bottoms in the algebra: they provably
+  cannot compose away, and any honest floor rejects them. This is a mathematical
+  guarantee about *information integrity through transformation*, complementary to
+  model-behaviour safety work.
+
+== What the seed buys (12 months, three work strands)
+
+. *Mechanize the operational model.* The λ-trope small-step semantics with observed
+  retention and the decidable `T-Fix-Decl` rule are designed (spec notes, 2026-07-07);
+  the seed completes the Agda mechanization of subject reduction through `fix`
+  (Theorem B Target 3) and grade soundness `g ⊑ ρ` for the conservative fragment —
+  turning the designed model into a machine-checked one.
+. *Bind the veridicality oracle (O5).* Formalise the oracle interface (soundness /
+  attestation / no-laundering conditions) and implement its attestation shape as
+  warrants in the store layer — the boundary between "provably composed honestly" and
+  "checked against the world."
+. *Demonstrate on a real pipeline.* Instrument one production-shaped ML data pipeline
+  (candidate: a document-ingestion/embedding/RAG pipeline) to emit Trope IR; run the
+  checker; show the witness edge localising real loss events; publish the conformance
+  corpus extension.
+
+Deliverables: machine-checked proofs (public), the O5 interface + reference
+implementation, one instrumented demonstrator with a written case study, and two
+papers (formal + systems).
+
+== Honesty box (read first)
+
+Per the estate's publication gate: the checker is *alpha* (conformance suite green,
+10/10; verified core axiom-free); the front-end language and store are at design stage.
+Nothing here claims a production system exists. The claim is narrower and checkable:
+the *algebra* is proved, the *checker* runs, and the seed funds the distance from there
+to a demonstrator. All capability statements are dated to the repos'
+`AFFIRMATION.adoc` ground truth.
+
+== Team, host, and admin (owner to complete)
+
+* PI: Jonathan D.A. Jewell (The Open University affiliation; independent-scholar route
+  if preferred — confirm ARIA eligibility category).
+* ORCID: *[pending — register before submission]*.
+* Costing sketch (to be built to the call's template): 1 FTE research engineer
+  (mechanization + demonstrator), PI time, small compute, dissemination. Seeds cited
+  up to ~£500k; size the ask to the minimal credible demonstrator (suggest
+  £150k–£250k / 12 months).
+
+== Submission checklist
+
+* [ ] Verify current seed call terms + deadline (cited 31 Jul 2026, rolling) and
+  eligibility category at https://aria.org.uk/funding-opportunities
+* [ ] Register ORCID; fix CITATION.cff files (slug fix already merged; ORCID pending)
+* [ ] Zenodo deposit of the theory docs + proofs for a citable DOI
+* [ ] Condense §§1–4 into the call's actual form fields (seeds are short by design)
+* [ ] Owner review of every capability claim against AFFIRMATION ground truth
+
+== Sources
+
+* ARIA Mathematics for Safe AI / Safeguarded AI: https://aria.org.uk/opportunity-spaces
+  and https://aria.org.uk/funding-opportunities (rolling seeds PDF, Jan 2026)
+* In-estate: `docs/status/RESEARCH-PROGRAMME.adoc` (WP-2, WP-3, WP-7);
+  `docs/theory/formalisms/defining-o5-veridicality-oracle.adoc`;
+  trope-checker ADR 0004 + ratified-carrier proofs.
