@@ -1,0 +1,104 @@
+// SPDX-FileCopyrightText: © 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+// SPDX-License-Identifier: CC-BY-SA-4.0
+= Templeton OFI — What Is a Feature? Tropes and the Ontology of Machine Intelligence
+:revnumber: 0.1 (draft for owner review — NOT submitted)
+:revdate: 2026-07-17
+:toc: macro
+:sectnums:
+
+[abstract]
+Draft Online Funding Inquiry for the John Templeton Foundation's *Intelligence
+Venture* (>$60M cross-area initiative from 2026 asking what intelligence is across
+human, animal, artificial contexts). *DEADLINE ALERT:* sources conflict — several cite
+the 2026-cycle OFI deadline as **15 July 2026 (possibly just passed)**, one as
+**14 August 2026**. VERIFY at https://www.templeton.org/grants/grant-calendar before
+planning; if the window has closed, this draft targets the next cycle unchanged
+(reported flow: OFI → decision by 9 Oct 2026 → invited full proposal by 15 Jan 2027).
+OFIs are short — this document is the source material to condense into the form.
+
+toc::[]
+
+== The big question (the Venture's own)
+
+Is there anything unique about the representational substrate of intelligence? The
+Intelligence Venture asks what intelligence *is* across human, animal, and artificial
+minds. This project attacks one load-bearing corner of that question with unusual
+precision: *what kind of thing is a learned feature?* Interpretability research treats
+a model's features as **universals** — one repeatable property shared across all its
+instances. A seventy-year-old tradition in metaphysics — trope theory (D. C. Williams
+1953; Keith Campbell 1990) — says properties are **abstract particulars**: _this_
+redness here, numerically distinct from _that_ exactly-resembling redness there. Which
+ontology fits what neural networks actually contain is an open, empirically tractable,
+philosophically foundational question — and nobody is working it: a targeted literature
+sweep (July 2026) found no published work connecting trope theory to representation
+learning.
+
+== Why this is a Templeton project
+
+* *Foundational, cross-field, and concrete.* It is analytic metaphysics with an
+  experimental programme attached — exactly the Venture's cross-area shape (Mathematical
+  & Physical Sciences × Philosophy & Theology × the science of intelligence).
+* *It engages the sciences substantively.* The hypotheses are stated against the
+  interpretability literature's own phenomena: superposition and polysemanticity map to
+  the classic *piling* problem; the binding problem to *compresence*; feature-merging
+  to the *exact-resemblance vs numerical-identity* distinction. Each mapping yields
+  falsifiable probes (e.g. do SAE-separable feature-merges behave as labelled
+  aggregation while inseparable ones produce the interference profile of silent
+  conflation?).
+* *It is already grounded in formal work.* The team maintains the first formal
+  *dynamics* for trope theory — a machine-checked graded algebra of property-instance
+  loss and deception (Lean 4 / Agda / Idris2) with a working verdict checker — so the
+  philosophy is disciplined by proofs and the experiments by a vocabulary with exact
+  semantics. (All tool-status claims provisional per the project's own publication
+  gate: the checker is alpha; the claim funded here is the *research programme*, not a
+  product.)
+
+== Proposed work (2 years, sketch)
+
+. *The metaphysics half.* Give the three unmapped classic problems of trope theory —
+  swapping, piling, the resemblance-regress — their first graded, computational
+  treatment, and defend the coordinate-exhaustiveness adequacy claim (is
+  fate/bond/merge all the ways to individuate-and-lose?). Output: two papers for
+  metaphysics venues.
+. *The machine half.* Run the trope-vs-universal probes on open models: instance-level
+  vs class-level feature representations; recoverable (labelled) vs irrecoverable
+  (silent) merging under sparse-autoencoder separation; use-relative sufficiency of
+  probed features. Output: one interpretability paper + open datasets/fixtures.
+. *The synthesis.* A monograph-length essay for the Venture's audience: what the
+  particularist ontology of features means for what machine intelligence *is* — and
+  for what human abstraction is doing when it reads universals off a world of
+  particulars.
+
+== Outputs and outcomes
+
+Papers (2 metaphysics, 1 interpretability, 1 synthesis essay), open formal artefacts
+(proofs, conformance fixtures, probe datasets), and a workshop bridging the
+metaphysics-of-properties and interpretability communities — two fields asking the
+same question in mutual ignorance, which is precisely the kind of intellectual-humility
+gap the Foundation exists to close.
+
+== Admin (owner to complete)
+
+* PI: Jonathan D.A. Jewell (The Open University). ORCID: *[pending — register before
+  submission]*.
+* Funding area: Intelligence Venture (route via Mathematical & Physical Sciences or
+  Religion, Science & Society per the OFI form's options).
+* Amount/duration: to the OFI form's bands — sketch $250k–$500k / 24 months (1 postdoc
+  or research engineer, PI time, compute, workshop).
+* OFI decisions reported 9 Oct 2026; full proposal (if invited) 15 Jan 2027.
+
+== Submission checklist
+
+* [ ] VERIFY the OFI deadline (15 Jul vs 14 Aug conflict) at
+  https://www.templeton.org/grants/grant-calendar — if passed, hold for next cycle
+* [ ] ORCID + Zenodo DOI (shared prerequisite with the ARIA pitch)
+* [ ] Condense §§1–4 to the OFI's word limits (OFIs are a few hundred words per field)
+* [ ] Owner review of capability claims against AFFIRMATION ground truth
+
+== Sources
+
+* Templeton funding areas + Intelligence Venture: https://www.templeton.org/ (verified
+  July 2026); grant calendar: https://www.templeton.org/grants/grant-calendar
+* In-estate: `docs/status/RESEARCH-PROGRAMME.adoc` (WP-1, WP-4, WP-5);
+  `docs/theory/computing/trope-theory-and-neural-representation.adoc`;
+  `docs/whitepapers/academic/funding-landscape.adoc`.
