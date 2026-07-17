@@ -1,0 +1,161 @@
+// SPDX-FileCopyrightText: © 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+// SPDX-License-Identifier: CC-BY-SA-4.0
+= Swapping as Grade-Commutativity — a first formal image of the transposition problem
+:revnumber: 0.1 (research note — provisional; feeds WP-1)
+:revdate: 2026-07-17
+:toc: macro
+:sectnums:
+
+[abstract]
+The *swapping* (or *transposition*) objection is one of the four classic pressure-points
+on trope theory, and — as the programme of work records — the estate has so far given it
+no formal image. This note offers one. It argues that the *commutativity* of grade
+composition `▷` — a proved fact on the ratified carrier (R-2026-07-07, amendment A1) —
+is the right formal image of *swapping-invariance*, and that pairing it with the estate's
+independent *numerical-identity* axis dissolves the dilemma the objection trades on. The
+result is a proposal, not a theorem about the world: the commutativity is proved, its
+*reading* as swapping-invariance is philosophy, defended here and offered for scrutiny.
+It feeds WP-1 and depends on the still-open O1-coord (WP-5); it presupposes no answer to it.
+
+toc::[]
+
+== The objection
+
+Take two numerically distinct but *exactly resembling* tropes: the redness `r1` borne by
+ball `a`, and the redness `r2` borne by ball `b`. Consider the *transposition*: a world
+`w'` exactly like the actual world `w` save that `a` bears `r2` and `b` bears `r1`.
+
+The objection runs as a dilemma. `w` and `w'` are qualitatively *indiscernible* — no
+observation, no measurement, nothing in the workings of either world tells them apart.
+Yet if `r1 ≠ r2` — which trope theory *insists* on, since exact resemblance is not
+numerical identity — then `w` and `w'` differ *numerically*: they disagree about which
+trope is where. So either
+
+* *(horn a)* the difference is real but in-principle undetectable — a difference that
+  makes no difference, which offends against any supervenience of the manifest on the
+  underlying; or
+* *(horn b)* there is no difference at all, in which case the numerical distinctness of
+  `r1` and `r2` does no work, and the theory may as well not have bought particulars —
+  a slide back toward universals.
+
+The objection belongs to the family of the *identity of indiscernibles* worries (Black's
+two spheres is its concrete cousin), and it is felt across the individuation literature
+(Williams 1953 introduces the abstract particulars the worry targets; Campbell 1990 and
+the SEP entry survey the individuation pressure). It bites *because* trope theory's whole
+point is that `r1` and `r2` are two.
+
+== The resources the estate already has
+
+Two features of the calculus, neither invented for this problem, do the work.
+
+*First: grades describe operations, not standing identities.* A grade
+`g = (fate, bond, merge)` records what an *operation* did to a property-instance
+(`trope-checker/spec/calculus.adoc §3`). It is a verb's residue, not a noun's essence.
+"Is `r1` the same trope as `r2`?" is not a question a grade answers or could answer;
+numerical distinctness is a standing fact about the tropes — carried by the individuating
+`context` field of the four-field trope — and *not itself a grade*.
+
+*Second: composition is now commutative.* Under the ratified amendment A1
+(R-2026-07-07), the sole non-commuting clause of the grade monoid was removed, and the
+grade monoid is a commutative monoid — proved in Lean 4
+(`grade-boundary/GradeRatified.lean`; see `spec/notes/2026-07-07-l4-boundary-and-atoms.adoc`:
+"under (A1) the grade monoid is itself commutative"). Commutativity is exactly the
+algebraic content of *"the order in which you compose does not matter."*
+
+A third feature keeps the honest and dishonest versions of "combine two" apart, and will
+matter for the test in §5: when two instances are *merged*, the `merge` coordinate records
+whether the plurality survives — `Fused(τ)` (labelled, recoverable) — or is silently
+collapsed — `Conflated` (the deceptive merge-bottom).
+
+== The move: grade-invariant without being identity-collapsing
+
+Model the transposition as an operation on the ordered pair `(r1, r2)`. Because `r1` and
+`r2` are *exactly alike*, they are interchangeable as inputs; and because `▷` is
+commutative, permuting interchangeable inputs is a *grade-level identity*: the
+transposition composes to the same grade as doing nothing at all. So, at the level of
+*what-happens-through-process*, `w` and `w'` are indiscernible — and that indiscernibility
+is no longer a stipulation but a *consequence of a proved law*.
+
+Yet `r1 ≠ r2` holds throughout. The transposition does not *conflate* them — it is not the
+deceptive `Conflated` merge that would assert two are one. Nothing in it touches the
+`context` that individuates them or the count of how many tropes there are. The tropes stay
+two; `w'` stays, numerically, distinct from `w`.
+
+The dilemma assumed that *if the numerical distinctness of `r1` and `r2` is real, it must
+surface as a detectable difference in the world's workings*. The estate simply denies that
+conditional, because it puts the two things on *different axes*:
+
+* *Horn b's intuition is vindicated* — nothing detectable-through-process changes: this is
+  commutativity, now a theorem, not a shrug.
+* *Horn a's intuition is vindicated* — there really are two tropes and they really did move:
+  this is the untouched numerical/`context` axis, on which no grade lives.
+
+What looked like a forced choice between two horns is, on this account, a *product* of two
+independent and jointly consistent facts. The "difference that makes no difference" stops
+being mysterious once one sees that "difference" was doing two jobs: a *numerical* difference
+(real, on the identity axis) and a *dynamical* difference (nil, on the grade axis, provably).
+The distinctness of `r1` and `r2` does do work — but not *dynamical* work. Its work is to
+ground re-identification, provenance, and counting: precisely the jobs the `context` and
+`record` fields, and the `Fused`/`Conflated` distinction, exist to do.
+
+== A discriminating test
+
+An account earns its keep by predicting where it comes apart from its rivals. Three tests.
+
+. *Against the verificationist dismissal* ("the swap is meaningless — there is nothing
+  there to differ over"). The present account is *not* that: it holds the swap is
+  perfectly meaningful (the tropes are two and they moved) and merely
+  *grade-invariant*. The prediction that separates them: introduce the *slightest*
+  inexactness — let `r1` and `r2` differ in any single coordinate (a fidelity `δ`, a bond,
+  a fate). Commutativity still holds as an algebraic *law*, but the two composites now
+  differ *because the inputs differ*, so the transposition is no longer a grade-identity and
+  leaves a *graded trace*. The account therefore predicts: **swapping-invariance is exactly
+  co-extensive with exact resemblance** — invisible when the tropes are exactly alike,
+  detectable the instant they are not. The verificationist, holding swaps always meaningless,
+  makes no such boundary prediction.
+
+. *Against the bundle/universals collapse.* A view with no numerical distinctness to
+  preserve cannot draw the line at all — it has nothing to be invariant *about*. The account
+  needs the two tropes to be two in order to say the swap changed which is where while
+  changing no grade; the collapse cannot even state the swap.
+
+. *Against silent conflation.* Swapping two-that-stay-two is grade-invariant and *honest*;
+  merging two-into-one *unlabelled* is the `Conflated` merge-bottom — grade-*detectable*
+  and dishonest (it fails every honest floor). The account thus locates transposition firmly
+  in the honest, grade-invariant regime and sharply off the deceptive one. A theory that
+  cannot tell "swapped, still two" from "collapsed into one" has not understood the problem.
+
+== Limits, and what it depends on
+
+This is a research note, and its load-bearing philosophical claim — that commutativity is the
+*correct* formal image of swapping-invariance — is *defended, not proved*. Only the
+commutativity itself is proved. Two dependencies are explicit:
+
+* *O1-coord (WP-5).* The claim that "numerical distinctness is never a grade" is fully
+  general *only if* the three coordinates `(fate, bond, merge)` are the exhaustive ways to
+  individuate-and-lose. Whether they are is the open metaphysical question O1-coord. If a
+  fourth coordinate existed and carried some of numerical identity's work, the clean
+  two-axis separation would blur. The note therefore *feeds* O1-coord and must not be read as
+  presupposing its resolution.
+* *The reading of "operation".* Treating a transposition as a single grade-bearing operation
+  on a pair is a modelling choice; a rival regimentation (two sequential rebindings on the
+  `bond` coordinate) should give the same verdict under commutativity, but making that
+  agreement precise is exactly the kind of small checker fixture WP-1 calls for and this note
+  does not yet supply.
+
+Neither dependency is a defect; both are the honest edges of a first formal image. Giving
+*piling* and the *resemblance-regress* the same treatment — and building the fixtures — is the
+rest of WP-1.
+
+== References
+
+* D. C. Williams, "On the Elements of Being" (1953); Keith Campbell, _Abstract Particulars_
+  (1990); A.-S. Maurin, "Tropes", _Stanford Encyclopedia of Philosophy_,
+  https://plato.stanford.edu/entries/tropes/ — the abstract particulars the objection targets
+  and the individuation literature it lives in. (Black's two-spheres is the identity-of-
+  indiscernibles cousin.)
+* Ratified commutativity: `trope-checker/spec/notes/2026-07-07-l4-boundary-and-atoms.adoc`
+  (amendment A1), `trope-checker/verification/proofs/lean4/grade-boundary/GradeRatified.lean`,
+  ADR 0004.
+* In-estate: `docs/background.adoc` (the compatibility test the reading must pass),
+  `docs/status/RESEARCH-PROGRAMME.adoc` (WP-1, WP-5 / O1-coord).
