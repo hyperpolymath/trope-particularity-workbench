@@ -1,0 +1,117 @@
+// SPDX-FileCopyrightText: © 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+// SPDX-License-Identifier: CC-BY-SA-4.0
+= Defining O5 — the veridicality oracle (a proposed §10 entry)
+:revnumber: 0.1 (proposal — for owner ratification into the calculus)
+:revdate: 2026-07-17
+:toc: macro
+:sectnums:
+
+[abstract]
+The estate cites *calculus O5* as the obligation behind "veridicality is declared and
+propagated, not checked" (trope-checker `README.adoc`, `AFFIRMATION.adoc`, the co1
+operational-model note §5) — but `spec/calculus.adoc §10` stops at O4: *O5 has never
+been written down*. This note closes WP-2 of the research programme by *proposing* the
+missing entry: a two-part obligation consisting of an impossibility remark (veridicality
+is not decidable from the IR alone) and an oracle *interface* with named soundness
+conditions for deployments that want more than declared veridicality. Per estate
+doctrine (invariants belong to the formal layer, owner-ratified), this is a *proposal*:
+the normative home is `trope-checker/spec/calculus.adoc §10`, and nothing here is
+binding until adopted there.
+
+toc::[]
+
+== The gap, precisely
+
+Three firewalls guard the checker's honesty. The third says: _veridicality is declared
+and propagated, not checked_ — detecting that a value claimed faithful is in fact false
+needs a ground-truth oracle the checker does not have. Every statement of this firewall
+cites "calculus O5". But §10 of the calculus defines only O1–O4. The citation chain
+therefore ends in the air: an obligation that cannot be discharged, refuted, or even
+read. The ratification wave (R-2026-07-07 / ADR 0004) did not touch this — verified
+against trope-checker HEAD, §10 still stops at O4.
+
+== Why the checker cannot do it (the impossibility half)
+
+The point is almost definitional, which is precisely why it deserves to be a named
+remark rather than folklore:
+
+[IMPORTANT]
+====
+*Remark O5-a (IR-relative undecidability of veridicality, proposed).* A valid Trope IR
+is a set of *claims*: grades asserted by a front-end about what happened to
+property-instances. For any IR document `D` and any field of any node, there exist two
+worlds — one in which the claimed value is the value the trope in fact had, one in
+which it is not — that induce the *same* `D`. Since the checker is a pure function of
+`D` (HC-1: the IR is the trust boundary), no checker can decide veridicality. What the
+calculus *does* guarantee (and machine-checks) is strictly weaker and strictly
+load-bearing: deceptive grades are two-sided zeros on the ratified carrier — they do
+not compose away — and they fail every honest floor.
+====
+
+This turns Firewall 3 from an apology into a theorem-shaped boundary: the checker's
+silence about truth is not a missing feature but a consequence of what an IR *is*.
+
+== What a deployment may supply instead (the interface half)
+
+Where more than declared veridicality is needed, the obligation moves *outside* the
+checker, to the system that has access to the world. Proposed normative text, in the
+calculus's own idiom:
+
+[NOTE]
+====
+*O5 (the veridicality oracle, proposed).* An implementation MAY bind a *veridicality
+oracle*: a judgement external to the IR,
+
+    Oracle ⊨ record r faithful-to trope t  (per field φ ∈ Φ)
+
+subject to three conditions:
+
+* *O5-1 (soundness).* If the oracle affirms field φ of `r`, then the honest grade
+  claimed for φ is true of the world; the oracle MUST NOT affirm a `Falsified`,
+  `Misbound`, or `Conflated` situation.
+* *O5-2 (attestation).* Every oracle verdict MUST be carried as evidence — who checked,
+  against what access to the world, when — and that attestation is itself a record
+  (it enters the `record` field's provenance, not the quality's value).
+* *O5-3 (no laundering).* An oracle verdict upgrades *confidence*, never *grade*: a
+  checked `Attenuated(δ)` is still `Attenuated(δ)`. The oracle answers "was the claim
+  honest?", not "was nothing lost?".
+
+Falsifier: exhibit a deployment where an interface satisfying O5-1..3 nevertheless lets
+a deceptive grade reach a `p-sufficient` verdict against an honest floor. Upgrade path:
+mechanize O5-1 as a side condition on an `Oracle`-indexed variant of the verdict
+judgement.
+====
+
+== Where the estate already has the shape for this
+
+The interface is not invented from nothing — two estate components already have the
+right slots, which is evidence the definition carves at a real joint:
+
+* *Vocarium's warrants.* The store's objects include *warrants* attached to
+  transformation paths. A warrant is exactly an O5-2 attestation: named evidence that a
+  claim about a particular was checked against something outside the record. O5 gives
+  warrants their formal job description.
+* *Hermeneia's `licensed` band.* The query layer separates *retrieved / interpretable /
+  licensed*. "Licensed" is the verdict band that O5-backed claims occupy: retrieved
+  says the record exists, interpretable says it composes, licensed says someone with
+  world-access vouched (O5-1) and left an attestation (O5-2).
+
+== Status and next step
+
+This note is the WP-2 deliverable in its *define* branch (the *refute* branch — that no
+useful oracle interface exists — is answered by the constructions above existing).
+Adoption path: the owner ratifies a §10-O5 entry in `trope-checker/spec/calculus.adoc`
+(this text or an amended version), updates the README/AFFIRMATION citations to point at
+it, and — when Vocarium's warrant schema lands — names O5-1..3 as the conditions its
+warrants discharge. Until then, every "calculus O5" citation should be read as pointing
+at this proposal.
+
+== References
+
+* `trope-checker/README.adoc` (Firewall 3), `AFFIRMATION.adoc`,
+  `spec/notes/2026-07-07-co1-operational-model.adoc` §5 — the citing sites.
+* `trope-checker/spec/calculus.adoc §10` — the O1–O4 entries whose house style
+  (statement / falsifier / upgrade path) this proposal follows.
+* `docs/status/RESEARCH-PROGRAMME.adoc` WP-2 — the programme item this discharges.
+* `vocarium/README.adoc` (warrants), `hermeneia/README.adoc`
+  (retrieved / interpretable / licensed) — the estate slots the interface names.
