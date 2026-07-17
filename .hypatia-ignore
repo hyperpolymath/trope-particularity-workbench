@@ -1,0 +1,15 @@
+# SPDX-License-Identifier: MPL-2.0
+#
+# .hypatia-ignore — scoped, documented exemptions for the Hypatia scanner.
+# Format: <rule_module>/<rule_type>:<path-fragment> (substring match), or
+# <rule_module>/*:<path-fragment>, or a bare <path-fragment>.
+# Every entry MUST carry a stated reason. Prefer fix-the-code or an inline
+# directive over an entry here; this file is for whole-file/directory
+# exemptions. Built-in defaults live in hypatia's scanner_suppression —
+# do not duplicate them.
+
+# docs-template/ is template payload describing downstream generated repos;
+# its example paths (src/middleware/request_id.rs, src/main.rs, ...) do not
+# resolve against this repo's tree, so SD022 (stale src/ reference) fires
+# falsely. Same exemption as hermeneia and vocarium carry.
+structural_drift/SD022:docs-template/
