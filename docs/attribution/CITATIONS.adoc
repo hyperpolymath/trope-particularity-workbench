@@ -7,30 +7,30 @@
 
 [source,bibtex]
 ----
-@software{Trope Particularity_2026,
+@software{trope_particularity_workbench_2026,
   author = {Jewell, Jonathan D.A.},
   title = {Trope Particularity},
   year = {2026},
-  url = {https://github.com/hyperpolymath/Trope Particularity},
+  url = {https://github.com/hyperpolymath/trope-particularity-workbench},
   license = {MPL-2.0}
 }
 ----
 
 == Harvard Style
 
-Jewell, J. (2026) _Trope Particularity_ [Computer software]. Available at: https://github.com/hyperpolymath/Trope Particularity
+Jewell, J. (2026) _Trope Particularity_ [Computer software]. Available at: https://github.com/hyperpolymath/trope-particularity-workbench
 
 == OSCOLA
 
-Jonathan D.A. Jewell, 'Trope Particularity' (2026) <https://github.com/hyperpolymath/Trope Particularity>
+Jonathan D.A. Jewell, 'Trope Particularity' (2026) <https://github.com/hyperpolymath/trope-particularity-workbench>
 
 == MLA
 
-Jewell, Jonathan D.A. "Trope Particularity." 2026, github.com/hyperpolymath/Trope Particularity.
+Jewell, Jonathan D.A. "Trope Particularity." 2026, github.com/hyperpolymath/trope-particularity-workbench.
 
 == APA 7
 
-Jewell, J. (2026). _Trope Particularity_ [Computer software]. GitHub. https://github.com/hyperpolymath/Trope Particularity
+Jewell, J. (2026). _Trope Particularity_ [Computer software]. GitHub. https://github.com/hyperpolymath/trope-particularity-workbench
 
 == See Also
 
