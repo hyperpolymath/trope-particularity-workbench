@@ -24,11 +24,12 @@ scratch() { mktemp -d "${TMPDIR:-/tmp}/tpw-canary.XXXXXX"; }
 
 # --- canary 1: weak crypto must be rejected -------------------------------
 c1() {
-  local d; d=$(scratch); trap 'rm -rf "$d"' RETURN
+  local d; d=$(scratch)
   printf 'fn h() { md5(x) }\n' > "$d/lib.rs"
   local hit
   hit=$(cd "$d" && grep -rE 'md5\(|sha1\(' --include="*.rs" . 2>/dev/null \
         | grep -v 'checksum\|cache\|test\|spec' | head -5 || true)
+  rm -rf "$d"
   if [ -n "$hit" ]; then ok "weak crypto (md5) is detected"
   else bad "weak crypto NOT detected — the security gate is blind to it"; fi
 }
@@ -39,22 +40,24 @@ c1() {
 # used example.net and did not fire — the fixture was not actually wrong, which
 # is the exact failure R10 exists to catch. Kept as a caution.
 c2() {
-  local d; d=$(scratch); trap 'rm -rf "$d"' RETURN
+  local d; d=$(scratch)
   printf 'const u = "http://data.internal.invalid/x";\n' > "$d/app.rs"
   local hit
   hit=$(cd "$d" && grep -rE 'http://[^l][^o][^c]' --include="*.rs" . 2>/dev/null \
         | grep -v 'localhost\|127.0.0.1\|example\|test\|spec' | head -5 || true)
+  rm -rf "$d"
   if [ -n "$hit" ]; then ok "plaintext HTTP is detected"
   else bad "plaintext HTTP NOT detected — the security gate is blind to it"; fi
 }
 
 # --- canary 3: hardcoded secrets must be rejected -------------------------
 c3() {
-  local d; d=$(scratch); trap 'rm -rf "$d"' RETURN
+  local d; d=$(scratch)
   printf 'let api_key = "AAAABBBBCCCCDDDDEEEEFFFFGGGG1234";\n' > "$d/cfg.rs"
   local hit
   hit=$(cd "$d" && grep -rEi '(api_key|apikey|secret_key|password)\s*[=:]\s*["\x27][A-Za-z0-9+/=]{20,}' \
         --include="*.rs" . 2>/dev/null | grep -v 'example\|sample\|test\|mock\|placeholder' | head -3 || true)
+  rm -rf "$d"
   if [ -n "$hit" ]; then ok "hardcoded secret is detected"
   else bad "hardcoded secret NOT detected — the security gate is blind to it"; fi
 }
@@ -84,10 +87,13 @@ tree_copy() {
 }
 
 c5() {
-  local d; d=$(scratch); trap 'rm -rf "$d"' RETURN
+  local d; d=$(scratch)
   tree_copy "$d"
   rm -f "$d/vocabulary/p-fusing.adoc"       # nine effects become eight
-  if bash "$d/tests/check-vocabulary.sh" >/dev/null 2>&1; then
+  local rc=0
+  bash "$d/tests/check-vocabulary.sh" >/dev/null 2>&1 || rc=$?
+  rm -rf "$d"
+  if [ "$rc" -eq 0 ]; then
     bad "a missing vocabulary entry was ACCEPTED — the trope gate cannot fail"
   else
     ok "trope conformance rejects a missing vocabulary entry"
@@ -100,9 +106,12 @@ c5() {
 # if it were missing a file the gate reads, canary 5 would "pass" for the wrong
 # reason.
 c6() {
-  local d; d=$(scratch); trap 'rm -rf "$d"' RETURN
+  local d; d=$(scratch)
   tree_copy "$d"
-  if bash "$d/tests/check-vocabulary.sh" >/dev/null 2>&1; then
+  local rc=0
+  bash "$d/tests/check-vocabulary.sh" >/dev/null 2>&1 || rc=$?
+  rm -rf "$d"
+  if [ "$rc" -eq 0 ]; then
     ok "trope conformance accepts the unmodified tree (fixture copy is complete)"
   else
     bad "trope conformance rejected a pristine tree — canary 5 proves nothing"
