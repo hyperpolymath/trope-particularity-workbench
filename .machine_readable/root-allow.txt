@@ -16,13 +16,13 @@ README.adoc
 AUDIT.adoc
 EXPLAINME.adoc
 AFFIRMATION.adoc           # dated/signed honesty snapshot (README/EXPLAINME/AFFIRMATION trio)
-0-AI-MANIFEST.a2ml         # thin pointer to .machine_readable/0.1-AI-MANIFEST.a2ml
+trope-particularity-workbench_chora.deed   # the repo deed: universal AI entry point (standards#837 pilot). Filename carries the repo slug (deed dispatch <stem>_chora.deed)
 GOVERNANCE.adoc            # governance model (validator accepts root or docs/governance/)
 MAINTAINERS.adoc           # maintainer roster
-CONTRIBUTING.md            # REQUIRED AT ROOT by scorecard-enforcer/openssf-compliance/quality CI (test -f, no .github fallback). The fuller copy in .github/ is GitHub's auto-discovery convention; dedupe is an owner decision (would need those CI checks updated to accept .github/).
-SECURITY.md                # REQUIRED AT ROOT by scorecard-enforcer CI + the security-policy contractile (test -f SECURITY.md). See CONTRIBUTING.md note re: the .github/ copy.
+CONTRIBUTING.adoc          # openssf-compliance accepts CONTRIBUTING.md or CONTRIBUTING.adoc at root
+SECURITY.adoc              # openssf-compliance accepts SECURITY.md, SECURITY.adoc or .github/SECURITY.md
 LICENSE
-CHANGELOG.md
+CHANGELOG.adoc
 
 # ─── Build entry points (must live at root for their tooling) ────────────────
 Justfile                   # delegates phases to build/just/*.just
@@ -40,13 +40,12 @@ abi.ipkg                   # Idris2 package for the ABI seam; sourcedir=src/inte
 .devcontainer/             # VS Code dev container spec; tool-required at root
 .git/
 .github/                   # CONTRIBUTING.md, CODE_OF_CONDUCT.md, SECURITY.md, workflows/
-.machine_readable/         # AI manifests, contractiles, custom-format configs
+.machine_readable/         # AI rules, bot directives, policies, self-validating k9 checks
 .well-known/
-build/                     # contractile.just, setup.sh, flake.{nix,lock}, guix.scm, .guix-channel, Containerfile
+build/                     # guix.scm, .guix-channel, Containerfile
 ci/                        # .gitlab-ci.yml, .pre-commit-config.yaml (root shims if tools require)
 docs/                      # onboarding/, status/, governance/, ...
 docs-template/             # template-only: scaffolding docs copied into new repos
-machine-readable-design/   # template-only: design rationale for .machine_readable/ layout
 session/                   # dispatch.sh, custom-checks.k9, local-hooks.sh
 
 # Source / test / artifact trees (project-specific but conventional)
@@ -62,7 +61,6 @@ container/                 # may host Containerfile if not at build/
 # ─── Tolerated pending follow-up (re-evaluate when item lands) ───────────────
 .gitlab-ci.yml             # TODO: relocate to ci/.gitlab-ci.yml after GitLab project-setting update
 .pre-commit-config.yaml    # TODO: relocate to ci/.pre-commit-config.yaml after invocation pattern decided
-affinescript/              # AffineScript source subtree consumed by this template
 tools/                     # TODO: consolidate with scripts/ or document the split (pending decision)
 
 # ─── Workbench additions (build brief, 2026-06-22) ───────────────────────────
@@ -78,5 +76,3 @@ LICENSES/                  # REUSE texts: MPL-2.0 (code) + CC-BY-SA-4.0 (prose/v
 #     break every path that references them, to satisfy a map that was
 #     never written for it. Read from the estate-rules gate's own output.
 .githooks/                  # Top-level component directory of this project.
-REQUIRES_INITIALISATION.md  # Project documentation.
-flake.nix                   # Project file that must remain at the repository root.

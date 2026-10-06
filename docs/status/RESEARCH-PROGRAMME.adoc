@@ -34,8 +34,10 @@ This estate has started to build that missing dynamics:
   (`docs/background.adoc`). Status: *specification*.
 * `trope-checker` — the *graded calculus*, the Trope IR (the trust boundary), and a
   four-prover verification stack. Status: *alpha, conformance-green*.
-* `haec` (front-end language, *design*), `vocarium` (store, *design*), `hermeneia`
-  (query, *design*).
+* `haec` (front-end language, *design*), `vocarium` (store, *M1 invoke slice; M2
+  adapter pending*), `hermeneia` (query, *implementation*).
+
+How they connect: Vocabulary track: trope-particularity-workbench → haec → trope-checker (verdict). Store/query track: haec → vocarium → hermeneia → trope-checker (verdict). trope-checker depends on nothing (HC-1); the workbench depends on nothing; vocarium and hermeneia meet at the M2 StoreProvider adapter (vocarium ADR-0002: wire, do not link).
 
 Because the estate is the first serious attempt at the dynamics, the highest-value
 next steps are unusually legible: they are the places the estate's own files already

@@ -24,7 +24,7 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v7.0.1
-      - name: Enforce Guix primary / Nix fallback
+      - name: Enforce Guix-only (Nix is retired)
         run: |
           FAILED=false
           # Check for package manager files
@@ -39,13 +39,15 @@ jobs:
             FAILED=true
           fi
 
-          # Prefer Guix, fallback to Nix
+          # Guix only: Nix is retired estate-wide, so any *.nix file fails
+          if [ -n "$HAS_NIX" ]; then
+            echo "❌ Nix files found ($HAS_NIX) — Nix is retired; use guix.scm"
+            FAILED=true
+          fi
           if [ -n "$HAS_GUIX" ]; then
-            echo "✅ Guix package management detected (primary)"
-          elif [ -n "$HAS_NIX" ]; then
-            echo "✅ Nix package management detected (fallback)"
+            echo "✅ Guix package management detected"
           else
-            echo "ℹ️ Consider adding guix.scm or flake.nix for reproducible builds"
+            echo "ℹ️ Consider adding guix.scm for reproducible builds"
           fi
 
           if [ "$FAILED" = true ]; then

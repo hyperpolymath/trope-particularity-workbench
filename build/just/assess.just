@@ -51,10 +51,10 @@ self-assess:
         fi
     done
 
-    if [ -d ".machine_readable/6a2" ]; then
-        echo "  ✓ .machine_readable/6a2/ — KEEP (SCM checkpoint files)"
+    if [ "$(ls -1 *_chora.deed 2>/dev/null | wc -l)" -eq 1 ]; then
+        echo "  ✓ <repo>_chora.deed — KEEP (the repo deed: single machine-readable record)"
     else
-        echo "  ✗ .machine_readable/6a2/ — MISSING (RSR violation!)"
+        echo "  ✗ <repo>_chora.deed — MISSING or duplicated (RSR violation!)"
     fi
 
     if [ -d ".github/workflows" ]; then
@@ -85,18 +85,6 @@ self-assess:
         echo "    ⚠ Consequence: no C-compatible FFI bridge."
     fi
 
-    if $HAS_API && [ -f ".machine_readable/integrations/groove.a2ml" ]; then
-        PORT=$(grep '(port ' .machine_readable/integrations/groove.a2ml 2>/dev/null | sed 's/.*(port \([0-9]*\)).*/\1/')
-        if [ "$PORT" = "0" ]; then
-            echo "  ⚠ groove.a2ml — Port not assigned. Run 'just groove-setup'."
-        else
-            echo "  ✓ groove.a2ml — KEEP (Groove discovery on port $PORT)"
-        fi
-    elif $HAS_API; then
-        echo "  ✗ groove.a2ml — MISSING. Your project has an API but no Groove manifest."
-        echo "    → Run 'just groove-setup' to enable snap-on/snap-off discovery."
-    fi
-
     if $HAS_CONTAINER && [ -d "container" ]; then
         echo "  ✓ container/ — KEEP (Containerfile + compose)"
     elif ! $HAS_CONTAINER && [ -d "container" ]; then
@@ -119,11 +107,6 @@ self-assess:
         echo "  ○ .machine_readable/ai/PLACEHOLDERS.adoc — Template doc. Remove after init."
     fi
 
-    if { [ -f "build/flake.nix" ] || [ -f "flake.nix" ]; } && ! command -v nix >/dev/null 2>&1; then
-        echo "  ○ flake.nix — Nix flake. Safe to remove if you don't use Nix."
-        echo "    → KEEP if others might build with Nix."
-    fi
-
     if { [ -f "build/guix.scm" ] || [ -f "guix.scm" ]; } && ! command -v guix >/dev/null 2>&1; then
         echo "  ○ guix.scm — Guix package. Safe to remove if you don't use Guix."
         echo "    → KEEP if others might build with Guix."
@@ -134,12 +117,6 @@ self-assess:
     # ── FUTURE VALUE (not needed now, worth keeping) ──────────────
     echo "── KEEP FOR FUTURE (not active, but valuable later) ──────"
     echo ""
-
-    if [ -d ".machine_readable/contractiles" ]; then
-        echo "  ◆ contractiles/ — Must/Trust/Dust/Lust contracts."
-        echo "    Not enforced until you configure them, but ready when you need"
-        echo "    automated compliance checking. Zero cost to keep."
-    fi
 
     if [ -d ".machine_readable/bot_directives" ]; then
         echo "  ◆ bot_directives/ — Gitbot fleet configuration."
@@ -203,9 +180,7 @@ verify:
     check_file "LICENSE"
     check_either "CONTRIBUTING.md" "CONTRIBUTING.adoc"
     check_either "README.adoc" "README.md"
-    check_file ".machine_readable/6a2/STATE.a2ml"
-    check_file ".machine_readable/6a2/META.a2ml"
-    check_file ".machine_readable/6a2/ECOSYSTEM.a2ml"
+    check_file "trope-particularity-workbench_chora.deed"
     check_either "CHANGELOG.md" "CHANGELOG.adoc"
 
     # Check at least 1 workflow exists
