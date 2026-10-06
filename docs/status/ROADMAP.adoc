@@ -1,23 +1,11 @@
 // SPDX-License-Identifier: CC-BY-SA-4.0
 // Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
-= YOUR Template Repo Roadmap
+= Trope Particularity Workbench Roadmap
 
-== Current Status
+The prioritised programme of work for this repository and the wider trope stack
+lives in `docs/status/RESEARCH-PROGRAMME.adoc`. This file does not duplicate it.
 
-Initial development phase.
+== Current status
 
-== Milestones
-
-=== v0.1.0 - Foundation
-* [ ] Core functionality
-* [ ] Basic documentation
-* [ ] CI/CD pipeline
-
-=== v1.0.0 - Stable Release
-* [ ] Full feature set
-* [ ] Comprehensive tests
-* [ ] Production ready
-
-== Future Directions
-
-_To be determined based on community feedback._
+Specification: the nine effects, the residual, the use-model and the two verdicts
+are named in `vocabulary/`; `tests/check-vocabulary.sh` keeps the entries in shape.

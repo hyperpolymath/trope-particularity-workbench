@@ -1,5 +1,4 @@
 // SPDX-License-Identifier: CC-BY-SA-4.0
-// SPDX-License-Identifier: CC-BY-SA-4.0
 // Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
 // SPDX-FileCopyrightText: 2024-2026 Jonathan D.A. Jewell (hyperpolymath)
 = Trope Particularity
@@ -163,6 +162,16 @@ declared use-model, with a witness edge. Its reference core is in Idris2 (quanti
 types track the loss-plumbing). The first front-end that lowers to the IR is the
 *Haec* language (`github.com/hyperpolymath/haec`). This workbench defines the words
 both of them realise; it depends on neither.
+
+== Where this repo sits
+
+Vocabulary track: trope-particularity-workbench → haec → trope-checker (verdict). Store/query track: haec → vocarium → hermeneia → trope-checker (verdict). trope-checker depends on nothing (HC-1); the workbench depends on nothing; vocarium and hermeneia meet at the M2 StoreProvider adapter (vocarium ADR-0002: wire, do not link).
+
+== Machine-readable record
+
+The repo deed `trope-particularity-workbench_chora.deed` at the root is the single
+machine-readable record. The retired A2ML tree is frozen, read-only, at
+https://github.com/hyperpolymath/trope-particularity-workbench/tree/b18eb67dcf10e80d3560b0468a7a85c484231f02/.machine_readable.
 
 == Repository map
 

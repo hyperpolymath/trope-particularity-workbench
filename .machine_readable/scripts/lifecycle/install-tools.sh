@@ -3,16 +3,13 @@
 #
 # install-tools.sh — Developer toolchain installer
 #
-# Detects and installs the required project toolchain (asdf, nix, or guix).
+# Detects and installs the required project toolchain (asdf; Guix users run `guix shell -m build/guix.scm`).
 
 set -euo pipefail
 
 echo "=== RSR Toolchain Installer ==="
 
-if [ -f "flake.nix" ] && command -v nix &>/dev/null; then
-    echo "Nix detected. Setting up development shell..."
-    nix develop --command echo "Nix shell verified."
-elif [ -f ".tool-versions" ] && command -v asdf &>/dev/null; then
+if [ -f ".tool-versions" ] && command -v asdf &>/dev/null; then
     echo "asdf detected. Installing plugins and tools..."
     while read -r line; do
         plugin=$(echo "$line" | awk '{print $1}')
@@ -20,7 +17,7 @@ elif [ -f ".tool-versions" ] && command -v asdf &>/dev/null; then
     done < .tool-versions
     asdf install
 else
-    echo "No standard toolchain (Nix/asdf) detected or installed."
+    echo "No standard toolchain (asdf) detected or installed."
     echo "Please refer to README.adoc for manual setup instructions."
 fi
 

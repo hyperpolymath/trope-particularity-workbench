@@ -2,56 +2,46 @@
 SPDX-License-Identifier: CC-BY-SA-4.0
 Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
 -->
+# Contributing
+
+The full guide is `CONTRIBUTING.adoc` at the repository root; this file is the GitHub-facing summary.
+
+### Development Setup
+```bash
 # Clone the repository
 git clone https://github.com/hyperpolymath/trope-particularity-workbench.git
 cd trope-particularity-workbench
 
-# Using Nix (recommended for reproducibility)
-nix develop
-
-# Or using toolbox/distrobox
+# Using toolbox/distrobox
 toolbox create trope-particularity-workbench-dev
 toolbox enter trope-particularity-workbench-dev
 # Install dependencies manually
 
 # Verify setup
-just check   # or: cargo check / mix compile / etc.
+just check
 just test    # Run test suite
 ```
 
 ### Repository Structure
 ```
 trope-particularity-workbench/
-├── src/                 # Source code (Perimeter 1-2)
-├── lib/                 # Library code (Perimeter 1-2)
-├── extensions/          # Extensions (Perimeter 2)
-├── plugins/             # Plugins (Perimeter 2)
-├── tools/               # Tooling (Perimeter 2)
-├── docs/                # Documentation (Perimeter 3)
-│   ├── architecture/    # ADRs, specs (Perimeter 2)
-│   └── proposals/       # RFCs (Perimeter 3)
-├── examples/            # Examples (Perimeter 3)
-├── spec/                # Spec tests (Perimeter 3)
-├── tests/               # Test suite (Perimeter 2-3)
-├── .machine_readable/   # ALL machine-readable content (Perimeter 1)
-│   ├── *.a2ml           # State files (STATE, META, ECOSYSTEM, etc.)
-│   ├── bot_directives/  # Bot configs
-│   └── contractiles/    # Policy contracts (k9, dust, lust, must, trust)
-├── .well-known/         # Protocol files (Perimeter 1-3)
-├── .github/             # GitHub config (Perimeter 1)
-│   ├── ISSUE_TEMPLATE/
-│   └── workflows/
-├── CHANGELOG.md
-├── CODE_OF_CONDUCT.md
-├── CONTRIBUTING.md      # This file
-├── GOVERNANCE.md
+├── vocabulary/          # The normative trope vocabulary (p-*.adoc)
+├── examples/            # Worked examples (duck, person, record)
+├── assets/              # Figures used by the vocabulary
+├── docs/                # Documentation (status, governance, practice)
+├── tests/               # check-vocabulary.sh and workflow tests
+├── .github/             # GitHub config (CONTRIBUTING.md, CODE_OF_CONDUCT.md, workflows)
+├── .machine_readable/   # Support files; the repo deed is the record
+├── CHANGELOG.adoc
+├── CONTRIBUTING.adoc
+├── GOVERNANCE.adoc
 ├── LICENSE
-├── MAINTAINERS.md
+├── MAINTAINERS.adoc
 ├── README.adoc
-├── SECURITY.md
-├── flake.nix            # Nix flake — fallback (Perimeter 1)
-├── guix.scm             # Guix package — primary (Perimeter 1)
-└── Justfile             # Task runner (Perimeter 1)
+├── SECURITY.adoc
+├── trope-particularity-workbench_chora.deed  # The repo deed
+├── build/guix.scm       # Guix package
+└── Justfile             # Task runner
 ```
 
 ---
@@ -67,7 +57,7 @@ trope-particularity-workbench/
 
 **When reporting**:
 
-Use the [bug report template](.github/ISSUE_TEMPLATE/bug_report.md) and include:
+Open an issue and include:
 
 - Clear, descriptive title
 - Environment details (OS, versions, toolchain)
@@ -78,13 +68,13 @@ Use the [bug report template](.github/ISSUE_TEMPLATE/bug_report.md) and include:
 ### Suggesting Features
 
 **Before suggesting**:
-1. Check the [roadmap](ROADMAP.md) if available
+1. Check the [roadmap](../docs/status/ROADMAP.adoc)
 2. Search existing issues and discussions
 3. Consider which perimeter the feature belongs to
 
 **When suggesting**:
 
-Use the [feature request template](.github/ISSUE_TEMPLATE/feature_request.md) and include:
+Open an issue and include:
 
 - Problem statement (what pain point does this solve?)
 - Proposed solution

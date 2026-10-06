@@ -40,8 +40,8 @@ sed -i "s/2026-06-22/$(date +%Y-%m-%d)/g" $(grep -rl '2026-06-22' .)
 |---|---|---|---|
 | `Jonathan D.A. Jewell` | Full legal name | `Jane Doe` | SPDX headers (all files), MAINTAINERS.md, .mailmap, .reuse/dep5, docs/AI-CONVENTIONS.md |
 | `j.d.a.jewell@open.ac.uk` | Primary contact email | `jane@example.org` | SPDX headers (all files), .mailmap, .reuse/dep5, .well-known/humans.txt |
-| `` | Previous/secondary email (for .mailmap) | `old@example.com` | .mailmap |
-| `` | Author's organization/affiliation | `Acme University` | project-metadata.k9.ncl |
+| (not set) | Previous/secondary email (for .mailmap) | `old@example.com` | .mailmap |
+| (not set) | Author's organization/affiliation | `Acme University` | project-metadata.k9.ncl |
 | `Jewell` | Author surname (for citations) | `Doe` | docs/CITATIONS.adoc |
 | `Jonathan D.A.` | Author first name (for citations) | `Jane` | docs/CITATIONS.adoc |
 | `J.` | Author initials (for citations) | `J.` | docs/CITATIONS.adoc |
@@ -50,8 +50,8 @@ sed -i "s/2026-06-22/$(date +%Y-%m-%d)/g" $(grep -rl '2026-06-22' .)
 
 | Placeholder | Description | Example | Files |
 |---|---|---|---|
-| `Trope Particularity` | Human-readable project name | `My Project` | SECURITY.md, CODE_OF_CONDUCT.md, TOPOLOGY.md, STATE.a2ml, Justfile, GOVERNANCE.md, MAINTAINERS.md, flake.nix, devcontainer.json |
-| `A diagnostic vocabulary for property-instance individuation and loss: the named effects, the residual, and the verdict.` | One-line description | `A tool for X` | flake.nix |
+| `Trope Particularity` | Human-readable project name | `My Project` | SECURITY.md, CODE_OF_CONDUCT.md, TOPOLOGY.md, Justfile, GOVERNANCE.md, MAINTAINERS.md, devcontainer.json |
+| `A diagnostic vocabulary for property-instance individuation and loss: the named effects, the residual, and the verdict.` | One-line description | `A tool for X` | README.adoc |
 | `TROPE_PARTICULARITY_WORKBENCH` | Uppercase identifier (for Idris2 modules, C macros) | `MY_PROJECT` | ABI-FFI-README.md, src/interface/abi/*.idr, src/interface/ffi/*.zig |
 | `trope_particularity_workbench` | Lowercase identifier (for C symbols, filenames) | `my_project` | ABI-FFI-README.md, src/interface/ffi/*.zig |
 | `trope-particularity-workbench` | Repository name (slug) | `my-project` | CONTRIBUTING.md, SECURITY.md, CODE_OF_CONDUCT.md, cliff.toml |
@@ -63,7 +63,7 @@ sed -i "s/2026-06-22/$(date +%Y-%m-%d)/g" $(grep -rl '2026-06-22' .)
 | Placeholder | Description | Example | Files |
 |---|---|---|---|
 | `2026` | Current year | `2026` | SPDX headers (all files), GOVERNANCE.md, MAINTAINERS.md |
-| `2026-06-22` | Current date (ISO) | `2026-02-14` | STATE.a2ml, MAINTAINERS.md |
+| `2026-06-22` | Current date (ISO) | `2026-02-14` | MAINTAINERS.md |
 | `2026-06-22` | Last updated date | `2026-02-14` | TOPOLOGY.md, THREAT-MODEL.md |
 
 ### Contact & Security
@@ -89,15 +89,7 @@ sed -i "s/2026-06-22/$(date +%Y-%m-%d)/g" $(grep -rl '2026-06-22' .)
 | Placeholder | Description | Example | Files |
 |---|---|---|---|
 | `MPL-2.0` | License name | `MPL-2.0` | ABI-FFI-README.md |
-| `A diagnostic vocabulary for property-instance individuation and loss: the named effects, the residual, and the verdict.` | One-line project description | `FFI bridges between languages` | STATE.a2ml |
-
-### AI Manifest
-
-| Placeholder | Description | Example | Files |
-|---|---|---|---|
-| `[YOUR-REPO-NAME]` | Repository name | `my-project` | 0-AI-MANIFEST.a2ml |
-| `[DATE]` | Creation date | `2026-02-14` | 0-AI-MANIFEST.a2ml |
-| `[YOUR-NAME/ORG]` | Maintainer name | `hyperpolymath` | 0-AI-MANIFEST.a2ml |
+| `A diagnostic vocabulary for property-instance individuation and loss: the named effects, the residual, and the verdict.` | One-line project description | `FFI bridges between languages` | README.adoc |
 
 ### AI Installation Guide
 
@@ -133,9 +125,9 @@ Some files contain deletion instructions:
 After replacing all placeholders, verify none remain:
 
 ```bash
-grep -rn '{{' . --include='*.md' --include='*.adoc' --include='*.a2ml' \
-  --include='*.scm' --include='*.idr' --include='*.zig' --include='*.res' \
-  --include='Justfile' --include='*.nix' --include='*.toml' --include='*.yml' \
+grep -rn '{{' . --include='*.md' --include='*.adoc' --include='*.deed' \
+  --include='*.scm' --include='*.idr' --include='*.zig' \
+  --include='Justfile' --include='*.toml' --include='*.yml' \
   --include='*.yaml' --include='*.hs' --include='*.ncl' --include='*.txt' \
   --include='*.json' --include='Containerfile' --include='dep5' \
   | grep -v 'PLACEHOLDERS.md' | grep -v 'node_modules'
