@@ -1,78 +1,38 @@
-# Canonical root allowlist for RSR-templated repositories.
+# Root allowlist for the trope-particularity-workbench docs repository.
 #
-# Lists every entry permitted at the repository root.
-# Anything tracked at root that is not in this list is drift and
-# must be moved into the appropriate subdirectory (or added here
-# with a justification comment).
+# Lists every entry permitted at the repository root. Anything tracked at
+# root that is not in this list is drift. Slimmed 2026-10-06 when the repo
+# became a documentation repo (the RSR template scaffolding was removed).
 #
 # Used by: scripts/check-root-shape.sh
-# Authority: TEMPLATE-STANDARDS-AUDIT.adoc, "Proposed Final Directory Map"
-#
 # Format: one entry per line; '#' starts a comment; trailing '/' marks a directory.
-# Blank lines and comment-only lines are ignored.
 
-# ─── Authority files (template-mandated) ─────────────────────────────────────
+# ─── Authority files ─────────────────────────────────────────────────────────
 README.adoc
 AUDIT.adoc
 EXPLAINME.adoc
 AFFIRMATION.adoc           # dated/signed honesty snapshot (README/EXPLAINME/AFFIRMATION trio)
-trope-particularity-workbench_chora.deed   # the repo deed: universal AI entry point (standards#837 pilot). Filename carries the repo slug (deed dispatch <stem>_chora.deed)
-GOVERNANCE.adoc            # governance model (validator accepts root or docs/governance/)
-MAINTAINERS.adoc           # maintainer roster
-CONTRIBUTING.adoc          # openssf-compliance accepts CONTRIBUTING.md or CONTRIBUTING.adoc at root
-SECURITY.adoc              # openssf-compliance accepts SECURITY.md, SECURITY.adoc or .github/SECURITY.md
+trope-particularity-workbench_chora.deed   # the repo deed: the single machine-readable record
+CONTRIBUTING.adoc
+SECURITY.adoc
 LICENSE
 CHANGELOG.adoc
+Justfile                   # `just check` runs the vocabulary consistency gate
 
-# ─── Build entry points (must live at root for their tooling) ────────────────
-Justfile                   # delegates phases to build/just/*.just
-coordination.k9            # repo-local session binding (template-mandated)
-abi.ipkg                   # Idris2 package for the ABI seam; sourcedir=src/interface (estate canon: root-level *-abi.ipkg). Single case-consistent src/interface/Abi/ dir. Typecheck: `idris2 --typecheck abi.ipkg`.
-
-# ─── Conventional dotfiles (tool-required at root) ───────────────────────────
+# ─── Conventional dotfiles ───────────────────────────────────────────────────
 .editorconfig
-.envrc
 .gitattributes
 .gitignore
-.tool-versions
 
 # ─── Directories ─────────────────────────────────────────────────────────────
-.devcontainer/             # VS Code dev container spec; tool-required at root
 .git/
-.github/                   # CONTRIBUTING.md, CODE_OF_CONDUCT.md, SECURITY.md, workflows/
-.machine_readable/         # AI rules, bot directives, policies, self-validating k9 checks
+.github/                   # workflows/, CODEOWNERS, dependabot.yml
+.machine_readable/         # this allowlist + REUSE dep5
 .well-known/
-build/                     # guix.scm, .guix-channel, Containerfile
-ci/                        # .gitlab-ci.yml, .pre-commit-config.yaml (root shims if tools require)
-docs/                      # onboarding/, status/, governance/, ...
-docs-template/             # template-only: scaffolding docs copied into new repos
-session/                   # dispatch.sh, custom-checks.k9, local-hooks.sh
-
-# Source / test / artifact trees (project-specific but conventional)
-src/
-tests/
-benches/
-examples/
-features/
-scripts/
-verification/
-container/                 # may host Containerfile if not at build/
-
-# ─── Tolerated pending follow-up (re-evaluate when item lands) ───────────────
-.gitlab-ci.yml             # TODO: relocate to ci/.gitlab-ci.yml after GitLab project-setting update
-.pre-commit-config.yaml    # TODO: relocate to ci/.pre-commit-config.yaml after invocation pattern decided
-tools/                     # TODO: consolidate with scripts/ or document the split (pending decision)
-
-# ─── Workbench additions (build brief, 2026-06-22) ───────────────────────────
+docs/                      # background, positioning, theory, whitepapers, proposals, status
 vocabulary/                # one .adoc per effect (definition + discriminating test + example)
-assets/                    # particularity-trainer.html + trope-particularity-map.svg
+assets/                    # particularity-trainer.html + trope-particularity-map.svg (served by Pages)
+examples/                  # worked examples (duck, record, person)
+tests/                     # check-vocabulary.sh
+scripts/                   # estate-rules check scripts
 LICENSES/                  # REUSE texts: MPL-2.0 (code) + CC-BY-SA-4.0 (prose/vocabulary)
-
-.hypatia-ignore        # scoped, documented Hypatia scanner exemptions (siblings: hermeneia, vocarium)
-
-# ─── Declared 2026-08-06: entries the RSR template's directory map did
-#     not anticipate. The template targets a documentation repository;
-#     these are this project's real top-level shape. Moving them would
-#     break every path that references them, to satisfy a map that was
-#     never written for it. Read from the estate-rules gate's own output.
-.githooks/                  # Top-level component directory of this project.

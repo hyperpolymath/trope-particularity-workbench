@@ -8,6 +8,12 @@
 image:https://img.shields.io/badge/License-MPL_2.0-blue.svg[License: MPL-2.0,link="https://opensource.org/licenses/MPL-2.0"]
 image:https://img.shields.io/badge/status-specification-orange[Status: specification]
 
+*Try it first:* the https://hyperpolymath.github.io/trope-particularity-workbench/[particularity trainer]
+— an interactive drill on naming the nine effects — runs in your browser. The
+https://hyperpolymath.github.io/trope-particularity-workbench/trope-particularity-map.svg[pipeline map]
+sits beside it. This repository is documentation only: the vocabulary, the trainer,
+the map, and the essays and proposals around them.
+
 A diagnostic vocabulary for *property-instance individuation and loss*. It names —
 precisely, with a fixed and deliberately small set of terms — the ways a specific,
 situated quality gets flattened as it moves through a system, and whether what
@@ -184,13 +190,14 @@ https://github.com/hyperpolymath/trope-particularity-workbench/tree/b18eb67dcf10
 | `examples/`            | The same situation laundered several ways (the duck, a record, a person), in lockstep with the checker's conformance fixtures.
 | `assets/`              | `particularity-trainer.html` (interactive drill) and `trope-particularity-map.svg` (the pipeline).
 | `docs/background.adoc` | The trope-theory grounding (Williams, Campbell) and the compatibility test, in full.
+| `docs/`               | Positioning, theory papers, whitepapers, funding proposals, and the research programme.
 | _the checker_          | A *separate repository*: `github.com/hyperpolymath/trope-checker` — annotate, propagate, flag.
 |===
 
 == Where to go next
 
 * `vocabulary/` — the nine effects, sharpened. Start here.
-* `assets/particularity-trainer.html` — drill until you can name the move from the test.
+* https://hyperpolymath.github.io/trope-particularity-workbench/[the trainer] (source: `assets/particularity-trainer.html`) — drill until you can name the move from the test.
 * `docs/background.adoc` — why the vocabulary is compatible with the metaphysics it
   borrows from.
 * `docs/status/RESEARCH-PROGRAMME.adoc` — the prioritised, trope-stack-wide programme of
