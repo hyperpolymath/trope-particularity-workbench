@@ -14,4 +14,3 @@ Disallow-Generation: yes
 #
 # For AI agent integration instructions, see:
 #   trope-particularity-workbench_chora.deed (the repo deed: universal AI entry point)
-#   coordination.k9 (agent coordination; project.deed_ref names the deed)

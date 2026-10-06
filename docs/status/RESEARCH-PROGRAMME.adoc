@@ -12,7 +12,7 @@ This is a prioritised, trope-stack-wide programme of work: what is worth doing n
 in the field of trope theory — the metaphysics of abstract particulars — and, in
 particular, the parts of it this estate is already positioned to move. It is a
 *plan*, not a claim of results. Every capability statement about the estate's tools
-is written to the estate's own publication gate (`docs/status/READINESS.adoc`):
+is written to the estate's own publication gate (the RSR readiness grades):
 provisional, and dated to the ground truth in each repo's `AFFIRMATION.adoc`.
 
 toc::[]

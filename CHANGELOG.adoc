@@ -7,3 +7,12 @@ Changelog], and this project adheres to
 https://semver.org/spec/v2.0.0.html[Semantic Versioning].
 
 === [Unreleased]
+
+==== Changed
+
+* The repository is now documentation only. The inherited RSR template
+  scaffolding (ABI/FFI seam, proof stubs, container and build trees, template
+  docs, 19 template workflows) is removed. The authored vocabulary, trainer,
+  map, examples, theory papers, whitepapers and proposals are unchanged.
+* GitHub Pages now serves the particularity trainer as the site index, with the
+  pipeline map beside it: https://hyperpolymath.github.io/trope-particularity-workbench/

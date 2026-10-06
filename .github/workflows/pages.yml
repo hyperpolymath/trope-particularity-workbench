@@ -1,12 +1,14 @@
 # This workflow is managed by gh actions-lock.
 # SPDX-License-Identifier: MPL-2.0
-# This workflow is managed by gh actions-lock.
-# This workflow is managed by gh actions-lock.
+#
+# Publishes the particularity trainer as the site index, with the map beside it:
+#   https://hyperpolymath.github.io/trope-particularity-workbench/
 
-name: GitHub Pages (Ddraig SSG)
+name: GitHub Pages (trainer)
 on:
   push:
-    branches: [main, master]
+    branches: [main]
+    paths: ['assets/**', '.github/workflows/pages.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -19,28 +21,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    container:
-      image: ghcr.io/stefan-hoeck/idris2-pack@sha256:f0758996a931fb35d9ecb1de273c4d59dabe2a09b433afc7e357f65a08b7e1ff
     steps:
-      - name: Checkout Site
+      - name: Checkout
         uses: actions/checkout@v7.0.1
-      - name: Checkout Ddraig SSG
-        uses: actions/checkout@v7.0.1
-        with:
-          repository: hyperpolymath/ddraig-ssg
-          path: .ddraig-ssg
-      - name: Compile Ddraig
-        working-directory: .ddraig-ssg
-        run: idris2 Ddraig.idr -o ddraig
-      - name: Build site
+      - name: Assemble site
         run: |
-          mkdir -p src
-          if [ ! -f src/index.md ] && [ -f README.md ]; then
-            cp README.md src/index.md
-          elif [ ! -f src/index.md ]; then
-            echo "# ${GITHUB_REPOSITORY}" > src/index.md
-          fi
-          ./.ddraig-ssg/build/exec/ddraig build src _site https://hyperpolymath.github.io/${GITHUB_REPOSITORY#*/}
+          mkdir -p _site
+          cp assets/particularity-trainer.html _site/index.html
+          cp assets/trope-particularity-map.svg _site/trope-particularity-map.svg
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5.0.0
         with:
