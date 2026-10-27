@@ -1,0 +1,98 @@
+// SPDX-License-Identifier: CC-BY-SA-4.0
+// SPDX-FileCopyrightText: 2026 Jonathan D.A. Jewell
+= State of the trope stack — 2026-10-27
+:toc: macro
+
+One table, one row per repository: what each one is, what exists, which open
+obligations it owns, where its proofs and tests are, and the command that
+verifies the row. "Last verified" is the date the command in that row was run
+and the result observed; a row that could not be run says so and names the CI
+run that attests it instead.
+
+toc::[]
+
+== The table
+
+[cols="1,1,3,2,2,2,1",options="header"]
+|===
+| Repo | Status | What exists | Obligations it owns | Proof / test citations | Ground-truth command | Last verified
+
+| trope-particularity-workbench
+| specification
+| The nine effects (`vocabulary/`), the particularity trainer, the pipeline map,
+the research programme, the O5 proposal (adopted upstream into
+`trope-checker/spec/calculus.adoc §10`, ADR 0005 pending ratification).
+| O1-coord metaphysical adequacy (WP-5).
+| `tests/check-vocabulary.sh` (nine effects consistent across vocabulary, trainer,
+map, README).
+| `bash tests/check-vocabulary.sh`
+| 2026-10-27
+
+| trope-checker
+| alpha
+| Spec v0.2 (one normative document on the ratified carrier), Trope IR 0.2 +
+JSON schema, Idris2 reference checker + Rust fast core, Agda kernel (Theorem B),
+Lean provenance developments, conformance suite.
+| CO-1 mechanisation; O3; O5 and O6 mechanisation; O2 for its own fixtures only.
+| `docs/status/PROOF-STATUS.adoc` (proved table / open list), `AFFIRMATION.adoc`
+2026-10-27 entry: 13 verdict + 9 schema-invalid conformance cases pass on both
+checkers; `All.agda`/`Smoke.agda` under `--safe --without-K` exit 0.
+| `just check`, `just build-agda`, `just trope-rust`; `just build-lean` (needs lake
++ Mathlib; CI `proofs.yml`)
+| 2026-10-27; Lean: `proofs.yml` run 40472568287 (2026-10-27T08:18Z) — `lake build`
+succeeded for both packages, the job is red only in lean-action's `nanoda` step
+(trope-checker #104)
+
+| haec
+| design
+| Grammar (`design/grammar.ebnf`), elaboration table with per-construct O2
+obligations, three example program/IR pairs that round-trip through the checker.
+| O2 lowering correctness for its constructs.
+| `AFFIRMATION.adoc` 2026-10-27: 3 well-formed, schema matches canonical, 3
+round-trips to the stated verdicts.
+| `TROPECHECK_BIN=/path/to/tropecheck-rs bash tests/check-examples.sh`
+| 2026-10-27
+
+| hermeneia
+| implementation (M1)
+| `invoke` end to end against the checker; the other six vokes parse and are
+refused as unimplemented; `show loss` refused (needs the checker's loss vector);
+stub store.
+| None of the calculus's; O2 as a producer, once it emits IR from a real store.
+| `AFFIRMATION.adoc` 2026-10-27: `cargo test --workspace` 39 pass; e2e slice 7
+pass (`src/hermeneia-cli/tests/slice.rs`).
+| `cargo test --workspace`; `HERMENEIA_TROPECHECK=/path/to/tropecheck-rs cargo test -p
+hermeneia-cli --features e2e --test slice`
+| 2026-10-27
+
+| vocarium
+| M1 invoke slice
+| `voc` store engine (pure Zig, ADR-0002 wire-not-link): JSONL replay, warrant
+door, `voc invoke` emitting Trope IR 0.2; the use-relativity gate. M2
+StoreProvider adapter pending.
+| None of the calculus's; O2 as a producer; O5-2 attestations are its warrants.
+| `AFFIRMATION.adoc` 2026-10-27 (NOT RUN in that session; CI `vocarium-ci.yml`
+runs `zig build test` and the gate on pushes to `main`, pull requests and dispatch).
+| `zig build test`; `TROPECHECK_BIN=/path/to/tropecheck-rs bash tests/e2e/invoke_slice.sh`
+| CI run 40472451463, job "invoke-slice gate": success, 2026-10-27T08:17Z (vocarium #42)
+|===
+
+== The five-repo map
+
+Vocabulary track: trope-particularity-workbench → haec → trope-checker (verdict).
+Store/query track: haec → vocarium → hermeneia → trope-checker (verdict).
+trope-checker depends on nothing (HC-1); the workbench depends on nothing;
+vocarium and hermeneia meet at the M2 StoreProvider adapter (vocarium ADR-0002:
+wire, do not link).
+
+== Known gaps
+
+* A2ML machine-readable files are still present in haec, hermeneia and vocarium
+  (retired in this repo and in trope-checker); retirement is written up as an
+  issue per repo, not done in Phase 0.
+* vocarium's gate pins checker commit `69221ad6`, which predates the spec v0.2
+  consolidation; the pin is to be bumped once Phase 0 lands upstream (issue).
+* This repo's GitHub Pages (trainer) run has been queued since 2026-10-06 and a
+  Secret scan run was cancelled; both are repository settings, owner-only.
+* `trope-checker`'s `just build-lean` was not run in the Phase 0 session (no
+  Lean toolchain reachable there); its `proofs.yml` CI job is the attestation.
