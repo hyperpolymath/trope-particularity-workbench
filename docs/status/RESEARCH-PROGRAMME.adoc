@@ -300,7 +300,7 @@ the funding memo.
 | *Essay + ORCID/DOI first* | WP-8's low-cost items unblock every funding application immediately.
 |===
 
-A pragmatic first quarter: WP-2 (define O5) and WP-8's cheap items (ORCID, DOI,
+A pragmatic first quarter: WP-2's remainder (ratify ADR 0005, mechanise O5-1) and WP-8's cheap items (ORCID, DOI,
 corrected citation, the essay) are low-effort and unblock both honesty and funding;
 WP-1 and WP-4 are the two papers most likely to attract a grant; WP-5 is the
 time-critical foundational one.

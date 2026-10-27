@@ -97,7 +97,11 @@ right slots, which is evidence the definition carves at a real joint:
   world-access vouched (O5-1) and left an attestation (O5-2).
 
 == Status and next step
-*Adopted into trope-checker spec §10 on 2026-10-13 (ADR 0005, pending owner ratification).*
+*Status update, 2026-10-27.* The text below was written when `spec/calculus.adoc §10`
+stopped at O4. Since the consolidation of 2026-10-13 that section carries O5, adopted
+from this note unchanged in substance (trope-checker ADR 0005, *Proposed*); owner
+ratification is pending, so the "proposal" and "never written down" language below is
+historical — the normative text is now the spec's, and this note is its derivation.
 
 
 This note is the WP-2 deliverable in its *define* branch (the *refute* branch — that no

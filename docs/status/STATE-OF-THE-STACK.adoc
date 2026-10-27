@@ -39,7 +39,9 @@ Lean provenance developments, conformance suite.
 checkers; `All.agda`/`Smoke.agda` under `--safe --without-K` exit 0.
 | `just check`, `just build-agda`, `just trope-rust`; `just build-lean` (needs lake
 + Mathlib; CI `proofs.yml`)
-| 2026-10-27 (Lean: CI)
+| 2026-10-27; Lean: `proofs.yml` run 40472568287 (2026-10-27T08:18Z) — `lake build`
+succeeded for both packages, the job is red only in lean-action's `nanoda` step
+(trope-checker #104)
 
 | haec
 | design
@@ -48,7 +50,7 @@ obligations, three example program/IR pairs that round-trip through the checker.
 | O2 lowering correctness for its constructs.
 | `AFFIRMATION.adoc` 2026-10-27: 3 well-formed, schema matches canonical, 3
 round-trips to the stated verdicts.
-| `TROPECHECK_BIN=<tropecheck-rs> bash tests/check-examples.sh`
+| `TROPECHECK_BIN=/path/to/tropecheck-rs bash tests/check-examples.sh`
 | 2026-10-27
 
 | hermeneia
@@ -59,7 +61,7 @@ stub store.
 | None of the calculus's; O2 as a producer, once it emits IR from a real store.
 | `AFFIRMATION.adoc` 2026-10-27: `cargo test --workspace` 39 pass; e2e slice 7
 pass (`src/hermeneia-cli/tests/slice.rs`).
-| `cargo test --workspace`; `HERMENEIA_TROPECHECK=<tropecheck-rs> cargo test -p
+| `cargo test --workspace`; `HERMENEIA_TROPECHECK=/path/to/tropecheck-rs cargo test -p
 hermeneia-cli --features e2e --test slice`
 | 2026-10-27
 
@@ -70,9 +72,9 @@ door, `voc invoke` emitting Trope IR 0.2; the use-relativity gate. M2
 StoreProvider adapter pending.
 | None of the calculus's; O2 as a producer; O5-2 attestations are its warrants.
 | `AFFIRMATION.adoc` 2026-10-27 (NOT RUN in that session; CI `vocarium-ci.yml`
-runs `zig build test` and the gate on every push).
-| `zig build test`; `TROPECHECK_BIN=<tropecheck-rs> bash tests/e2e/invoke_slice.sh`
-| CI (see PR)
+runs `zig build test` and the gate on pushes to `main`, pull requests and dispatch).
+| `zig build test`; `TROPECHECK_BIN=/path/to/tropecheck-rs bash tests/e2e/invoke_slice.sh`
+| CI run 40472451463, job "invoke-slice gate": success, 2026-10-27T08:17Z (vocarium #42)
 |===
 
 == The five-repo map
