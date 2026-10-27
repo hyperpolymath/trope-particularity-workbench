@@ -1,8 +1,8 @@
 // SPDX-FileCopyrightText: © 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
 // SPDX-License-Identifier: CC-BY-SA-4.0
 = A Programme of Work for Trope Theory
-:revnumber: 0.2 (draft for review; synced to ratified calculus R-2026-07-07 / ADR 0004)
-:revdate: 2026-07-16
+:revnumber: 0.3 (draft for review; synced to calculus v0.2 and ADR 0005, Proposed)
+:revdate: 2026-10-27
 :toc: macro
 :sectnums:
 :sectnumlevels: 3
@@ -33,7 +33,8 @@ This estate has started to build that missing dynamics:
   residual, a use-model, two verdicts), grounded in Williams/Campbell
   (`docs/background.adoc`). Status: *specification*.
 * `trope-checker` — the *graded calculus*, the Trope IR (the trust boundary), and a
-  four-prover verification stack. Status: *alpha, conformance-green*.
+  three-prover (Agda, Idris2, Lean) verification stack plus a Rust fast core. Status:
+  *alpha, conformance-green*.
 * `haec` (front-end language, *design*), `vocarium` (store, *M1 invoke slice; M2
   adapter pending*), `hermeneia` (query, *implementation*).
 
@@ -80,6 +81,11 @@ each companion document refers back to it.
 | *Absent.* Candidate handle: the `record` / veridicality axis.
 | Ask whether provenance-enrichment relocates or dissolves the regress (WP-1).
 |===
+
+Security-facing, and new at calculus v0.2: *O6*, the ceiling verdict
+(`trope-checker/spec/calculus.adoc §10`) — the privacy direction, that no more than a
+declared ceiling is retained, which the `Withheld`/`Severed` distinction exists to serve —
+is the dual of the sufficiency verdict and sits on this spine as an open obligation.
 
 == How to read the work packages
 
@@ -145,6 +151,11 @@ features.
 provide, and the checker's exact relationship to it), or a proof that veridicality is
 *not* checkable relative to the IR — with the README/AFFIRMATION references updated to
 match.
+
+*Status.* Delivered: O5 is defined in `trope-checker/spec/calculus.adoc §10` (ADR 0005,
+ratification pending), adopted on 2026-10-13 from
+`../theory/formalisms/defining-o5-veridicality-oracle.adoc` unchanged in substance; what
+remains is its mechanisation (O5-1 as a side condition on an `Oracle`-indexed verdict).
 
 *Closes.* *O5* (define-or-refute).
 
@@ -315,10 +326,9 @@ for work not yet done, and should be read as such.
   and atoms), and the ratified-carrier proofs
   (`L4Monotonicity.lean`, `EffectAtoms.lean`, `TierTwoComplete.lean`,
   `GradeRatified.lean`, `GradeFactorisationR.lean`).
-  *Caveat:* `trope-checker/docs/status/{ROADMAP,PROOF-STATUS}.adoc`,
-  `AFFIRMATION.adoc`, and `INTEGRATION-REPORT.adoc` were not updated in the
-  ratification wave and still describe the pre-07-07 world — prefer ADR 0004 and the
-  spec where they disagree.
+  *Current as of 2026-10-27:* `trope-checker/docs/status/{ROADMAP,PROOF-STATUS}.adoc` and
+  `AFFIRMATION.adoc` were rewritten to the ratified world in Phase 0;
+  `INTEGRATION-REPORT.adoc` is kept as the historical record under a header note.
 * Founding grounding: `trope-particularity-workbench/docs/background.adoc`.
 * Companion documents: `../theory/computing/trope-theory-and-neural-representation.adoc`,
   `../whitepapers/outreach/baffled-couch-potatoes.adoc`,
