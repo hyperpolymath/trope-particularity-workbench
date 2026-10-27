@@ -200,6 +200,8 @@ https://github.com/hyperpolymath/trope-particularity-workbench/tree/b18eb67dcf10
 * https://hyperpolymath.github.io/trope-particularity-workbench/[the trainer] (source: `assets/particularity-trainer.html`) — drill until you can name the move from the test.
 * `docs/background.adoc` — why the vocabulary is compatible with the metaphysics it
   borrows from.
+* `docs/status/STATE-OF-THE-STACK.adoc` — one table, one row per repo: status, what exists,
+  the obligations it owns, proof/test citations, and the ground-truth command that verifies it.
 * `docs/status/RESEARCH-PROGRAMME.adoc` — the prioritised, trope-stack-wide programme of
   work (what is worth doing next in the field, and who might fund it).
 * `docs/theory/computing/trope-theory-and-neural-representation.adoc` — a position paper
