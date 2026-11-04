@@ -80,7 +80,7 @@ hermeneia-cli --features e2e --test slice`
 door, `voc invoke` emitting Trope IR 0.2; the use-relativity gate. M2
 StoreProvider adapter pending.
 | None of the calculus's; O2 as a producer; O5-2 attestations are its warrants.
-| `AFFIRMATION.adoc` 2026-10-27, re-anchored 2026-11-04 (Zig NOT RUN in either
+| `AFFIRMATION.adoc` 2026-10-27 (Zig NOT RUN in either
 session; CI `vocarium-ci.yml` runs `zig build test`, `zig build` and the gate on
 pushes to `main`, pull requests and dispatch).
 | `./tests/e2e/invoke_slice.sh` (builds the checker at the script's pin; the
