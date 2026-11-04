@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: CC-BY-SA-4.0
 // SPDX-FileCopyrightText: 2026 Jonathan D.A. Jewell
-= State of the trope stack — 2026-10-27
+= State of the trope stack — 2026-11-04
 :toc: macro
 
 One table, one row per repository: what each one is, what exists, which open
@@ -20,8 +20,9 @@ toc::[]
 | trope-particularity-workbench
 | specification
 | The nine effects (`vocabulary/`), the particularity trainer, the pipeline map,
-the research programme, the O5 proposal (adopted upstream into
-`trope-checker/spec/calculus.adoc §10`, ADR 0005 pending ratification).
+the research programme, the O5 proposal (carried upstream into
+`trope-checker/spec/calculus.adoc §10` as PROPOSED; ADR 0005 is Proposed, owner to
+accept).
 | O1-coord metaphysical adequacy (WP-5).
 | `tests/check-vocabulary.sh` (nine effects consistent across vocabulary, trainer,
 map, README).
@@ -36,22 +37,29 @@ Lean provenance developments, conformance suite.
 | CO-1 mechanisation; O3; O5 and O6 mechanisation; O2 for its own fixtures only.
 | `docs/status/PROOF-STATUS.adoc` (proved table / open list), `AFFIRMATION.adoc`
 2026-10-27 entry: 13 verdict + 9 schema-invalid conformance cases pass on both
-checkers; `All.agda`/`Smoke.agda` under `--safe --without-K` exit 0.
+checkers; `All.agda`/`Smoke.agda` under `--safe --without-K` exit 0. Phase 0
+landed on `main` through trope-checker #107 (190cc75, 2026-10-31), which
+superseded #102 and also repaired the Lean job (lean-action's `nanoda` step
+removed; `leanchecker` plus an axiom audit in its place).
 | `just check`, `just build-agda`, `just trope-rust`; `just build-lean` (needs lake
 + Mathlib; CI `proofs.yml`)
-| 2026-10-27; Lean: `proofs.yml` run 40472568287 (2026-10-27T08:18Z) — `lake build`
-succeeded for both packages, the job is red only in lean-action's `nanoda` step
-(trope-checker #104)
+| 2026-10-27 (session); 2026-11-04: the Rust fast core re-built at `main` `4ecba4f`
+passes the conformance suite here; Agda, Idris2, Lean NOT RUN here — `proofs.yml`
+run 41519571355 on `main` `4ecba4f` (2026-11-02) is the attestation: Agda Theorem
+B, both Lean packages and the honesty gate green
 
 | haec
 | design
 | Grammar (`design/grammar.ebnf`), elaboration table with per-construct O2
 obligations, three example program/IR pairs that round-trip through the checker.
 | O2 lowering correctness for its constructs.
-| `AFFIRMATION.adoc` 2026-10-27: 3 well-formed, schema matches canonical, 3
-round-trips to the stated verdicts.
-| `TROPECHECK_BIN=/path/to/tropecheck-rs bash tests/check-examples.sh`
-| 2026-10-27
+| `AFFIRMATION.adoc` 2026-10-27 and 2026-11-04 entries: 3 well-formed checked-in
+IR documents (hand-lowered; there is no compiler), vendored schema matches the
+canonical one at the checker pin, 3 round-trips to the stated verdicts.
+| `TROPECHECK_REQUIRED=1 TROPECHECK_BIN=/path/to/tropecheck-rs bash tests/check-examples.sh`
+| 2026-11-04 with the fast core from trope-checker `4ecba4f` and the schema
+re-vendored from it (haec #85); the Idris2 reference path: CI run 41928694567,
+job `examples-lower-to-valid-ir`, success 2026-11-04T22:51Z
 
 | hermeneia
 | implementation (M1)
@@ -63,7 +71,8 @@ stub store.
 pass (`src/hermeneia-cli/tests/slice.rs`).
 | `cargo test --workspace`; `HERMENEIA_TROPECHECK=/path/to/tropecheck-rs cargo test -p
 hermeneia-cli --features e2e --test slice`
-| 2026-10-27
+| 2026-11-04, on `main` `d795c3f` with the fast core built from trope-checker
+`4ecba4f`: 39 pass; e2e slice 7 pass
 
 | vocarium
 | M1 invoke slice
@@ -71,10 +80,14 @@ hermeneia-cli --features e2e --test slice`
 door, `voc invoke` emitting Trope IR 0.2; the use-relativity gate. M2
 StoreProvider adapter pending.
 | None of the calculus's; O2 as a producer; O5-2 attestations are its warrants.
-| `AFFIRMATION.adoc` 2026-10-27 (NOT RUN in that session; CI `vocarium-ci.yml`
-runs `zig build test` and the gate on pushes to `main`, pull requests and dispatch).
-| `zig build test`; `TROPECHECK_BIN=/path/to/tropecheck-rs bash tests/e2e/invoke_slice.sh`
-| CI run 40472451463, job "invoke-slice gate": success, 2026-10-27T08:17Z (vocarium #42)
+| `AFFIRMATION.adoc` 2026-10-27, re-anchored 2026-11-04 (Zig NOT RUN in either
+session; CI `vocarium-ci.yml` runs `zig build test`, `zig build` and the gate on
+pushes to `main`, pull requests and dispatch).
+| `./tests/e2e/invoke_slice.sh` (builds the checker at the script's pin; the
+`TROPECHECK_BIN=…` form is a local override)
+| CI run 41928746295, job "invoke-slice gate": success, 2026-11-04T22:52Z, checker
+pin `4ecba4f` (vocarium #50); previously run 40472451463 at pin `69221ad6`
+(vocarium #42)
 |===
 
 == The five-repo map
@@ -90,9 +103,23 @@ wire, do not link).
 * A2ML machine-readable files are still present in haec, hermeneia and vocarium
   (retired in this repo and in trope-checker); retirement is written up as an
   issue per repo, not done in Phase 0.
-* vocarium's gate pins checker commit `69221ad6`, which predates the spec v0.2
-  consolidation; the pin is to be bumped once Phase 0 lands upstream (issue).
-* This repo's GitHub Pages (trainer) run has been queued since 2026-10-06 and a
-  Secret scan run was cancelled; both are repository settings, owner-only.
-* `trope-checker`'s `just build-lean` was not run in the Phase 0 session (no
-  Lean toolchain reachable there); its `proofs.yml` CI job is the attestation.
+* The checker pins in vocarium's gate and haec's `trope-check.yml` were
+  `69221ad6`, from before the spec v0.2 consolidation; both are bumped to
+  trope-checker `main` `4ecba4f` in vocarium #50 and haec #85 (CI green on both at
+  the new pin). hermeneia's CI builds the checker from trope-checker `main`
+  unpinned.
+* `hyperpolymath/standards` was transferred to `metadatastician/standards` on
+  2026-10-25/26, and GitHub Actions does not follow repository redirects for
+  reusable workflows (`jobs.<id>.uses`). Every caller still naming the old owner
+  fails before any job is created, including the Secret Scanner whose
+  `scan / gitleaks` job is the one status check the rulesets require. The callers
+  are re-pointed in each repo's follow-up PR; the repository Actions allowlist
+  must also admit `metadatastician/standards/.github/workflows/*@*` (repository
+  settings, owner-only; done for trope-checker, where the scanner has been green
+  since 2026-10-31).
+* This repo's GitHub Pages (trainer) run has been queued since 2026-10-06;
+  repository settings, owner-only.
+* `trope-checker`'s Agda, Idris2 and Lean developments were not run in either
+  session; `proofs.yml` on `main` is the attestation (green at `4ecba4f`).
+* ADR 0005 is still Proposed; the O5 obligation is PROPOSED in the spec until the
+  owner accepts it.
