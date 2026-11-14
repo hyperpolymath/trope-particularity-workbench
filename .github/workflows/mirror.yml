@@ -12,7 +12,7 @@ permissions:
   contents: read
 jobs:
   mirror:
-    uses: metadatastician/standards/.github/workflows/mirror-reusable.yml@857ff096af11451841fb10488fed1438523973a1
+    uses: metadatastician/standards/.github/workflows/mirror-reusable.yml@b54ce2bb5e5f0bddad2d394b9078193a847f92d1
     secrets:
       GITLAB_SSH_KEY: ${{ secrets.GITLAB_SSH_KEY }}
       BITBUCKET_SSH_KEY: ${{ secrets.BITBUCKET_SSH_KEY }}
