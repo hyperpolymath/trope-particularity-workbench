@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: CC-BY-SA-4.0
 = A Programme of Work for Trope Theory
 :revnumber: 0.3 (draft for review; synced to calculus v0.2 and ADR 0005, Proposed)
-:revdate: 2026-10-27
+:revdate: 2026-11-16
 :toc: macro
 :sectnums:
 :sectnumlevels: 3
@@ -222,7 +222,8 @@ are the three coordinates (fate, bond, merge) themselves exhaustive as "ways to
 individuate-and-lose"? That is a claim about the world, not the algebra — a
 philosophy-of-individuation question.
 
-*Why it matters.* If a fourth coordinate exists, the carrier-relative theorem is
+*Why it matters.* If a fourth coordinate exists, the carrier-relative claim (a
+theorem once the bridge to the nine families is stated and proved) is
 exhaustiveness over the *wrong* carrier. The metaphysical adequacy argument is also
 precisely where the programme meets the trope-theory literature (WP-1).
 
@@ -298,7 +299,7 @@ the funding memo.
 |===
 | Constraint | Consequence
 
-| *IR frozen at 0.2* | (Historical gate "O1 before IR freeze" overtaken: the IR froze at 0.2 under R-2026-07-07 with O1's factorisation proved (the bridge to the nine families is still argued, not stated); WP-5 now defends the metaphysical half.)
+| *IR frozen at 0.2* | (Historical gate "O1 before IR freeze" overtaken: the IR froze at 0.2 under R-2026-07-07, when the atom factorisation was proved on the pre-ratification `Grade` only; the ratified `GradeR.atom_factorization` came later (trope-checker's AFFIRMATION records it on 2026-11-04), and the bridge to the nine families is still argued, not stated; WP-5 now defends the metaphysical half.)
 | *O4 resolved* | (Historical gate "O4 gates CO-1" lifted by ADR 0004; WP-3 is mechanization, not carrier design.)
 | *O1 gates O3* | WP-6 is sequenced after WP-5 (O3's grade category is pinned by the ratified carrier; adequacy still informs it).
 | *Tools demonstrate theory* | WP-7 underwrites the publication-gate claims WP-8 relies on.
