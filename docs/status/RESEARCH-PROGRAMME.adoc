@@ -209,10 +209,14 @@ Foundation _Intelligence Venture_; interpretability funders (Open Philanthropy).
 
 === WP-5 (P1) — Exhaustiveness: the metaphysical half (O1-coord)
 
-*Problem.* O1's *carrier-relative* half is now a theorem
-(`grade-boundary/EffectAtoms.lean`: `atom_factorization` — every grade factors as a
-`▷`-product of its single-coordinate projections; the effect typology is exhaustive
-*relative to the carrier*), and the Trope IR is frozen at 0.2 (R-2026-07-07,
+*Problem.* O1's *carrier-relative* half is half-mechanised. On the ratified
+carrier, `Trope.GradeR.atom_factorization` (`grade-boundary/EffectAtomsRatified.lean`)
+proves that every grade factors as a `▷`-product of its six single-slot
+projections, and the nine-family classification is proved separately. The link
+between them, that each projection is ε or an atom of one of the nine families,
+is argued in a docstring and stated by no theorem. So "the effect typology is
+exhaustive relative to the carrier" is not yet a theorem. trope-checker records
+O1-carrier as Lean-only and ungraded (its `verification/pwg.json`). Meanwhile the Trope IR is frozen at 0.2 (R-2026-07-07,
 verdict-semantics-only bump). What remains open is *O1-coord*, the metaphysical half:
 are the three coordinates (fate, bond, merge) themselves exhaustive as "ways to
 individuate-and-lose"? That is a claim about the world, not the algebra — a
@@ -225,7 +229,8 @@ precisely where the programme meets the trope-theory literature (WP-1).
 *Deliverable.* A defended adequacy argument (or a counter-example forcing a fourth
 coordinate), and an ADR recording the decision with its evidence.
 
-*Closes.* *O1-coord* (O1's algebraic half is closed upstream).
+*Closes.* *O1-coord*. O1's algebraic half is mechanised upstream only up to the
+factorisation; the bridge to the nine families is still open there.
 
 *Funder fit.* AHRC; Leverhulme; British Academy.
 
@@ -293,7 +298,7 @@ the funding memo.
 |===
 | Constraint | Consequence
 
-| *IR frozen at 0.2* | (Historical gate "O1 before IR freeze" overtaken: the IR froze at 0.2 under R-2026-07-07 with O1's algebraic half proved; WP-5 now defends the metaphysical half.)
+| *IR frozen at 0.2* | (Historical gate "O1 before IR freeze" overtaken: the IR froze at 0.2 under R-2026-07-07 with O1's factorisation proved (the bridge to the nine families is still argued, not stated); WP-5 now defends the metaphysical half.)
 | *O4 resolved* | (Historical gate "O4 gates CO-1" lifted by ADR 0004; WP-3 is mechanization, not carrier design.)
 | *O1 gates O3* | WP-6 is sequenced after WP-5 (O3's grade category is pinned by the ratified carrier; adequacy still informs it).
 | *Tools demonstrate theory* | WP-7 underwrites the publication-gate claims WP-8 relies on.
@@ -324,7 +329,7 @@ for work not yet done, and should be read as such.
   amended), `trope-checker/spec/trope-ir.adoc` (0.2),
   `trope-checker/spec/notes/2026-07-07-*.adoc` (λ-trope operational model; L4 boundary
   and atoms), and the ratified-carrier proofs
-  (`L4Monotonicity.lean`, `EffectAtoms.lean`, `TierTwoComplete.lean`,
+  (`L4Monotonicity.lean`, `EffectAtomsRatified.lean`, `TierTwoComplete.lean`,
   `GradeRatified.lean`, `GradeFactorisationR.lean`).
   *Current as of 2026-10-27:* `trope-checker/docs/status/{ROADMAP,PROOF-STATUS}.adoc` and
   `AFFIRMATION.adoc` were rewritten to the ratified world in Phase 0;
