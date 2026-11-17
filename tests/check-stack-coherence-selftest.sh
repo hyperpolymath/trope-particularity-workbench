@@ -113,6 +113,26 @@ expect_fail S8 "S8 an unfilled template placeholder fails"
 build "$WORK/s"; sed -i 's/coordination = "standards"/coordination = "vocarium"/' "$WORK/s/hermeneia/.machine_readable/6a2/ECOSYSTEM.a2ml"
 expect_fail S9 "S9 two values for coordination fails"
 
+echo "== what a narrower reading used to let through (review of #83) =="
+# S4: a past-marker in ANOTHER clause does not make the claim historical.
+build "$WORK/s"; printf '= Notes\n\nVocarium does not exist, so we no longer use its adapter.\n' > "$WORK/s/hermeneia/docs/SPEC.adoc"
+expect_fail S4 "S4 a retired claim beside an unrelated 'no longer' clause fails"
+
+# S5: a consumer with no recorded pin at all is not agreement.
+build "$WORK/s"; rm "$WORK/s/haec/.github/workflows/check.yml"
+expect_fail S5 "S5 a consumer that records no checker pin fails"
+
+# S6: a caller on a branch name is outside any comparison of commits.
+build "$WORK/s"; sed -i "s/@$SCAN_A/@main/" "$WORK/s/hermeneia/.github/workflows/hypatia-scan.yml"
+expect_fail S6 "S6 a caller of the scan workflow on a branch name fails"
+
+# --fetch lays the workbench out as a symlink; its files must still be read.
+build "$WORK/s"; mv "$WORK/s/trope-particularity-workbench" "$WORK/wb-real"
+ln -s "$WORK/wb-real" "$WORK/s/trope-particularity-workbench"
+printf '= Notes\n\nVocarium does not exist yet.\n' > "$WORK/wb-real/NOTES.adoc"
+expect_fail S4 "a disagreement inside a symlinked repository (the --fetch layout) fails"
+rm -rf "$WORK/wb-real"
+
 echo "== controls: what must not fail =="
 build "$WORK/s"; printf '= Changelog\n\n* 2026-10: this used to read "Vocarium does not exist".\n* Vocarium does not exist (entry of 2026-07).\n' > "$WORK/s/hermeneia/CHANGELOG.adoc"
 expect_pass "history kept in a changelog passes"
@@ -129,7 +149,7 @@ STACK_ROOT="$WORK/s" STACK_CLAIMS="$WORK/empty.tsv" bash "$GATE" > "$WORK/out" 2
 [ "$rc" -eq 1 ] && grep -q '^FAIL S4 ' "$WORK/out" && ok "an empty retired-claims register fails (nothing checked)" || bad "an empty register gave exit $rc"
 
 echo
-EXPECTED=19
+EXPECTED=23
 [ "$((PASS+FAIL))" -eq "$EXPECTED" ] || { echo "stack coherence self-test: $((PASS+FAIL)) cases ran, $EXPECTED expected"; exit 1; }
 echo "stack coherence self-test: $PASS passed, $FAIL failed"
 [ "$FAIL" -eq 0 ]
