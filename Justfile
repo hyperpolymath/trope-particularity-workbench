@@ -29,3 +29,7 @@ stack-coherence-fetch:
 # The stack coherence gate can fail: one planted disagreement per check
 stack-coherence-selftest:
     bash tests/check-stack-coherence-selftest.sh
+
+# Re-run the vocarium survey experiments (needs VOC and TROPECHECK_BIN)
+survey:
+    bash tests/check-survey-experiments.sh
