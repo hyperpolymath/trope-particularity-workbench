@@ -133,6 +133,17 @@ printf '= Notes\n\nVocarium does not exist yet.\n' > "$WORK/wb-real/NOTES.adoc"
 expect_fail S4 "a disagreement inside a symlinked repository (the --fetch layout) fails"
 rm -rf "$WORK/wb-real"
 
+echo "== workflow spellings the first parser missed (second review of #83) =="
+# A .yaml workflow is a workflow: a second checkout, scan caller or claim there counts.
+build "$WORK/s"; sed "s/ref: $PIN_A/ref: $PIN_B/" "$WORK/s/haec/.github/workflows/check.yml" > "$WORK/s/haec/.github/workflows/extra.yaml"
+expect_fail S5 "S5 a second checker commit in a .yaml workflow fails"
+
+build "$WORK/s"; sed "s/@$SCAN_A/@$SCAN_B/" "$WORK/s/hermeneia/.github/workflows/hypatia-scan.yml" > "$WORK/s/hermeneia/.github/workflows/scan2.yaml"
+expect_fail S6 "S6 a second scan revision in a .yaml workflow fails"
+
+build "$WORK/s"; printf '# Vocarium does not exist yet.\nkey: value\n' > "$WORK/s/haec/config.yaml"
+expect_fail S4 "S4 a retired claim in a .yaml file fails"
+
 echo "== controls: what must not fail =="
 build "$WORK/s"; printf '= Changelog\n\n* 2026-10: this used to read "Vocarium does not exist".\n* Vocarium does not exist (entry of 2026-07).\n' > "$WORK/s/hermeneia/CHANGELOG.adoc"
 expect_pass "history kept in a changelog passes"
@@ -143,13 +154,22 @@ expect_pass "a line that reports the claim as past passes"
 build "$WORK/s"; printf '\nSee README.adoc and CONTRIBUTING.adoc.\n' >> "$WORK/s/haec/README.adoc"; : > "$WORK/s/haec/CONTRIBUTING.adoc"
 expect_pass "a README citing documents the repository has passes"
 
+# YAML keys have no order and scalars may be quoted: the same pin, spelled otherwise.
+build "$WORK/s"
+printf 'jobs:\n  t:\n    steps:\n      - uses: actions/checkout@v7.0.1\n        with:\n          ref: %s\n          repository: hyperpolymath/trope-checker\n      - run: true\n' "$PIN_A" > "$WORK/s/haec/.github/workflows/check.yml"
+expect_pass "a checkout with ref: above repository: passes"
+
+build "$WORK/s"; sed -i "s/ref: $PIN_A/ref: \"$PIN_A\"/" "$WORK/s/haec/.github/workflows/check.yml"
+sed -i "s/ref: $PIN_A/ref: '$PIN_A'  # pinned/" "$WORK/s/hermeneia/.github/workflows/check.yml"
+expect_pass "quoted checker pins pass"
+
 echo "== the register itself =="
 build "$WORK/s"; printf '# only a comment\n' > "$WORK/empty.tsv"
 STACK_ROOT="$WORK/s" STACK_CLAIMS="$WORK/empty.tsv" bash "$GATE" > "$WORK/out" 2>&1; rc=$?
 [ "$rc" -eq 1 ] && grep -q '^FAIL S4 ' "$WORK/out" && ok "an empty retired-claims register fails (nothing checked)" || bad "an empty register gave exit $rc"
 
 echo
-EXPECTED=23
+EXPECTED=28
 [ "$((PASS+FAIL))" -eq "$EXPECTED" ] || { echo "stack coherence self-test: $((PASS+FAIL)) cases ran, $EXPECTED expected"; exit 1; }
 echo "stack coherence self-test: $PASS passed, $FAIL failed"
 [ "$FAIL" -eq 0 ]
