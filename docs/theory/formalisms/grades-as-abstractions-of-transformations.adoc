@@ -145,9 +145,21 @@ meanings, of which the IR names two:
 | The abstraction or the evidence cannot establish either.
 |===
 +
-Trope IR v0.2's `p-insufficient` can keep its present meaning, "failed the declared
-grade-floor test". It should not be read as proof of semantic insufficiency. This
-bears on Hermeneia's _licensed_ band.
+Two readings of `p-insufficient` are in use, and they differ. This workbench's
+vocabulary (`README.adoc`, the verdict table) defines it by what it is taken to
+mean: "The surviving residual is _not enough_ for the declared use. Something
+needed was lost (or falsified)". What the checker computes is narrower, an
+operational result: the declared grade failed the declared floor. The second
+implies the first only if the grade is exact. Where the grade is a conservative
+estimate, the residual may in fact have sufficed, which is the false refusal the
+calculus allows. So the operational result is evidence for the vocabulary's
+reading and not a proof of it.
++
+Trope IR v0.2's `p-insufficient` can keep its operational meaning without a schema
+change. Under the proposed reading, the vocabulary's sentence would describe
+_certified insufficient_, and a bare failed floor test would be _indeterminate_
+unless a counterexample comes with it. Whether to reword the vocabulary is the
+owner's decision and is not made here. This bears on Hermeneia's _licensed_ band.
 
 == Three open theorems
 
