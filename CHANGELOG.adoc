@@ -20,8 +20,9 @@ https://semver.org/spec/v2.0.0.html[Semantic Versioning].
   five `main` branches on 2026-11-17 it reports 6 of 10 checks in disagreement;
   the fixes belong to the sibling repositories. The live gate runs on pushes to
   `main`, weekly and on demand. Its self-test
-  (`tests/check-stack-coherence-selftest.sh`, 19 cases: one planted
-  disagreement per check, three controls) runs on every pull request.
+  (`tests/check-stack-coherence-selftest.sh`, 23 cases: one planted
+  disagreement per check, four cases from review, three controls) runs on every
+  pull request.
 
 ==== Changed
 

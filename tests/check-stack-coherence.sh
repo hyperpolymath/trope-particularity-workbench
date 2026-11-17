@@ -79,7 +79,7 @@ SCHEMA="trope-checker/schemas/trope-ir.schema.json"
 
 # Text files worth reading, per repository; never a build tree or a clone.
 text_files() {
-  find "$1" \( -name .git -o -name target -o -name node_modules -o -name _build -o -name .lake \
+  find -H "$1" \( -name .git -o -name target -o -name node_modules -o -name _build -o -name .lake \
               -o -name zig-cache -o -name .zig-cache -o -name zig-out \) -prune -o -type f \
        \( -name '*.adoc' -o -name '*.md' -o -name '*.rs' -o -name '*.zig' -o -name '*.idr' \
           -o -name '*.sh' -o -name '*.yml' -o -name '*.a2ml' -o -name '*.deed' -o -name 'Justfile' \) -print
@@ -92,10 +92,10 @@ if [ ! -f "$SCHEMA" ]; then
 else
   want=$(sha256sum "$SCHEMA" | cut -d' ' -f1); bad=()
   while IFS= read -r f; do
-    [ "$f" = "./$SCHEMA" ] && continue
+    [ "$f" = "$SCHEMA" ] && continue
     got=$(sha256sum "$f" | cut -d' ' -f1)
     [ "$got" = "$want" ] || bad+=("$f sha256 $got" "$SCHEMA sha256 $want")
-  done < <(find . -name .git -prune -o -name 'trope-ir.schema.json' -print)
+  done < <(find -H "${REPOS[@]}" -name .git -prune -o -name 'trope-ir.schema.json' -print)
   if [ "${#bad[@]}" -gt 0 ]; then fail S1 "a vendored IR schema differs from the checker's" "${bad[@]}"
   else pass S1 "vendored IR schemas match the checker's"; fi
 fi
@@ -114,13 +114,13 @@ else
     n=$((n+1))
     v=$(jq -r '.version // "absent"' "$f" 2>/dev/null || echo unreadable)
     case "$f" in
-      ./trope-checker/*)
+      trope-checker/*)
         jq -e --arg v "$v" '.properties.version.enum | index($v) != null' "$SCHEMA" >/dev/null 2>&1 \
           || bad+=("$f declares version $v, which the schema does not accept") ;;
       *)
         [ "$v" = "$current" ] || bad+=("$f declares version $v; the schema's current version is $current") ;;
     esac
-  done < <(find . -name .git -prune -o -name '*.ir.json' -print)
+  done < <(find -H "${REPOS[@]}" -name .git -prune -o -name '*.ir.json' -print)
   if [ "$n" -eq 0 ]; then fail S2 "no IR document found in any repository (nothing read)"
   elif [ "${#bad[@]}" -gt 0 ]; then fail S2 "IR documents not at the current version" "${bad[@]}"
   else pass S2 "$n IR documents: producers and consumers at $current, the checker within the accepted set"; fi
@@ -148,8 +148,11 @@ while IFS=$'\t' read -r id re why allow; do
     while IFS= read -r f; do
       [ -n "$allow" ] && printf '%s\n' "$f" | grep -Eq -- "$allow" && continue
       while IFS= read -r hit; do
-        # A line that reports the claim as past ("used to say") does not assert it.
-        printf '%s\n' "$hit" | grep -Eqi 'used to (say|read|claim)|no longer|formerly said' && continue
+        # A line that reports the claim as past does not assert it. The marker
+        # must govern the claim: it comes before it, in the same sentence. A
+        # marker elsewhere on the line ("X does not exist, so we no longer ...")
+        # leaves the claim asserted.
+        printf '%s\n' "${hit#*:}" | grep -Eqi -- "(used to (say|read|claim)|formerly said)[^.]*($re)" && continue
         bad+=("$id  $f:${hit%%:*}: $(printf '%s' "${hit#*:}" | cut -c1-110)" "      superseded by: $why")
       done < <(grep -nE -- "$re" "$f" 2>/dev/null)
     done < <(text_files "$r")
@@ -161,7 +164,7 @@ else pass S4 "none of the $rows retired claims is asserted"; fi
 
 # --- S5: every sibling builds against one commit of the checker -------------
 check
-pins=()
+pins=(); norecord=()
 for r in vocarium hermeneia haec; do
   found=""
   while IFS= read -r f; do
@@ -175,21 +178,34 @@ for r in vocarium hermeneia haec; do
     # A script constant.
     p=$(grep -HnoE 'TROPECHECK_PIN="?[0-9a-f]{40}' "$f" 2>/dev/null | sed -E 's/^([^:]+):[0-9]+:.*([0-9a-f]{40})$/\1: \2/')
     [ -n "$p" ] && found+="$p"$'\n'
-  done < <(find "$r" -name .git -prune -o -type f \( -name '*.yml' -o -name '*.sh' \) -print)
-  [ -n "$found" ] && while IFS= read -r l; do [ -n "$l" ] && pins+=("$l"); done <<<"$found"
+  done < <(find -H "$r" -name .git -prune -o -type f \( -name '*.yml' -o -name '*.sh' \) -print)
+  # Each of the three builds against the checker, so each must say at which
+  # commit. A repository that records none is not in agreement with the others.
+  if [ -n "$found" ]; then
+    while IFS= read -r l; do [ -n "$l" ] && pins+=("$l"); done <<<"$found"
+  else
+    pins+=("$r: unpinned"); norecord+=("$r")
+  fi
 done
 distinct=$(printf '%s\n' "${pins[@]:-}" | sed -E 's/^.*: //' | sort -u | grep -c . || true)
-if [ "${#pins[@]}" -eq 0 ]; then fail S5 "no sibling records which checker commit it builds against (nothing read)"
+if [ "${#norecord[@]}" -eq 3 ]; then fail S5 "no sibling records which checker commit it builds against (nothing read)"
+elif [ "${#norecord[@]}" -gt 0 ]; then
+  fail S5 "a sibling records no checker commit at all: ${norecord[*]}" "${pins[@]}"
 elif [ "$distinct" -ne 1 ] || printf '%s\n' "${pins[@]}" | grep -q 'unpinned$'; then
   fail S5 "the siblings do not build against one commit of trope-checker" "${pins[@]}"
 else pass S5 "every sibling pins trope-checker at $(printf '%s\n' "${pins[0]}" | sed -E 's/^.*: //' | cut -c1-12)"; fi
 
 # --- S6: one revision of the shared scan workflow ---------------------------
 check
-mapfile -t scan < <(grep -rHnoE 'hypatia-scan-reusable\.yml@[0-9a-f]{40}' --include='*.yml' \
+# Every call, whatever follows the @: a caller on a branch or a tag is outside
+# any comparison of commits, so it fails here and is not filtered out.
+mapfile -t scan < <(grep -rHnoE "hypatia-scan-reusable\.yml@[^[:space:]'\"#]+" --include='*.yml' \
                       "${REPOS[@]/%//.github/workflows}" 2>/dev/null | sed -E 's/^([^:]+):[0-9]+:.*@/\1: /')
 distinct=$(printf '%s\n' "${scan[@]:-}" | sed -E 's/^.*: //' | sort -u | grep -c . || true)
+mapfile -t floating < <(printf '%s\n' "${scan[@]:-}" | grep -vE ': [0-9a-f]{40}$' | grep . || true)
 if [ "${#scan[@]}" -eq 0 ]; then fail S6 "no repository calls the shared scan workflow (nothing read)"
+elif [ "${#floating[@]}" -gt 0 ]; then
+  fail S6 "a caller of the shared scan workflow is not pinned to a commit" "${floating[@]}"
 elif [ "$distinct" -ne 1 ]; then fail S6 "the shared scan workflow is pinned at $distinct revisions" "${scan[@]}"
 else pass S6 "one revision of the shared scan workflow in ${#scan[@]} callers"; fi
 
