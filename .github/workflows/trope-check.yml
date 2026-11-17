@@ -8,10 +8,9 @@
 name: "🔴 Gate: Trope conformance"
 on:
   push:
-    # The stack gate reads this repository's documents, workflows and
-    # .machine_readable/ as well as the tests, so a push that changes any of
-    # them must start it.
-    paths: ['vocabulary/**', 'assets/**', '**/*.adoc', 'tests/**', '.github/workflows/**', '.machine_readable/**', 'Justfile']
+    # No path filter. The stack gate reads every text file in this repository
+    # (documents, scripts, workflows, .machine_readable/, IR documents), so any
+    # list of paths here would leave some of its inputs unable to start it.
   pull_request:
   workflow_dispatch:
   schedule:
