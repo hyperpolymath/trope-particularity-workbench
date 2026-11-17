@@ -82,7 +82,7 @@ text_files() {
   find -H "$1" \( -name .git -o -name target -o -name node_modules -o -name _build -o -name .lake \
               -o -name zig-cache -o -name .zig-cache -o -name zig-out \) -prune -o -type f \
        \( -name '*.adoc' -o -name '*.md' -o -name '*.rs' -o -name '*.zig' -o -name '*.idr' \
-          -o -name '*.sh' -o -name '*.yml' -o -name '*.a2ml' -o -name '*.deed' -o -name 'Justfile' \) -print
+          -o -name '*.sh' -o -name '*.yml' -o -name '*.yaml' -o -name '*.a2ml' -o -name '*.deed' -o -name 'Justfile' \) -print
 }
 
 # --- S1: every vendored copy of the IR schema is the checker's --------------
@@ -169,16 +169,23 @@ for r in vocarium hermeneia haec; do
   found=""
   while IFS= read -r f; do
     # A workflow step that checks out trope-checker: its `ref:` if it has one.
+    # The whole step is read before it is judged: YAML keys have no order, so
+    # `ref:` may stand above `repository:`, and the value may be quoted.
     p=$(awk '
-      /repository:[[:space:]]*hyperpolymath\/trope-checker/ { inblk = 1; got = 0; next }
-      inblk && /^[[:space:]]*-[[:space:]]/ { if (!got) print FILENAME ": unpinned"; inblk = 0 }
-      inblk && /ref:[[:space:]]*[0-9a-f]{40}/ { match($0, /[0-9a-f]{40}/); print FILENAME ": " substr($0, RSTART, 40); got = 1; inblk = 0 }
-      END { if (inblk && !got) print FILENAME ": unpinned" }' "$f")
+      function flush() { if (repo) print FILENAME ": " (ref != "" ? ref : "unpinned"); repo = 0; ref = "" }
+      /^[[:space:]]*-[[:space:]]/ { flush() }
+      /repository:[[:space:]]*["\047]?hyperpolymath\/trope-checker["\047]?[[:space:]]*(#.*)?$/ { repo = 1 }
+      /^[[:space:]]*(-[[:space:]]+)?ref:/ {
+        v = $0; sub(/^[^:]*:[[:space:]]*/, "", v); sub(/[[:space:]]+#.*$/, "", v)
+        gsub(/^["\047]|["\047][[:space:]]*$/, "", v)
+        if (v ~ /^[0-9a-f]+$/ && length(v) == 40) ref = v
+      }
+      END { flush() }' "$f")
     [ -n "$p" ] && found+="$p"$'\n'
     # A script constant.
     p=$(grep -HnoE 'TROPECHECK_PIN="?[0-9a-f]{40}' "$f" 2>/dev/null | sed -E 's/^([^:]+):[0-9]+:.*([0-9a-f]{40})$/\1: \2/')
     [ -n "$p" ] && found+="$p"$'\n'
-  done < <(find -H "$r" -name .git -prune -o -type f \( -name '*.yml' -o -name '*.sh' \) -print)
+  done < <(find -H "$r" -name .git -prune -o -type f \( -name '*.yml' -o -name '*.yaml' -o -name '*.sh' \) -print)
   # Each of the three builds against the checker, so each must say at which
   # commit. A repository that records none is not in agreement with the others.
   if [ -n "$found" ]; then
@@ -199,7 +206,7 @@ else pass S5 "every sibling pins trope-checker at $(printf '%s\n' "${pins[0]}" |
 check
 # Every call, whatever follows the @: a caller on a branch or a tag is outside
 # any comparison of commits, so it fails here and is not filtered out.
-mapfile -t scan < <(grep -rHnoE "hypatia-scan-reusable\.yml@[^[:space:]'\"#]+" --include='*.yml' \
+mapfile -t scan < <(grep -rHnoE "hypatia-scan-reusable\.yml@[^[:space:]'\"#]+" --include='*.yml' --include='*.yaml' \
                       "${REPOS[@]/%//.github/workflows}" 2>/dev/null | sed -E 's/^([^:]+):[0-9]+:.*@/\1: /')
 distinct=$(printf '%s\n' "${scan[@]:-}" | sed -E 's/^.*: //' | sort -u | grep -c . || true)
 mapfile -t floating < <(printf '%s\n' "${scan[@]:-}" | grep -vE ': [0-9a-f]{40}$' | grep . || true)
