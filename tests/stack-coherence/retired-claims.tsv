@@ -1,0 +1,14 @@
+# SPDX-License-Identifier: MPL-2.0
+# Retired claims: statements one repository of the trope stack used to make about
+# the stack and that a later, cited change superseded. The stack coherence gate
+# (tests/check-stack-coherence.sh, S4) fails while any repository still asserts one.
+#
+# Columns, TAB-separated:
+#   id   extended regex   what superseded it   regex of paths that may keep the text
+#
+# The last column is for history: changelogs, affirmations, dated reports, and the
+# place that records the supersession. Add a row when a claim is retired; never
+# widen an allow-pattern to make the gate pass.
+RC-1	Vocarium does not exist	vocarium M1: the voc store engine is built and gated (vocarium README, Status); what is missing is the M2 adapter	(CHANGELOG|AFFIRMATION)\.adoc$|/docs/reports/|tests/stack-coherence/|tests/check-stack-coherence
+RC-2	Predicated[^.]{0,40}incomparable[^.]{0,20}Dropped|Predicated`?[[:space:]]*∥[[:space:]]*`?Dropped	Trope IR 0.2, ADR 0004 A2: retention is a chain, Dropped below Predicated (trope-checker spec/calculus.adoc)	^trope-checker/|(CHANGELOG|AFFIRMATION)\.adoc$|/docs/decisions/|/docs/reports/|tests/stack-coherence/|tests/check-stack-coherence
+RC-3	Rust`? \(Haec\) is the first front-end	haec has no compiler; its examples are lowered by hand (haec README, tests/check-examples.sh)	(CHANGELOG|AFFIRMATION)\.adoc$|tests/stack-coherence/|tests/check-stack-coherence
