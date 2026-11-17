@@ -1,0 +1,436 @@
+// SPDX-FileCopyrightText: © 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+// SPDX-License-Identifier: CC-BY-SA-4.0
+= Where Vocarium could serve: a survey with four experiments and one proposed theorem
+:revnumber: 0.1 (survey — nothing ratified, nothing adopted)
+:revdate: 2026-11-17
+:toc: macro
+:sectnums:
+:stem: latexmath
+
+[abstract]
+Vocarium is the store of the trope stack. This note asks whether it has a use in
+four other parts of the estate: the Palimpsest licence's logic, the chora identity
+registry, VeriSimDB's consonance subjects, and the cadastre. Each question is put to
+the built store engine and the shipped checker, in that order, with small fixtures
+kept in `examples/survey/`. It also compares the two things the estate calls a
+_warrant_ and states, without proving, a theorem that would join them. It changes no
+specification, licence, proof or sibling repository.
+
+toc::[]
+
+== What was run, and what was only read
+
+[cols="2,3"]
+|===
+| Claim | Status
+
+| The ten verdicts in §2 to §5
+| *Run* on 2026-11-17. `voc` built from vocarium `3ef6286` with Zig 0.16.0;
+`tropecheck-rs` built from trope-checker sources equal to `main` (`0dceab6`) in
+`src/`, `schemas/` and `spec/`. `tests/check-survey-experiments.sh` re-runs them.
+
+| Vocarium refuses a revocation record (§3)
+| *Run.*
+
+| The IR that `voc invoke` emits carries no warrant (§4)
+| *Run.*
+
+| The Idris2 reference checker gives the same verdicts
+| *Not run.*
+
+| Everything said about Palimpsest, chora, chora-registry, VeriSimDB, the cadastre,
+epistemic-types and Mathesis
+| *Read*, at the commits in §8. No tool of theirs was run.
+
+| The theorem in §6
+| *Stated, not proved*, in any prover.
+|===
+
+The fixtures' grades are this note's own claims about each transformation. They are
+modelling choices, and a different choice gives a different verdict. That is the
+point of §7.
+
+== Experiment 1: the Palimpsest licence's logic
+
+=== What Palimpsest asks
+
+Read from `palimpsest-license` (`legal/PALIMPSEST-MPL-1.0.txt` §2 to §4,
+`spec/PROVENANCE-SPEC.adoc`). The framework's own terms:
+
+* _Emotional Lineage_: "the narrative, cultural, symbolic, and contextual meaning
+embedded in" a work.
+* _Provenance Metadata_: signed attribution information.
+* A _Non-Interpretive System_ "processes Covered Software without preserving or
+considering its Emotional Lineage".
+
+Its rules are about what a transformation keeps. A non-interpretive use must be
+documented and must "not claim that outputs … carry the Emotional Lineage". Nobody
+may "strip, alter, or obscure Provenance Metadata".
+
+This is the shape of a trope and a grade. The work's context slot holds the lineage,
+its record slot holds the provenance metadata, and a transformation's grade says what
+became of each.
+
+=== The run
+
+`examples/survey/e1-palimpsest.jsonl` holds one work and two non-interpretive
+ingestions of it. Both drop the context. One keeps the provenance metadata and one
+strips it. Two use-models ask for different things.
+
+[cols="2,2,3"]
+|===
+| Output | Use-model | Verdict
+
+| metadata kept | `carries-emotional-lineage` | `p-insufficient`, witness `e_ni_kept`, `fate.context`
+| metadata kept | `provenance-intact` | `p-sufficient`
+| metadata stripped | `carries-emotional-lineage` | `p-insufficient`, witness `e_ni_stripped`, `fate.context`
+| metadata stripped | `provenance-intact` | `p-insufficient`, witness `e_ni_stripped`, `fate.record`
+|===
+
+The first row is Palimpsest's rule that such an output must not be claimed to carry
+the lineage, as a refusal that names the edge and the slot. The fourth is the
+stripping rule. The second is the permitted case.
+
+=== Consent has a scope, and the checker does not read it
+
+`examples/survey/e1c-consent-scope.jsonl` models a consent grant. One reading of it
+keeps `Predicated(consented-for-research)`, another `Predicated(consented-for-training)`.
+The use-model's floor asks for `Predicated(consented-for-training)`.
+
+[cols="2,3"]
+|===
+| Reading | Verdict under `needs-training-consent`
+
+| consent for training | `p-sufficient`
+| consent for research only | `p-sufficient`
+|===
+
+The second line is wrong. It is the false acceptance recorded as trope-checker
+issue 125, in the setting where it matters most: consent for one use satisfying a
+floor that asks for another. Palimpsest's own model refuses this by a different
+route (§6): its rule 4 holds a consent claim at the middle level whatever evidence
+is offered.
+
+*Until issue 125 is settled, the trope stack must not be used to decide consent.*
+
+=== What this experiment does not show
+
+* It does not show that the grades in the fixture are true of any real pipeline. A
+grade here is a claim with a warrant id beside it (§6).
+* Palimpsest's sources disagree with each other about training: its README says
+"Permitted with Attribution", `config.ncl` defaults to `prohibited`, and
+`PALIMPSEST.adoc` says "explicit consent". Which is intended is the licence author's
+decision. This note takes no side and changes nothing there.
+* Emotional lineage has structure in Palimpsest's own metadata (context, trauma
+markers, cultural origin, ancestors, descendants). One context slot flattens that.
+
+== Experiment 2: the history of a chora
+
+=== What the registry wants
+
+Read from `standards` `2-protocols/chora/CHORA-SPEC.adoc` (draft, not ratified) and
+`chora-registry`. A chora is the identity record of a repository. Its id "is minted
+once, from its birth path", and "a validator never re-derives it from the current
+owner and name, so a transfer, rename or move does not change it" (§9). The
+registry's planned schemas want an append-only status history, lineage events
+(rename, merge, split), observations with evidence, attestations, and withdrawn ids.
+Its database is not deployed. For one kind of record the estate reconciliation
+documents already accept a plain directory in its place: "The envelope store is a
+directory the farm keeps until a store exists. VeriSimDB replaces it behind the same
+interface" (A4, F15).
+
+=== The run
+
+`examples/survey/e2-chora-history.jsonl` records a real rename: the registry itself
+was `gv-clade-index` and is now `chora-registry`. The trope is the identity, and its
+bearer is the path. The rename keeps the id and drops the path.
+
+[cols="2,3"]
+|===
+| Use-model | Verdict
+
+| `resolve-by-id` | `p-sufficient`
+| `follow-old-path` | `p-insufficient`, witness `e_rename`, `fate.bearer`
+|===
+
+The specification's rule about ids and paths comes out as a pair of verdicts: a
+reference by id survives a rename, and a reference by path does not, and the refusal
+names the rename.
+
+=== The gaps
+
+. *Withdrawal.* The registry has `(retired …)` records. Vocarium refuses a
+`revocation` record: "revocation records are reserved for M2". Run.
+. *Time.* The registry's history is ordered. Vocarium's log is append-only and
+ordered by line, and a record carries no time of its own.
+. *Signed attestations.* Vocarium's warrant is an id and an optional text (§6).
+
+=== The boundary
+
+A chora _is_ identity. Vocarium stores particulars and what became of them. The
+fixture stores an observation about an identity and a transformation of how that
+identity is reached. Putting the identity record itself in Vocarium would cross the
+line CHORA-SPEC draws between the chora and everything derived from it, and the line
+Vocarium's own charter draws around the checker's algebra. The specification lists
+"the trope format" as out of scope for now, which leaves the question open and not
+answered.
+
+== Experiment 3: a peer of a consonance subject
+
+=== What VeriSimDB offers
+
+Read from `verisimdb` (`README.adoc`, `docs/modality-profile.adoc`). An entity is a
+_consonance subject_. Its _modality set_ is the modalities it has, a subset of the
+_modality profile_ an implementation supports. This implementation's profile is the
+_Octad_: eight fixed slots (graph, vector, tensor, semantic, document, temporal,
+provenance, spatial). The eight are still fixed; what changed is that a subject need
+not fill them all.
+
+An outside store joins as a federated peer through an Elixir behaviour with five
+callbacks: `connect`, `query`, `health_check`, `supported_modalities`,
+`translate_results`. A peer declares the modalities it can serve.
+
+=== What Vocarium could declare
+
+[cols="1,3"]
+|===
+| Modality | What Vocarium holds for it
+
+| provenance | edges: what was transformed into what, by which effect, on whose warrant
+| semantic | tropes: quality, bearer, context, record
+| graph | the transformation paths between tropes
+| temporal, vector, tensor, document, spatial | nothing
+|===
+
+By Vocarium's ADR-0002 (wire, do not link) the adapter would be Elixir code in
+`verisimdb` that runs `voc`, and nothing of VeriSimDB's would enter Vocarium.
+
+=== The measured gap
+
+The only thing `voc` emits today is the IR for one `invoke`. Its edges have the keys
+`effect`, `grade`, `id`, `inputs`, `output`, and its nodes `id`, `present`, `type`.
+The warrant id and the four descriptive slots are in the store and are not in the
+output. Run. A provenance peer needs exactly those. Hermeneia refuses `show warrant`
+for the same reason. So the first piece of work is a read path in `voc` that returns
+stored records, and it serves Hermeneia's M2 adapter as much as VeriSimDB.
+
+=== What each side has that the other lacks
+
+VeriSimDB measures drift between two modalities as a number in stem:[[0,1]], and its
+query language can ask `DRIFT(m1, m2) < 0.1`. That score is symmetric and has no
+purpose in it. Experiments 1, 2 and 4 each show one transformation that is sufficient
+for one use and insufficient for another. No single number says both.
+
+VeriSimDB has time. Experiment 4's cadastre row is four months old, and nothing in
+the grade calculus can say so.
+
+A grade as a drift metric, and a temporal modality beside a trope, are both
+proposals. Neither is designed here.
+
+== Experiment 4: a cadastre row
+
+=== What the cadastre is today
+
+Read from `metadatastician/cadastra`. It scans the two organisations and writes
+`docs/status/estate-triage-report.csv`: one row per repository with a classification
+(CLEAN, MIGRATE, KILL, DONE, FORK) and anti-pattern flags. Its documents call it the
+observer and say it is not the identity registry. It has no front end. Its own
+arrival pack says "maturity experimental; 5% complete". The "verify mode" that the chora
+documents rely on is not built.
+
+=== The run
+
+`examples/survey/e4-cadastre-row.jsonl` takes row 299 as written: vocarium, primary
+language Nickel, classification CLEAN, last activity 2026-07-08. The scan reduces a
+repository to a label, so the edge keeps `Predicated(classification)`.
+
+[cols="2,3"]
+|===
+| Use-model | Verdict
+
+| `triage-queue` | `p-sufficient`
+| `describe-the-repository` | `p-insufficient`, witness `e_scan`, `fate.quality`
+|===
+
+The label is enough to queue the repository and not enough to describe it. The row
+bears that out: it says Nickel, and vocarium is a Zig store engine.
+
+=== What a front end would gain
+
+A front end over rows stored this way could answer "is this row enough for what I am
+about to do with it" and name the scan as the reason when it is not. That is a
+proposal with nothing to run: there is no front end, and the scan is a shell script
+that writes a CSV. The nearer step is the cadastre's own verify mode.
+
+== Two things called a warrant, and a theorem that would join them
+
+=== The two definitions
+
+*epistemic-types* (`src/EpistemicTypes/Warrant.agda`, at `bfcee6e`) gives three
+records over a standpoint stem:[\kappa] and a claim stem:[A]:
+
+[cols="1,3"]
+|===
+| `Warrant κ A` | a type of evidence for stem:[A]
+| `Epi κ A` | a warrant and one token of its evidence
+| `SoundWarrant κ A` | a warrant and a map from its evidence to stem:[A]
+|===
+
+Palimpsest (`proofs/agda/Provenance/Warrant.agda`, `formats/warrant.ncl`) uses these
+by pin as its three levels `warrant`, `epi` and `sound`. It proves six statements
+over them in Agda, rechecked in Rocq and Lean with no axioms. Three matter here:
+
+* `no-signature-sound`: without the unforgeability assumption, no uniform map takes
+a verified signature to "signed by".
+* `no-consent-sound`: no uniform map takes a licence header to consent. A consent
+claim is at most `epi`.
+* `no-transfer`: a sound warrant for one claim, held with a token for another, does
+not give the other.
+
+*Vocarium* (`src/store/store.zig`) has a warrant record `{id, text?}`. Every edge
+must cite one that exists, or the store refuses the edge. The store reads nothing
+else of it.
+
+=== The comparison
+
+They are one notion at two levels of detail, and Vocarium's is the lowest.
+
+. A Vocarium edge is a claim: _this transformation has this grade_. Its warrant
+record names that there is something the claim rests on. In epistemic-types' terms
+that is a `Warrant` with its evidence type left unsaid and no token held: level
+`warrant`. With the text filled in it is at most a token: level `epi`.
+. Nothing in Vocarium can express `sound`. There is no place to name a rule or an
+assumption.
+. The checker's verdict is the other half. Given the grades, it _computes_ whether
+they compose above the floor, and that computation is what the stack's proofs are
+about. That is a sound rule, for the claim "these declared grades are enough for
+this floor".
+. So `p-sufficient` today joins a sound step to a step held at `warrant` or `epi`.
+By the reading of `no-transfer`, the result is not sound for the claim people take
+it to make: that the transformation itself suffices for the use.
+
+This is the gap _Grades as abstractions of transformations_ names from the other
+side, where it is the difference between stem:[\mathrm{AbstractSafe}(g,u)] and
+stem:[\mathrm{Suff}(f,u)]. The warrant levels give it a type.
+
+=== The proposed theorem
+
+Write stem:[P(f,g)] for "transformation stem:[f] is described by grade stem:[g]"
+(producer soundness, O2), stem:[S(g,u)] for "grade stem:[g] meets the floor of use
+stem:[u]" (what the checker decides), and stem:[\mathrm{Suff}(f,u)] for "stem:[u]
+factors through stem:[f]".
+
+*W-1, the level of a verdict.* For every standpoint stem:[\kappa]:
+
+[stem]
+++++
+\mathrm{SoundWarrant}\ \kappa\ P(f,g) \;\to\; \mathrm{SoundWarrant}\ \kappa\ S(g,u)
+\;\to\; \mathrm{SoundWarrant}\ \kappa\ \mathrm{Suff}(f,u)
+++++
+
+given the abstraction lemma stem:[P(f,g) \to S(g,u) \to \mathrm{Suff}(f,u)]. The
+evidence of the result is the pair of the two evidences.
+
+*W-2, no upgrade.* There is no uniform map
+
+[stem]
+++++
+\mathrm{Epi}\ \kappa\ P(f,g) \;\to\; \mathrm{SoundWarrant}\ \kappa\ S(g,u) \;\to\; \mathrm{Suff}(f,u).
+++++
+
+A verdict computed over an edge held only at `epi` is itself at most `epi`.
+
+*W-3, along a path.* For a path of edges, the level of the verdict is the least
+level among them.
+
+What each would take:
+
+* W-2 should follow from `no-transfer` by choosing the claims. It is the cheap one
+and the one with consequences: it says what `p-sufficient` may be called.
+* W-1 needs the abstraction lemma, which is the open theorem of the earlier note. It
+is as hard as that.
+* W-3 needs an order on the three levels. epistemic-types has the three records and
+`sound-epi`; an order with a meet was not found there in this reading.
+
+If W-2 holds, three things follow, each a decision and not a consequence:
+
+. Vocarium's warrant record would need a level, and for `sound` a rule and its
+assumption. Palimpsest's contract already has those fields.
+. A verdict would carry a level. Hermeneia's _licensed_ band is the place it shows.
+. The consent case of §2 gets a second, independent refusal: whatever the checker
+says about the predicate, a consent edge is at most `epi`, so the verdict is too.
+
+None of this is proved, and proving it belongs to the proof work and its kernels.
+
+== For Mathesis
+
+Mathesis keeps an atlas of the estate's mathematics and derives status from the home
+repositories' receipts. Read at `69b7f0f`:
+
+* Its census frame already names every repository this note touches: trope-checker,
+vocarium, hermeneia, haec, palimpsest-license, epistemic-types, verisimdb, cadastra.
+* It keeps bridge candidates, relations between artefacts in two repositories, in
+`docs/atlas/claims/bridges.jsonl`. It has two.
+
+This note offers three candidates. They are proposals for that register and were not
+written to it.
+
+[cols="2,3,2"]
+|===
+| Candidate | Endpoints | State to record
+
+| A Vocarium warrant is an epistemic-types `Warrant` held at most at `epi`
+| vocarium `src/store/store.zig` (no proof); epistemic-types `Warrant.agda` (Agda)
+| unassessed; read, not checked
+
+| The verdict's level: W-2 as an instance of Palimpsest's `no-transfer`
+| palimpsest-license `Provenance/Warrant.agda` (Agda, rechecked); trope-checker verdict soundness (Agda, Idris2)
+| unassessed; statement only
+
+| Sufficiency under a use is the purposeful, directed counterpart of VeriSimDB's drift score
+| verisimdb `formal/Drift.v` (Rocq); trope-checker `spec/calculus.adoc`
+| unassessed; no formal statement on the trope side
+|===
+
+Two cautions for the atlas. A receipt in a home repository is itself a claim with a
+warrant, and Mathesis's reader derives a grade from it; the levels of §6 and the
+Proof Witness Grades are answering one question in two vocabularies, and nobody has
+said how they relate. And the fixtures here are not proofs and earn no grade.
+
+== What would decide the next step
+
+In order of what each unblocks:
+
+. *Issue 125.* Until predicate labels are compared or refused, experiment 1c stays a
+false acceptance and consent stays out of scope.
+. *W-2.* It is small, it rests on a theorem already proved three times, and it
+settles what a verdict may be called.
+. *A read path in `voc`.* One piece of work serves Hermeneia's adapter, a VeriSimDB
+peer and any front end.
+. *Revocation in Vocarium.* Needed before it can hold any history that includes a
+withdrawal.
+
+What would count against the whole direction:
+
+* If W-2 is false as stated, the two warrant notions are namesakes and §6 falls.
+* If every useful Palimpsest question turns out to need the predicate's content, the
+grade algebra adds nothing there beyond naming the slot that was lost.
+* If the chora specification, once ratified, places lineage inside the identity
+record, experiment 2's separation does not hold.
+
+== Sources read
+
+[cols="2,1"]
+|===
+| Repository | Commit
+
+| hyperpolymath/vocarium | `3ef6286`
+| hyperpolymath/trope-checker | `0dceab6` (`src/`, `schemas/`, `spec/`)
+| hyperpolymath/palimpsest-license | `81a2315`
+| hyperpolymath/epistemic-types | `bfcee6e`
+| hyperpolymath/chora-registry | `09ef283`
+| metadatastician/standards | `5e6cc1c`
+| hyperpolymath/verisimdb | `ecf7a41`
+| metadatastician/cadastra | `5746b39`
+| hyperpolymath/mathesis | `69b7f0f`
+|===

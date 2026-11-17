@@ -1,0 +1,13 @@
+# SPDX-License-Identifier: CC-BY-SA-4.0
+# Survey experiment E2: the history of a repository identity as vocarium records.
+# The identity registry was renamed (gv-clade-index, now chora-registry). The
+# trope is the identity; its bearer is the path it is reached by. The rename
+# keeps the id and changes the path. Two uses of the old reference: resolve by
+# id, and follow the old path.
+{"t":"warrant","id":"w-former-record","text":"The registry's own (former ...) record of the rename."}
+{"t":"warrant","id":"w-scan","text":"cadastra scan row for the repository, with its evidence columns."}
+{"t":"trope","id":"t_id_at_birth","quality":"the repository's minted id","bearer":"path hyperpolymath/gv-clade-index","context":"estate identity registry","record":"seed deed entry"}
+{"t":"trope","id":"t_id_after_rename","quality":"the repository's minted id","bearer":"path hyperpolymath/chora-registry","context":"estate identity registry","record":"seed deed entry, with a former-path record"}
+{"t":"edge","id":"e_rename","effect":"detach","inputs":["t_id_at_birth"],"output":"t_id_after_rename","grade":{"fate":{"quality":{"k":"Present"},"bearer":{"k":"Dropped"},"context":{"k":"Present"},"record":{"k":"Present"}},"bond":{"k":"Withheld"},"merge":{"k":"Single"}},"warrant_id":"w-former-record"}
+{"t":"use_model","id":"resolve-by-id","floor":{"fate":{"quality":{"k":"Present"}}}}
+{"t":"use_model","id":"follow-old-path","floor":{"fate":{"bearer":{"k":"Present"}}}}

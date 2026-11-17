@@ -1,0 +1,15 @@
+# SPDX-License-Identifier: CC-BY-SA-4.0
+# Survey experiment E1: a Palimpsest scenario as vocarium records.
+# A work with documented emotional lineage and signed provenance metadata is
+# (a) ingested by a non-interpretive pipeline that keeps the metadata, and
+# (b) ingested by one that strips it. The grades are this fixture's CLAIMS
+# about those two transformations; nothing here is licence text.
+{"t":"warrant","id":"w-ni-documented","text":"The operator's public documentation of the non-interpretive use: what was ingested, and that context was not carried."}
+{"t":"warrant","id":"w-strip-observed","text":"Diff of the distributed artefact against the source: the provenance block is absent."}
+{"t":"trope","id":"t_work","quality":"a lament for a drowned village","bearer":"the poem as published","context":"emotional lineage: narrative and cultural context, as documented by the author","record":"signed provenance metadata"}
+{"t":"trope","id":"t_ni_kept","quality":"token statistics of the poem","bearer":"a training-corpus shard","context":"none carried","record":"provenance metadata, carried through"}
+{"t":"trope","id":"t_ni_stripped","quality":"token statistics of the poem","bearer":"a training-corpus shard","context":"none carried","record":"none carried"}
+{"t":"edge","id":"e_ni_kept","effect":"collapse","inputs":["t_work"],"output":"t_ni_kept","grade":{"fate":{"quality":{"k":"Attenuated","delta":8},"bearer":{"k":"Present"},"context":{"k":"Dropped"},"record":{"k":"Present"}},"bond":{"k":"Intact"},"merge":{"k":"Single"}},"warrant_id":"w-ni-documented"}
+{"t":"edge","id":"e_ni_stripped","effect":"collapse","inputs":["t_work"],"output":"t_ni_stripped","grade":{"fate":{"quality":{"k":"Attenuated","delta":8},"bearer":{"k":"Present"},"context":{"k":"Dropped"},"record":{"k":"Dropped"}},"bond":{"k":"Intact"},"merge":{"k":"Single"}},"warrant_id":"w-strip-observed"}
+{"t":"use_model","id":"carries-emotional-lineage","floor":{"fate":{"context":{"k":"Present"}}}}
+{"t":"use_model","id":"provenance-intact","floor":{"fate":{"record":{"k":"Present"}}}}
