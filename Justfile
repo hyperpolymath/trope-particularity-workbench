@@ -17,3 +17,15 @@ check:
 estate-rules:
     bash scripts/check-root-shape.sh .
     bash scripts/check-no-md-in-docs.sh .
+
+# The five trope-stack repositories agree about shared facts (siblings in ../)
+stack-coherence:
+    bash tests/check-stack-coherence.sh
+
+# The same, against the siblings' default branches (clones them)
+stack-coherence-fetch:
+    bash tests/check-stack-coherence.sh --fetch
+
+# The stack coherence gate can fail: one planted disagreement per check
+stack-coherence-selftest:
+    bash tests/check-stack-coherence-selftest.sh

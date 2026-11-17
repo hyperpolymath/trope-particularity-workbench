@@ -8,6 +8,21 @@ https://semver.org/spec/v2.0.0.html[Semantic Versioning].
 
 === [Unreleased]
 
+==== Added
+
+* A stack coherence gate (`tests/check-stack-coherence.sh`, `just
+  stack-coherence`). It reads the five trope-stack repositories and fails when
+  they disagree about a shared fact: the IR schema and version, the five-repo
+  map, the checker commit each sibling builds against, the revision of the
+  shared scan workflow, root documents a README cites, template identity left
+  in a repository's description, the `coordination` value, and any claim listed
+  in `tests/stack-coherence/retired-claims.tsv`. It writes nothing. Run on the
+  five `main` branches on 2026-11-17 it reports 6 of 10 checks in disagreement;
+  the fixes belong to the sibling repositories. The live gate runs on pushes to
+  `main`, weekly and on demand. Its self-test
+  (`tests/check-stack-coherence-selftest.sh`, 19 cases: one planted
+  disagreement per check, three controls) runs on every pull request.
+
 ==== Changed
 
 * The repository is now documentation only. The inherited RSR template

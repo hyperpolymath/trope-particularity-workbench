@@ -11,6 +11,10 @@ on:
     paths: ['vocabulary/**', 'assets/**', 'README.adoc', 'tests/**', '.github/workflows/trope-check.yml']
   pull_request:
   workflow_dispatch:
+  schedule:
+    # Mondays 05:23 UTC: the live stack gate reads four other repositories,
+    # which change without any push here.
+    - cron: '23 5 * * 1'
 permissions:
   contents: read
 jobs:
@@ -20,3 +24,26 @@ jobs:
       - uses: actions/checkout@v7.0.1
       - name: Nine effects consistent (vocabulary / trainer / map / README)
         run: bash tests/check-vocabulary.sh
+  # The gate's own controls: one planted disagreement per check, on a scratch
+  # stack. Runs everywhere, so a change that breaks the gate fails its own PR.
+  stack-coherence-selftest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - name: The stack coherence gate can fail (planted disagreements)
+        run: bash tests/check-stack-coherence-selftest.sh
+  # The live gate: the five trope-stack repositories agree about shared facts.
+  # It reads the siblings' default branches, so its result does not depend on
+  # the change under review. It therefore runs on pushes to main, weekly, and
+  # on demand, and not on pull requests or their branches, where it would fail
+  # for reasons the pull request cannot fix. When it is red, a sibling
+  # disagrees; the log names both sides.
+  stack-coherence:
+    if: >-
+      github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+      || (github.event_name == 'push' && github.ref == 'refs/heads/main')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - name: The five repositories agree (IR version, map, pins, retired claims, identity)
+        run: bash tests/check-stack-coherence.sh --fetch
