@@ -63,7 +63,7 @@ job `examples-lower-to-valid-ir`, success 2026-11-04T22:51Z
 
 | hermeneia
 | implementation (M1)
-| `invoke` end to end against the checker; the other six vokes parse and are
+| `invoke` end to end against the checker; the other six vokes are recognised by keyword (their bodies are not parsed) and are
 refused as unimplemented; `show loss` refused (needs the checker's loss vector);
 stub store.
 | None of the calculus's; O2 as a producer, once it emits IR from a real store.
