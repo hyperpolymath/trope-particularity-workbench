@@ -21,6 +21,11 @@ established academic or technical formalisms.
   `examples/survey/`, re-run by `just survey`); a comparison of Vocarium's warrant
   with the epistemic-types warrant levels; and a proposed, unproved theorem on the
   level of a verdict. Survey only.
+* `formalisms/grades-as-abstractions-of-transformations.adoc` — a grade abstracts a
+  transformation, and that relation is not yet a theorem. One counterexample reproduced
+  on the shipped checker (a floor asking for one predicate is met by another), and three
+  open theorems: abstraction soundness, sufficiency as factorisation, and
+  coherence-preserving atom factorisation. Research note; nothing ratified.
 
 * `ontologies/swapping-as-grade-commutativity.adoc` — a first formal image of the
   swapping/transposition objection: the ratified commutativity of `▷` as

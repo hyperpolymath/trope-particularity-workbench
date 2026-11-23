@@ -1,0 +1,227 @@
+// SPDX-FileCopyrightText: © 2026 Jonathan D.A. Jewell (hyperpolymath) <j.d.a.jewell@open.ac.uk>
+// SPDX-License-Identifier: CC-BY-SA-4.0
+= Grades as abstractions of transformations: one reproduced counterexample and three open theorems
+:revnumber: 0.1 (research note — open questions, nothing ratified)
+:revdate: 2026-11-17
+:toc: macro
+:sectnums:
+:stem: latexmath
+
+[abstract]
+The grade calculus is an algebra of _loss shapes_. This note records a point made
+in a design review of the trope stack on 2026-11-06 and not yet written down in any
+repository: a grade abstracts a transformation, and the relation between the two is
+not yet a theorem. It gives one counterexample, reproduced on the shipped checker,
+in which the same grade is sufficient for a use under one transformation and
+insufficient under another; and it states three theorems the programme would need
+in order to say that a grade verdict means what its name says. Nothing here changes
+the calculus. Its normative home is `trope-checker` `spec/calculus.adoc`, and any
+adoption is the owner's.
+
+toc::[]
+
+== Status of each claim in this note
+
+[cols="2,3"]
+|===
+| Claim | Status
+
+| The predicate counterexample (§2) on the Rust checker
+| *Reproduced* on 2026-11-17, `tropecheck-rs` built from trope-checker source (`src/rust` last changed at `7f5aaa5`, already on `main`). Commands and output in §2.2.
+
+| The same on the Idris2 checker
+| *Not run.* No Idris2 toolchain was available. The Idris2 carrier erases the predicate label by its own statement (`Trope/Coords.idr`, header comment), so the same result is expected, but that is a reading, not a run.
+
+| The mathematical counterexample (§2.1)
+| Elementary and checkable by hand. Not mechanised.
+
+| The three theorems (§4)
+| *Open.* Stated, not proved, in any prover.
+|===
+
+== The counterexample
+
+=== On paper
+
+Let the source be stem:[D = \mathrm{Bool} \times \mathrm{Bool}], with states
+stem:[(a, b)]. Take two transformations and one use:
+
+[stem]
+++++
+f_1(a,b) = a, \qquad f_2(a,b) = b, \qquad u(a,b) = a.
+++++
+
+Each transformation keeps exactly one Boolean predicate of the source. With the
+predicate's name erased, each is described by the same fate, `Predicated`.
+
+stem:[f_1] is sufficient for stem:[u]: the answer stem:[u] needs is the value
+stem:[f_1] kept. stem:[f_2] is not: the source states stem:[(0,0)] and stem:[(1,0)]
+give the same observation stem:[0] under stem:[f_2] and need different answers.
+
+So no verdict that reads only the erased grade can be both sound and complete for
+every use. It may refuse both. It cannot accept one and refuse the other.
+
+=== On the shipped checker
+
+The calculus writes the fate as `Predicated(P)` and keeps the predicate
+(`spec/calculus.adoc`, _Coordinate 1 — field fate_). The verified developments erase
+it, and say so (same file, _Composition_: "The verified developments (§9.3) erase
+predicate and fusion labels"). The shipped
+Rust checker compares the erased fate.
+
+Two IR documents were made from the conformance fixture
+`tests/conformance/fixtures/duck-collapse.ir.json`. Both set the use-model floor on
+`fate.quality` to `Predicated` with predicate `isQuack`. They differ only in the
+predicate the `collapse` edge records as having survived.
+
+[source,sh]
+----
+for p in isQuack isLoud; do
+  jq --arg p "$p" '
+      .edges[0].grade.fate.quality.predicate = $p
+    | .use_model.floor.fate.quality = {k: "Predicated", predicate: "isQuack"}' \
+    tests/conformance/fixtures/duck-collapse.ir.json > edge-$p.json
+  src/rust/target/release/tropecheck-rs edge-$p.json
+done
+----
+
+[source]
+----
+edge predicate isQuack, floor predicate isQuack -> p-sufficient
+edge predicate isLoud,  floor predicate isQuack -> p-sufficient
+----
+
+The second verdict is the counterexample. The use asks for `isQuack`; what survived
+is `isLoud`; the checker reports `p-sufficient`.
+
+=== What this is and is not
+
+It is *not* a breach of any proved law. L1–L6 and the soundness results are stated
+over the erased carrier and assert nothing about label equality; the calculus says
+that in so many words.
+
+It *is* a gap between the verdict's name and its content. The calculus's first
+firewall (_Soundness, and the firewalls_) reads: "Soundness, not completeness. The checker MAY be conservative:
+it MAY report `p-insufficient` where the true residual would in fact have sufficed."
+That allows a false refusal. The case above is a false _acceptance_, which the
+firewall does not cover.
+
+Whether the remedy is to compare predicate labels in the floor check, to refuse a
+`Predicated` floor outright, or to move the question into a finer semantic layer
+(§3) is a normative decision and is not made here.
+
+== The proposed reading
+
+The review's proposal, recorded as a proposal:
+
+[quote]
+A trope is an instance-level subject of interpretation. Its identity is not its
+representation. Transformations act on representations and carry evidence about
+what they preserve. Grades abstract those transformations. Use-models specify the
+distinctions required of the result. A sound verdict depends on the relationship
+between all four.
+
+Three consequences for the vocabulary:
+
+. *Particularity is not what is graded.* What is graded is how recoverable
+information about a particular is from a representation of it.
+. *The grade algebra stays, as a coarse abstraction.* The answer to the
+counterexample is a finer, use-sensitive layer above it, in preference to a tenth
+effect or a fourth coordinate.
+. *A failed check is not a proved failure.* The verdict has three possible
+meanings, of which the IR names two:
++
+[cols="1,2"]
+|===
+| Outcome | Evidence it needs
+
+| Certified sufficient
+| A sound proof that the distinctions the use needs survive.
+
+| Certified insufficient
+| A concrete counterexample, or a proof that a needed distinction cannot survive.
+
+| Indeterminate
+| The abstraction or the evidence cannot establish either.
+|===
++
+Two readings of `p-insufficient` are in use, and they differ. This workbench's
+vocabulary (`README.adoc`, the verdict table) defines it by what it is taken to
+mean: "The surviving residual is _not enough_ for the declared use. Something
+needed was lost (or falsified)". What the checker computes is narrower, an
+operational result: the declared grade failed the declared floor. The second
+implies the first only if the grade is exact. Where the grade is a conservative
+estimate, the residual may in fact have sufficed, which is the false refusal the
+calculus allows. So the operational result is evidence for the vocabulary's
+reading and not a proof of it.
++
+Trope IR v0.2's `p-insufficient` can keep its operational meaning without a schema
+change. Under the proposed reading, the vocabulary's sentence would describe
+_certified insufficient_, and a bare failed floor test would be _indeterminate_
+unless a counterexample comes with it. Whether to reword the vocabulary is the
+owner's decision and is not made here. This bears on Hermeneia's _licensed_ band.
+
+== Three open theorems
+
+=== An abstraction theorem
+
+Let stem:[\gamma(g)] be the set of concrete transformations a grade stem:[g]
+conservatively describes. Define
+
+[stem]
+++++
+\mathrm{ProducerSound}(f, g) \iff f \in \gamma(g), \qquad
+\mathrm{AbstractSafe}(g, u) \iff \forall h \in \gamma(g).\ \mathrm{Suff}(h, u).
+++++
+
+Then
+
+[stem]
+++++
+\mathrm{ProducerSound}(f, g) \wedge \mathrm{AbstractSafe}(g, u) \implies \mathrm{Suff}(f, u).
+++++
+
+The implication is immediate. The work is in defining a useful stem:[\gamma], in
+proving that producers satisfy it (this is O2, lowering correctness), and in
+computing stem:[\mathrm{AbstractSafe}] soundly. The counterexample of §2 says that
+for the erased `Predicated` grade and the use stem:[u], stem:[\mathrm{AbstractSafe}]
+is false.
+
+=== Sufficiency as factorisation
+
+stem:[\mathrm{Suff}(f, u)] should mean that stem:[u] factors through stem:[f]:
+there is a stem:[v] with stem:[u = v \circ f]. Equivalently, any two sources that
+stem:[f] cannot tell apart, stem:[u] does not need to tell apart. The open items
+are the statement over the calculus's typed transformations, and its behaviour
+under composition.
+
+=== Coherence-preserving atom factorisation
+
+The atom-factorisation theorem (`Trope.GradeR.atom_factorization`) factors a grade
+into its slot projections in the product carrier. The calculus also imposes
+coherence between slots: an absent bearer with an `Intact` bond is malformed. A
+coherent `project` drops the bearer and marks the bond `Withheld` in one step.
+Factoring that grade slot by slot can pass through an intermediate grade with an
+absent bearer and an intact bond.
+
+The open question: can every well-typed transformation be decomposed into
+well-typed, coherence-preserving primitive transformations, and not only into
+coordinate factors of an abstract product? If not, the present theorem stands as
+mathematics and is not a completeness theorem for the executable calculus. This
+bears on O1 and should be read beside WP-5.
+
+== What would falsify the proposed reading
+
+* A semantic layer that decides §2 correctly only by becoming as large as the
+transformations it describes. The abstraction would then be buying nothing.
+* A stem:[\gamma] under which every interesting grade is unsafe for every
+interesting use. The grade algebra would then be sound and useless.
+* A coherence-preserving factorisation that needs primitives outside the nine
+effects. That would reopen the effect typology (ADR 0002).
+
+== Relation to the programme
+
+This note proposes no new work package. It gives WP-5 (O1 and coordinate adequacy)
+a concrete test case and gives O2 a statement of what a producer proof has to
+establish. The review's suggested order of work puts the concrete semantics and
+the abstraction theorem before further carrier theorems.
