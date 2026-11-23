@@ -23,6 +23,16 @@ https://semver.org/spec/v2.0.0.html[Semantic Versioning].
   (`tests/check-stack-coherence-selftest.sh`, 28 cases: one planted
   disagreement per check, four cases from review, three controls) runs on every
   pull request.
+* A survey of where Vocarium could serve beyond the trope stack
+  (`docs/theory/formalisms/vocarium-survey.adoc`): the Palimpsest licence's
+  logic, the chora registry, VeriSimDB's consonance subjects and the cadastre.
+  Four experiments, run on the built store engine and the shipped checker, with
+  fixtures in `examples/survey/` and a script that re-runs them (`just survey`,
+  12 results). It records one known false acceptance (trope-checker issue 125,
+  shown on a consent scope), two gaps in Vocarium (no revocation; the emitted IR
+  carries no warrant), a comparison of Vocarium's warrant with the
+  epistemic-types levels, and a proposed theorem on the level of a verdict,
+  stated and not proved. Nothing is adopted.
 
 ==== Changed
 

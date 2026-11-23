@@ -1,0 +1,12 @@
+# SPDX-License-Identifier: CC-BY-SA-4.0
+# Survey experiment E4: one cadastre row as a particular.
+# Row 299 of metadatastician/cadastra docs/status/estate-triage-report.csv, read
+# 2026-11-17 at 5746b39: vocarium, primary_language Nickel, classification CLEAN,
+# last_activity 2026-07-08. The scan reduces a repository to a label. Two uses
+# of that row: put the repository in a triage queue, and describe it.
+{"t":"warrant","id":"w-scan-row","text":"cadastra estate-triage-report.csv row 299 at 5746b39, with its language and anti-pattern columns as evidence."}
+{"t":"trope","id":"t_repo_state","quality":"what vocarium is: a pure Zig store engine with a JSONL log","bearer":"hyperpolymath/vocarium","context":"its tree on 2026-07-08","record":"the repository itself"}
+{"t":"trope","id":"t_scan_row","quality":"classification CLEAN","bearer":"hyperpolymath/vocarium","context":"cadastra scan of 2026-07-08","record":"estate-triage-report.csv row 299"}
+{"t":"edge","id":"e_scan","effect":"collapse","inputs":["t_repo_state"],"output":"t_scan_row","grade":{"fate":{"quality":{"k":"Predicated","predicate":"classification"},"bearer":{"k":"Present"},"context":{"k":"Present"},"record":{"k":"Present"}},"bond":{"k":"Intact"},"merge":{"k":"Single"}},"warrant_id":"w-scan-row"}
+{"t":"use_model","id":"triage-queue","floor":{"fate":{"quality":{"k":"Predicated","predicate":"classification"}}}}
+{"t":"use_model","id":"describe-the-repository","floor":{"fate":{"quality":{"k":"Present"}}}}

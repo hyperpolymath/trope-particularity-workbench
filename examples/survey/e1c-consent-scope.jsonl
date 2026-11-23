@@ -1,0 +1,12 @@
+# SPDX-License-Identifier: CC-BY-SA-4.0
+# Survey experiment E1c: consent has a scope, and the checker does not read it.
+# The trope is a consent grant. Its quality is what the grant covers. One edge
+# narrows it to research use, the other to training use. The use-model asks for
+# training. This is trope-checker issue 125 in a setting where it matters.
+{"t":"warrant","id":"w-consent-record","text":"The author's consent record, as filed."}
+{"t":"trope","id":"t_grant","quality":"what the author consented to","bearer":"the author","context":"the consent record's stated terms","record":"consent record"}
+{"t":"trope","id":"t_research_only","quality":"consent, read for research use","bearer":"the author","context":"the consent record's stated terms","record":"consent record"}
+{"t":"trope","id":"t_training","quality":"consent, read for training use","bearer":"the author","context":"the consent record's stated terms","record":"consent record"}
+{"t":"edge","id":"e_read_research","effect":"collapse","inputs":["t_grant"],"output":"t_research_only","grade":{"fate":{"quality":{"k":"Predicated","predicate":"consented-for-research"},"bearer":{"k":"Present"},"context":{"k":"Present"},"record":{"k":"Present"}},"bond":{"k":"Intact"},"merge":{"k":"Single"}},"warrant_id":"w-consent-record"}
+{"t":"edge","id":"e_read_training","effect":"collapse","inputs":["t_grant"],"output":"t_training","grade":{"fate":{"quality":{"k":"Predicated","predicate":"consented-for-training"},"bearer":{"k":"Present"},"context":{"k":"Present"},"record":{"k":"Present"}},"bond":{"k":"Intact"},"merge":{"k":"Single"}},"warrant_id":"w-consent-record"}
+{"t":"use_model","id":"needs-training-consent","floor":{"fate":{"quality":{"k":"Predicated","predicate":"consented-for-training"}}}}
